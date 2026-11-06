@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; }
+    .broll { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+    .kb { position:absolute; left:0; top:0; transform-origin:50% 50%; }
+    .kb img { display:block; width:100%; height:100%; object-fit:cover; }
+    .scrim-top { position:absolute; left:0; top:0; width:1080px; height:900px;
+      background:linear-gradient(180deg, rgba(4,30,22,0.86) 0%, rgba(4,30,22,0.66) 50%, rgba(4,30,22,0) 100%); }
+    .eyebrow { font-family:"Montserrat",sans-serif; font-weight:700; font-size:28px; letter-spacing:0.32em;
+      text-transform:uppercase; color:#f2c978; }
+    .serif { font-family:"Playfair Display",serif; font-weight:700; color:#fff; line-height:1.02; letter-spacing:-0.01em; }
+    .gold { color:#f5cd7a; }
+    .rule { height:3px; background:linear-gradient(90deg, rgba(245,205,122,0), #f5cd7a 20%, #f5cd7a 80%, rgba(245,205,122,0)); }
+    .chip { display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:999px;
+      font-family:"Montserrat",sans-serif; font-weight:800; font-size:34px; letter-spacing:0.08em; text-transform:uppercase; }
+    .tb { position:absolute; left:0; width:1080px; text-align:center; }
+
+  </style>
+  <div id="root" data-composition-id="rayuan" data-width="1080" data-height="1920">
+    <div id="ry-a" class="clip broll" data-start="0" data-duration="3.28" style="z-index:1">
+      <div id="ry-a-kb" class="kb" style="width:1080px;height:1920px"><img id="ry-a-img" src="assets/photos/asrama-malam.jpg" alt="" data-color-grading="{&quot;intensity&quot;:0.65,&quot;adjust&quot;:{&quot;contrast&quot;:0.07,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.06,&quot;temperature&quot;:0.05,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.02},&quot;details&quot;:{&quot;vignette&quot;:0.05}}" /></div>
+    </div>
+    <div id="ry-b" class="clip broll" data-start="3.28" data-duration="1.94" style="z-index:1">
+      <div id="ry-b-kb" class="kb" style="width:1080px;height:1920px"><img id="ry-b-img" src="assets/photos/pondok-jalan.jpg" alt="" data-color-grading="{&quot;intensity&quot;:0.65,&quot;adjust&quot;:{&quot;contrast&quot;:0.07,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.06,&quot;temperature&quot;:0.05,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.02},&quot;details&quot;:{&quot;vignette&quot;:0.05}}" /></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ry-a-kb", {x:0, y:0.0, scale:1.0}, {x:0, y:0.0, scale:1.08, duration:3.28, ease:"none"}, 0);
+    tl.fromTo("#ry-b-kb", {x:0, y:-40, scale:1.12}, {x:0, y:10, scale:1.04, duration:1.94, ease:"power2.out"}, 3.28);
+    window.__timelines["rayuan"] = tl;
+  </script>
+</template>

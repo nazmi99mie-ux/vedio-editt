@@ -1,0 +1,61 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; }
+    .broll { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+    .kb { position:absolute; left:0; top:0; transform-origin:50% 50%; }
+    .kb img { display:block; width:100%; height:100%; object-fit:cover; }
+    .scrim-top { position:absolute; left:0; top:0; width:1080px; height:900px;
+      background:linear-gradient(180deg, rgba(4,30,22,0.86) 0%, rgba(4,30,22,0.66) 50%, rgba(4,30,22,0) 100%); }
+    .eyebrow { font-family:"Montserrat",sans-serif; font-weight:700; font-size:28px; letter-spacing:0.32em;
+      text-transform:uppercase; color:#f2c978; }
+    .serif { font-family:"Playfair Display",serif; font-weight:700; color:#fff; line-height:1.02; letter-spacing:-0.01em; }
+    .gold { color:#f5cd7a; }
+    .rule { height:3px; background:linear-gradient(90deg, rgba(245,205,122,0), #f5cd7a 20%, #f5cd7a 80%, rgba(245,205,122,0)); }
+    .chip { display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:999px;
+      font-family:"Montserrat",sans-serif; font-weight:800; font-size:34px; letter-spacing:0.08em; text-transform:uppercase; }
+    .tb { position:absolute; left:0; width:1080px; text-align:center; }
+
+    #rv-plan, #rv-eb, #rv-l1, #rv-l2, #rv-c1, #rv-c2, #rv-note { opacity:0; }
+    #rv-rule { transform-origin:50% 50%; }
+  </style>
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1920">
+    <div id="rv-land" class="clip broll" data-start="0" data-duration="1.5" style="z-index:1">
+      <div id="rv-land-kb" class="kb" style="width:3413px;height:1920px"><img id="rv-land-img" src="assets/photos/tanah-wakaf-aerial.jpg" alt="" data-color-grading="{&quot;intensity&quot;:0.65,&quot;adjust&quot;:{&quot;contrast&quot;:0.07,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.06,&quot;temperature&quot;:0.05,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.02},&quot;details&quot;:{&quot;vignette&quot;:0.05}}" /></div>
+    </div>
+    <div id="rv-plan" class="clip broll" data-start="1.2" data-duration="4.06" style="z-index:2">
+      <div id="rv-plan-kb" class="kb" style="width:1359px;height:1920px"><img id="rv-plan-img" src="assets/photos/pelan-konsep.jpg" alt="" data-color-grading="{&quot;intensity&quot;:0.65,&quot;adjust&quot;:{&quot;contrast&quot;:0.07,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.06,&quot;temperature&quot;:0.05,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.02},&quot;details&quot;:{&quot;vignette&quot;:0.05}}" /></div>
+    </div>
+    <div id="rv-flash" style="position:absolute;inset:0;z-index:3;background:radial-gradient(ellipse 70% 55% at 50% 40%, rgba(255,240,205,1), rgba(255,214,140,0.65) 45%, rgba(255,200,120,0) 75%);opacity:0;mix-blend-mode:screen"></div>
+    <div id="rv-scrim" class="scrim-top" style="z-index:4"></div>
+    <div id="rv-title" class="tb" style="top:228px;z-index:6">
+      <div id="rv-eb" class="eyebrow">Projek Seterusnya</div>
+      <div id="rv-l1" class="serif" style="font-size:98px;margin-top:18px">Kompleks Pondok</div>
+      <div id="rv-l2" class="serif gold" style="font-size:118px;font-style:italic">Warga Emas</div>
+      <div id="rv-rule" class="rule" style="width:420px;margin:24px auto 26px"></div>
+      <div style="display:flex;gap:18px;justify-content:center">
+        <span id="rv-c1" class="chip" style="background:#f5cd7a;color:#0b2e22">Bujang</span>
+        <span id="rv-c2" class="chip" style="background:#f5cd7a;color:#0b2e22">Berkelamin</span>
+      </div>
+    </div>
+    <div id="rv-note" style="position:absolute;right:56px;top:1010px;z-index:6;font-family:'Montserrat',sans-serif;font-weight:700;font-size:22px;letter-spacing:0.2em;color:rgba(255,255,255,0.92);background:rgba(0,0,0,0.42);padding:8px 16px;border-radius:8px">GAMBARAN KONSEP</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rv-land-kb", {x:-380, y:0.0, scale:1.08}, {x:-470, y:0.0, scale:1.14, duration:1.5, ease:"sine.inOut"}, 0);
+    tl.fromTo("#rv-plan-kb", {x:-140, y:0.0, scale:1.0}, {x:-140, y:0.0, scale:1.06, duration:4.06, ease:"power1.out"}, 1.2);
+    tl.fromTo("#rv-plan", {opacity:0}, {opacity:1, duration:0.3, ease:"power2.out"}, 1.2);
+    tl.fromTo("#rv-flash", {opacity:0}, {opacity:0.95, duration:0.22, ease:"power2.out"}, 1.04);
+    tl.to("#rv-flash", {opacity:0, duration:0.7, ease:"power2.in"}, 1.28);
+    tl.fromTo("#rv-scrim", {opacity:0}, {opacity:1, duration:0.5, ease:"power2.out"}, 1.32);
+    tl.fromTo("#rv-eb", {opacity:0, y:0, filter:"blur(6px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.2, ease:"power4.out"}, 1.42);
+    tl.fromTo("#rv-l1", {opacity:0, y:0, filter:"blur(8px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.2, ease:"power4.out"}, 1.54);
+    tl.fromTo("#rv-l2", {opacity:0, y:0, filter:"blur(10px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.24, ease:"power4.out"}, 1.68);
+    tl.fromTo("#rv-rule", {scaleX:0}, {scaleX:1, duration:0.5, ease:"expo.out"}, 1.82);
+    tl.fromTo("#rv-note", {opacity:0}, {opacity:1, duration:0.3}, 1.72);
+    tl.fromTo("#rv-c1", {opacity:0, scale:0.5}, {opacity:1, scale:1, duration:0.45, ease:"back.out(1.7)"}, 3.22);
+    tl.fromTo("#rv-c2", {opacity:0, scale:0.5}, {opacity:1, scale:1, duration:0.45, ease:"back.out(1.7)"}, 4.56);
+    tl.to(["#rv-title","#rv-note"], {opacity:0, filter:"blur(10px)", duration:0.22, ease:"power3.in"}, 5.0);
+    tl.to("#rv-scrim", {opacity:0, duration:0.22}, 5.02);
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>

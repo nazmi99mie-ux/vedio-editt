@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .lk { position:absolute; inset:-16%; opacity:0; mix-blend-mode:screen; }
+    .lk .ly { position:absolute; inset:-20%; }
+    .lk .amber { background:radial-gradient(ellipse 52% 110% at 10% 58%, rgb(255 241 197 / 88%), transparent 45%),
+                 radial-gradient(ellipse 72% 120% at 24% 54%, rgb(255 160 70 / 70%), transparent 66%); filter:blur(28px); }
+    .lk .warm { background:radial-gradient(ellipse 58% 105% at 78% 34%, rgb(255 190 90 / 60%), rgb(255 120 60 / 22%) 48%, transparent 76%); filter:blur(40px); }
+    .lk .gold { background:linear-gradient(104deg, transparent 24%, rgb(255 170 70 / 28%) 40%, rgb(255 247 210 / 70%) 51%, rgb(255 150 60 / 20%) 62%, transparent 78%); filter:blur(20px); }
+  </style>
+  <div id="root" data-composition-id="leak-4" data-width="1080" data-height="1920" data-layout-ignore>
+    <div id="leak-4-lk" class="lk"><div id="leak-4-a" class="ly amber"></div><div id="leak-4-w" class="ly warm"></div><div id="leak-4-g" class="ly gold"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const d = 2.2;
+    tl.fromTo("#leak-4-lk", {opacity:0}, {opacity:0.85, duration:d*0.26, ease:"sine.out"}, d*0.06);
+    tl.to("#leak-4-lk", {opacity:0.4, duration:d*0.2, ease:"sine.inOut"}, d*0.4);
+    tl.to("#leak-4-lk", {opacity:0, duration:d*0.3, ease:"sine.in"}, d*0.66);
+    tl.fromTo("#leak-4-a", {xPercent:-20, scale:0.92, rotation:-4}, {xPercent:18, scale:1.1, rotation:2, duration:d, ease:"sine.inOut"}, 0);
+    tl.fromTo("#leak-4-w", {xPercent:20, yPercent:-8, scale:1.08}, {xPercent:-16, yPercent:8, scale:0.94, duration:d, ease:"sine.inOut"}, 0);
+    tl.fromTo("#leak-4-g", {xPercent:-28, rotation:-6}, {xPercent:24, rotation:4, duration:d, ease:"sine.inOut"}, 0);
+    window.__timelines["leak-4"] = tl;
+  </script>
+</template>

@@ -1,0 +1,42 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; }
+    .broll { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+    .kb { position:absolute; left:0; top:0; transform-origin:50% 50%; }
+    .kb img { display:block; width:100%; height:100%; object-fit:cover; }
+    .scrim-top { position:absolute; left:0; top:0; width:1080px; height:900px;
+      background:linear-gradient(180deg, rgba(4,30,22,0.86) 0%, rgba(4,30,22,0.66) 50%, rgba(4,30,22,0) 100%); }
+    .eyebrow { font-family:"Montserrat",sans-serif; font-weight:700; font-size:28px; letter-spacing:0.32em;
+      text-transform:uppercase; color:#f2c978; }
+    .serif { font-family:"Playfair Display",serif; font-weight:700; color:#fff; line-height:1.02; letter-spacing:-0.01em; }
+    .gold { color:#f5cd7a; }
+    .rule { height:3px; background:linear-gradient(90deg, rgba(245,205,122,0), #f5cd7a 20%, #f5cd7a 80%, rgba(245,205,122,0)); }
+    .chip { display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:999px;
+      font-family:"Montserrat",sans-serif; font-weight:800; font-size:34px; letter-spacing:0.08em; text-transform:uppercase; }
+    .tb { position:absolute; left:0; width:1080px; text-align:center; }
+
+    #tk-moon, #tk-eb, #tk-l1, #tk-l2 { opacity:0; }
+  </style>
+  <div id="root" data-composition-id="tarikh" data-width="1080" data-height="1920">
+    <div id="tk-scrim" class="scrim-top" style="z-index:1"></div>
+    <div id="tk-card" class="tb" style="top:250px;z-index:5">
+      <svg id="tk-moon" width="86" height="86" viewBox="0 0 64 64"><path d="M40 6a26 26 0 1 0 18 44A22 22 0 1 1 40 6z" fill="#f5cd7a"/><path d="M50 16l2 5 5 .4-4 3.2 1.4 5-4.4-2.8-4.4 2.8 1.4-5-4-3.2 5-.4z" fill="#f5cd7a"/></svg>
+      <div id="tk-eb" class="eyebrow" style="margin-top:18px">Projek Bermula</div>
+      <div id="tk-l1" class="serif" style="font-size:120px;margin-top:18px">Selepas</div>
+      <div id="tk-l2" class="serif gold" style="font-size:132px;font-style:italic">Hari Raya</div>
+      <div id="tk-rule" class="rule" style="width:420px;margin:26px auto 0"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tk-scrim", {opacity:0}, {opacity:1, duration:0.4, ease:"power2.out"}, 0.15);
+    tl.fromTo("#tk-moon", {opacity:0, rotation:-25, scale:0.7}, {opacity:1, rotation:0, scale:1, duration:0.6, ease:"expo.out"}, 0.3);
+    tl.fromTo("#tk-eb", {opacity:0, y:0, filter:"blur(6px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.2, ease:"power4.out"}, 0.5);
+    tl.fromTo("#tk-l1", {opacity:0, y:0, filter:"blur(8px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.2, ease:"power4.out"}, 2.59);
+    tl.fromTo("#tk-l2", {opacity:0, y:0, filter:"blur(10px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.26, ease:"power4.out"}, 2.89);
+    tl.fromTo("#tk-rule", {scaleX:0}, {scaleX:1, duration:0.5, ease:"expo.out"}, 3.04);
+    tl.to("#tk-card", {opacity:0, filter:"blur(10px)", duration:0.22, ease:"power3.in"}, 3.84);
+    tl.to("#tk-scrim", {opacity:0, duration:0.22}, 3.86);
+    window.__timelines["tarikh"] = tl;
+  </script>
+</template>

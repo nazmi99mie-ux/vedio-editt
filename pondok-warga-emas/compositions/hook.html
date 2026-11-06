@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; overflow:hidden; }
+    .broll { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+    .kb { position:absolute; left:0; top:0; transform-origin:50% 50%; }
+    .kb img { display:block; width:100%; height:100%; object-fit:cover; }
+    .scrim-top { position:absolute; left:0; top:0; width:1080px; height:900px;
+      background:linear-gradient(180deg, rgba(4,30,22,0.86) 0%, rgba(4,30,22,0.66) 50%, rgba(4,30,22,0) 100%); }
+    .eyebrow { font-family:"Montserrat",sans-serif; font-weight:700; font-size:28px; letter-spacing:0.32em;
+      text-transform:uppercase; color:#f2c978; }
+    .serif { font-family:"Playfair Display",serif; font-weight:700; color:#fff; line-height:1.02; letter-spacing:-0.01em; }
+    .gold { color:#f5cd7a; }
+    .rule { height:3px; background:linear-gradient(90deg, rgba(245,205,122,0), #f5cd7a 20%, #f5cd7a 80%, rgba(245,205,122,0)); }
+    .chip { display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:999px;
+      font-family:"Montserrat",sans-serif; font-weight:800; font-size:34px; letter-spacing:0.08em; text-transform:uppercase; }
+    .tb { position:absolute; left:0; width:1080px; text-align:center; }
+
+    #hk-ekar-eb, #hk-ekar-n, #hk-ekar-u, #hk-chip { opacity:0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-scrim" class="scrim-top" style="z-index:2"></div>
+    <div id="hk-aerial" class="clip broll" data-start="2.2" data-duration="5.76" style="z-index:1">
+      <div id="hk-kb" class="kb" style="width:3413px;height:1920px">
+        <img id="hk-img" src="assets/photos/tanah-wakaf-aerial.jpg" alt="" data-color-grading="{&quot;intensity&quot;:0.65,&quot;adjust&quot;:{&quot;contrast&quot;:0.07,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.06,&quot;temperature&quot;:0.05,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.02},&quot;details&quot;:{&quot;vignette&quot;:0.05}}" />
+        <svg id="hk-plot" viewBox="0 0 1280 720" preserveAspectRatio="none" style="position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible">
+          <polygon id="hk-plot-fill" points="352,186 470,184 598,196 636,238 650,340 666,452 698,560 756,650 792,720 0,720 0,466" fill="rgba(245,205,122,0.20)" />
+          <polygon id="hk-plot-line" points="352,186 470,184 598,196 636,238 650,340 666,452 698,560 756,650 792,720 0,720 0,466" fill="none" stroke="#f5cd7a" stroke-width="3.2" stroke-linejoin="round" stroke-dasharray="4200" stroke-dashoffset="4200" />
+        </svg>
+      </div>
+    </div>
+    <div id="hk-title" class="tb" style="top:236px;z-index:5">
+      <div id="hk-eyebrow" class="eyebrow">Rayuan Wakaf &middot; Gerik</div>
+      <div id="hk-l1" class="serif" style="font-size:132px;margin-top:22px">Tanah Wakaf</div>
+      <div id="hk-l2" class="serif gold" style="font-size:76px;font-style:italic;font-weight:600;margin-top:6px">untuk Warga Emas</div>
+    </div>
+    <div id="hk-tag" class="tb" style="top:1010px;z-index:5">
+      <span id="hk-chip" class="chip" style="background:rgba(5,28,21,0.78);color:#f5cd7a;border:2px solid rgba(245,205,122,0.7)">
+        <svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="#f5cd7a"/></svg>
+        Tanah Wakaf
+      </span>
+    </div>
+    <div id="hk-ekar" class="tb" style="top:250px;z-index:6">
+      <div id="hk-ekar-eb" class="eyebrow">Keluasan Lebih Kurang</div>
+      <div style="display:flex;align-items:baseline;justify-content:center;gap:26px;margin-top:6px">
+        <span id="hk-ekar-n" class="serif gold" style="font-size:300px;line-height:0.9">1</span>
+        <span id="hk-ekar-u" class="serif" style="font-size:150px">Ekar</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#hk-scrim", {opacity:1}, 0);
+    tl.set(["#hk-eyebrow","#hk-l1","#hk-l2"], {opacity:1}, 0);
+    tl.to("#hk-eyebrow", {opacity:0, filter:"blur(8px)", duration:0.18, ease:"power3.in"}, 1.98);
+    tl.to("#hk-l1", {opacity:0, filter:"blur(8px)", duration:0.18, ease:"power3.in"}, 2.02);
+    tl.to("#hk-l2", {opacity:0, filter:"blur(8px)", duration:0.18, ease:"power3.in"}, 2.06);
+    tl.to("#hk-scrim", {opacity:0.0, duration:0.4, ease:"power2.inOut"}, 2.1);
+    tl.fromTo("#hk-kb", {x:-60, y:0, scale:1.0}, {x:-520, y:0, scale:1.07, duration:5.76, ease:"sine.inOut"}, 2.2);
+    tl.to("#hk-plot-line", {strokeDashoffset:0, duration:1.6, ease:"power2.inOut"}, 2.55);
+    tl.fromTo("#hk-plot-fill", {opacity:0}, {opacity:1, duration:0.8, ease:"power2.out"}, 3.5);
+    tl.fromTo("#hk-chip", {opacity:0, scale:0.6, y:20}, {opacity:1, scale:1, y:0, duration:0.55, ease:"back.out(1.6)"}, 3.2);
+    tl.to("#hk-chip", {opacity:0, filter:"blur(8px)", duration:0.2, ease:"power3.in"}, 6.66);
+    tl.to("#hk-scrim", {opacity:1, duration:0.4, ease:"power2.inOut"}, 6.71);
+    tl.fromTo("#hk-ekar-eb", {opacity:0, y:0, filter:"blur(6px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.2, ease:"power4.out"}, 6.86);
+    tl.fromTo("#hk-ekar-n", {opacity:0, scale:1.6, filter:"blur(14px)"}, {opacity:1, scale:1, filter:"blur(0px)", duration:0.42, ease:"expo.out"}, 7.16);
+    tl.fromTo("#hk-ekar-u", {opacity:0, y:0, filter:"blur(8px)"}, {opacity:1, y:0, filter:"blur(0px)", duration:0.24, ease:"power4.out"}, 7.3);
+    tl.to("#hk-ekar", {opacity:0, filter:"blur(10px)", duration:0.2, ease:"power3.in"}, 7.72);
+    tl.to("#hk-scrim", {opacity:0, duration:0.2}, 7.74);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
