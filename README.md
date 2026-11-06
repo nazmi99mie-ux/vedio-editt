@@ -34,6 +34,6 @@ Suara, potongan dan jalan cerita sama seperti versi 1, ditambah:
 - Kaligrafi Arab 3D (Assalamualaikum, Bismillah, Alhamdulillah)
 - Ikon 3D (Microsoft Fluent Emoji, lesen MIT) mengikut cerita: pin lokasi, rumah, warga emas, buku, bulan Hari Raya, megafon, jam pasir, dll.
 - Partikel, percikan, sinar cahaya, kilat, gegaran kamera, transisi whip / zoom / flash
-- 80 beat animasi, ~390 kesan bunyi: loceng, pop, whoosh, swoosh, riser, sparkle, chime, bass drop, cinematic hit
+- 80 beat animasi, ~200 kesan bunyi (tiada bunyi tik setiap perkataan): loceng, pop, whoosh, swoosh, riser, sparkle, chime, bass drop, cinematic hit
 
 Pipeline: `build_audio2.py` → `render2.py` (beat ditakrif dalam `beats.py`).

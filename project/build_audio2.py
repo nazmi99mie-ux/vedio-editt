@@ -91,11 +91,10 @@ for k in range(4):
     place("pop_hi" if k % 2 else "pop2", title["out0"] + 1.2 + k * 0.15, .3)
 place("chime", title["out0"] + 0.8, .3)
 place("whoosh", title["out1"] - 0.35, .4)
-# caption word ticks (very soft) and keyword pops
+# keyword pops (per-word ticks removed on request)
 for w in words:
     if w["hook"]:
         continue
-    place("tick", w["s"], .10)
     if render2.cap_style(w["w"]):
         place("pop_hi", w["s"], .14)
 # transitions
