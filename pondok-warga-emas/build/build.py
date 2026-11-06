@@ -660,7 +660,7 @@ def build():
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width={W}, height={H}" />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="assets/vendor/gsap.min.js"></script>
     <style>
       :root {{ --ground:#04140f; --gold:#f5cd7a; --ink:#ffffff; }}
       * {{ margin:0; padding:0; box-sizing:border-box; }}
