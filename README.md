@@ -26,3 +26,14 @@ python project/render.py <work> <graded_frames_dir> x 4    # render 1080x1920
 python project/make_srt.py <work> sarikata.srt
 ```
 Muzik latar dan kesan bunyi disintesis sendiri (tiada isu hak cipta).
+
+## Versi 2 — High Impact Motion Graphics (`output/v2_*`)
+Suara, potongan dan jalan cerita sama seperti versi 1, ditambah:
+- Teks 3D timbul (extrude + kilauan) dengan animasi hentak, terbang masuk, membesar dan jatuh-melantun
+- Sari kata 3D perkataan demi perkataan, berwarna ikut kategori (emas = ibadah/akhirat, hijau = tanah/projek, jingga = warga emas, biru = seruan)
+- Kaligrafi Arab 3D (Assalamualaikum, Bismillah, Alhamdulillah)
+- Ikon 3D (Microsoft Fluent Emoji, lesen MIT) mengikut cerita: pin lokasi, rumah, warga emas, buku, bulan Hari Raya, megafon, jam pasir, dll.
+- Partikel, percikan, sinar cahaya, kilat, gegaran kamera, transisi whip / zoom / flash
+- 80 beat animasi, ~390 kesan bunyi: loceng, pop, whoosh, swoosh, riser, sparkle, chime, bass drop, cinematic hit
+
+Pipeline: `build_audio2.py` → `render2.py` (beat ditakrif dalam `beats.py`).
