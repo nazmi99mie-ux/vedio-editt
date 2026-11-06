@@ -1,0 +1,1644 @@
+[
+ {
+  "start": 0.0,
+  "end": 7.1,
+  "text": " Cuba bayangkan, ada orang sanggup habiskan hidup dia bang, dekat pondok semata-mata nak belajar agama, dekatkan diri bang kepada Allah.",
+  "words": [
+   {
+    "w": " Cuba",
+    "s": 0.0,
+    "e": 0.16
+   },
+   {
+    "w": " bayangkan,",
+    "s": 0.16,
+    "e": 0.78
+   },
+   {
+    "w": " ada",
+    "s": 0.86,
+    "e": 1.16
+   },
+   {
+    "w": " orang",
+    "s": 1.16,
+    "e": 1.32
+   },
+   {
+    "w": " sanggup",
+    "s": 1.32,
+    "e": 1.68
+   },
+   {
+    "w": " habiskan",
+    "s": 1.68,
+    "e": 1.96
+   },
+   {
+    "w": " hidup",
+    "s": 1.96,
+    "e": 2.34
+   },
+   {
+    "w": " dia",
+    "s": 2.34,
+    "e": 2.42
+   },
+   {
+    "w": " bang,",
+    "s": 2.42,
+    "e": 2.54
+   },
+   {
+    "w": " dekat",
+    "s": 2.62,
+    "e": 2.94
+   },
+   {
+    "w": " pondok",
+    "s": 2.94,
+    "e": 3.44
+   },
+   {
+    "w": " semata",
+    "s": 3.44,
+    "e": 3.94
+   },
+   {
+    "w": "-mata",
+    "s": 3.94,
+    "e": 4.34
+   },
+   {
+    "w": " nak",
+    "s": 4.34,
+    "e": 4.64
+   },
+   {
+    "w": " belajar",
+    "s": 4.64,
+    "e": 4.96
+   },
+   {
+    "w": " agama,",
+    "s": 4.96,
+    "e": 5.48
+   },
+   {
+    "w": " dekatkan",
+    "s": 5.52,
+    "e": 6.16
+   },
+   {
+    "w": " diri",
+    "s": 6.16,
+    "e": 6.5
+   },
+   {
+    "w": " bang",
+    "s": 6.5,
+    "e": 6.62
+   },
+   {
+    "w": " kepada",
+    "s": 6.62,
+    "e": 6.78
+   },
+   {
+    "w": " Allah.",
+    "s": 6.78,
+    "e": 7.1
+   }
+  ]
+ },
+ {
+  "start": 7.38,
+  "end": 11.34,
+  "text": " Tapi bang, kita sebenarnya boleh bantu dia orang, boleh bantu mereka.",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 7.38,
+    "e": 7.94
+   },
+   {
+    "w": " bang,",
+    "s": 7.94,
+    "e": 8.2
+   },
+   {
+    "w": " kita",
+    "s": 8.32,
+    "e": 8.66
+   },
+   {
+    "w": " sebenarnya",
+    "s": 8.66,
+    "e": 9.0
+   },
+   {
+    "w": " boleh",
+    "s": 9.0,
+    "e": 9.46
+   },
+   {
+    "w": " bantu",
+    "s": 9.46,
+    "e": 10.2
+   },
+   {
+    "w": " dia",
+    "s": 10.2,
+    "e": 10.32
+   },
+   {
+    "w": " orang,",
+    "s": 10.32,
+    "e": 10.48
+   },
+   {
+    "w": " boleh",
+    "s": 10.68,
+    "e": 10.86
+   },
+   {
+    "w": " bantu",
+    "s": 10.86,
+    "e": 11.22
+   },
+   {
+    "w": " mereka.",
+    "s": 11.22,
+    "e": 11.34
+   }
+  ]
+ },
+ {
+  "start": 11.66,
+  "end": 16.64,
+  "text": " Dekat Madrasah Zawiyah ni bang, bukan sahaja anak-anak muda bang dididik dengan ilmu agama,",
+  "words": [
+   {
+    "w": " Dekat",
+    "s": 11.66,
+    "e": 12.0
+   },
+   {
+    "w": " Madrasah",
+    "s": 12.0,
+    "e": 12.56
+   },
+   {
+    "w": " Zawiyah",
+    "s": 12.56,
+    "e": 13.02
+   },
+   {
+    "w": " ni",
+    "s": 13.02,
+    "e": 13.16
+   },
+   {
+    "w": " bang,",
+    "s": 13.16,
+    "e": 13.26
+   },
+   {
+    "w": " bukan",
+    "s": 13.36,
+    "e": 13.72
+   },
+   {
+    "w": " sahaja",
+    "s": 13.72,
+    "e": 14.22
+   },
+   {
+    "w": " anak",
+    "s": 14.22,
+    "e": 14.52
+   },
+   {
+    "w": "-anak",
+    "s": 14.52,
+    "e": 14.88
+   },
+   {
+    "w": " muda",
+    "s": 14.88,
+    "e": 15.32
+   },
+   {
+    "w": " bang",
+    "s": 15.32,
+    "e": 15.44
+   },
+   {
+    "w": " dididik",
+    "s": 15.44,
+    "e": 15.9
+   },
+   {
+    "w": " dengan",
+    "s": 15.9,
+    "e": 16.02
+   },
+   {
+    "w": " ilmu",
+    "s": 16.02,
+    "e": 16.3
+   },
+   {
+    "w": " agama,",
+    "s": 16.3,
+    "e": 16.64
+   }
+  ]
+ },
+ {
+  "start": 16.78,
+  "end": 22.94,
+  "text": " malah warga emas juga diberi peluang untuk terus belajar dan juga beribadah dalam suasana pondok.",
+  "words": [
+   {
+    "w": " malah",
+    "s": 16.78,
+    "e": 17.56
+   },
+   {
+    "w": " warga",
+    "s": 17.56,
+    "e": 17.94
+   },
+   {
+    "w": " emas",
+    "s": 17.94,
+    "e": 18.3
+   },
+   {
+    "w": " juga",
+    "s": 18.3,
+    "e": 18.58
+   },
+   {
+    "w": " diberi",
+    "s": 18.58,
+    "e": 19.28
+   },
+   {
+    "w": " peluang",
+    "s": 19.28,
+    "e": 19.72
+   },
+   {
+    "w": " untuk",
+    "s": 19.72,
+    "e": 20.2
+   },
+   {
+    "w": " terus",
+    "s": 20.2,
+    "e": 20.48
+   },
+   {
+    "w": " belajar",
+    "s": 20.48,
+    "e": 21.14
+   },
+   {
+    "w": " dan",
+    "s": 21.14,
+    "e": 21.28
+   },
+   {
+    "w": " juga",
+    "s": 21.28,
+    "e": 21.42
+   },
+   {
+    "w": " beribadah",
+    "s": 21.42,
+    "e": 22.04
+   },
+   {
+    "w": " dalam",
+    "s": 22.04,
+    "e": 22.38
+   },
+   {
+    "w": " suasana",
+    "s": 22.38,
+    "e": 22.62
+   },
+   {
+    "w": " pondok.",
+    "s": 22.62,
+    "e": 22.94
+   }
+  ]
+ },
+ {
+  "start": 23.04,
+  "end": 26.78,
+  "text": " Tapi bang, yuran belajar dia bang, cuma RM150 sebulan.",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 23.04,
+    "e": 23.26
+   },
+   {
+    "w": " bang,",
+    "s": 23.26,
+    "e": 23.46
+   },
+   {
+    "w": " yuran",
+    "s": 23.62,
+    "e": 24.0
+   },
+   {
+    "w": " belajar",
+    "s": 24.0,
+    "e": 24.54
+   },
+   {
+    "w": " dia",
+    "s": 24.54,
+    "e": 24.62
+   },
+   {
+    "w": " bang,",
+    "s": 24.62,
+    "e": 24.82
+   },
+   {
+    "w": " cuma",
+    "s": 24.84,
+    "e": 25.16
+   },
+   {
+    "w": " RM150",
+    "s": 25.16,
+    "e": 26.0
+   },
+   {
+    "w": " sebulan.",
+    "s": 26.0,
+    "e": 26.78
+   }
+  ]
+ },
+ {
+  "start": 26.78,
+  "end": 35.52,
+  "text": " Tapi dengan jumlah tu bang, Madrasah ni bang, masih perlu menampung makan minum, bil elektrik, ayak ni bang, penyelenggaraan dan juga allowance guru-guru ni bang.",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 26.78,
+    "e": 27.48
+   },
+   {
+    "w": " dengan",
+    "s": 27.48,
+    "e": 27.66
+   },
+   {
+    "w": " jumlah",
+    "s": 27.66,
+    "e": 28.12
+   },
+   {
+    "w": " tu",
+    "s": 28.12,
+    "e": 28.22
+   },
+   {
+    "w": " bang,",
+    "s": 28.22,
+    "e": 28.4
+   },
+   {
+    "w": " Madrasah",
+    "s": 28.46,
+    "e": 29.16
+   },
+   {
+    "w": " ni",
+    "s": 29.16,
+    "e": 29.22
+   },
+   {
+    "w": " bang,",
+    "s": 29.22,
+    "e": 29.38
+   },
+   {
+    "w": " masih",
+    "s": 29.46,
+    "e": 29.7
+   },
+   {
+    "w": " perlu",
+    "s": 29.7,
+    "e": 29.96
+   },
+   {
+    "w": " menampung",
+    "s": 29.96,
+    "e": 30.48
+   },
+   {
+    "w": " makan",
+    "s": 30.48,
+    "e": 30.72
+   },
+   {
+    "w": " minum,",
+    "s": 30.72,
+    "e": 31.36
+   },
+   {
+    "w": " bil",
+    "s": 31.4,
+    "e": 31.56
+   },
+   {
+    "w": " elektrik,",
+    "s": 31.56,
+    "e": 32.26
+   },
+   {
+    "w": " ayak",
+    "s": 32.36,
+    "e": 32.96
+   },
+   {
+    "w": " ni",
+    "s": 32.96,
+    "e": 33.14
+   },
+   {
+    "w": " bang,",
+    "s": 33.14,
+    "e": 33.28
+   },
+   {
+    "w": " penyelenggaraan",
+    "s": 33.38,
+    "e": 34.14
+   },
+   {
+    "w": " dan",
+    "s": 34.14,
+    "e": 34.18
+   },
+   {
+    "w": " juga",
+    "s": 34.18,
+    "e": 34.34
+   },
+   {
+    "w": " allowance",
+    "s": 34.34,
+    "e": 34.66
+   },
+   {
+    "w": " guru",
+    "s": 34.66,
+    "e": 34.96
+   },
+   {
+    "w": "-guru",
+    "s": 34.96,
+    "e": 35.26
+   },
+   {
+    "w": " ni",
+    "s": 35.26,
+    "e": 35.42
+   },
+   {
+    "w": " bang.",
+    "s": 35.42,
+    "e": 35.52
+   }
+  ]
+ },
+ {
+  "start": 35.58,
+  "end": 38.74,
+  "text": " Semua dengan kos cuma RM150 sebulan.",
+  "words": [
+   {
+    "w": " Semua",
+    "s": 35.58,
+    "e": 35.98
+   },
+   {
+    "w": " dengan",
+    "s": 35.98,
+    "e": 36.44
+   },
+   {
+    "w": " kos",
+    "s": 36.44,
+    "e": 36.9
+   },
+   {
+    "w": " cuma",
+    "s": 36.9,
+    "e": 37.22
+   },
+   {
+    "w": " RM150",
+    "s": 37.22,
+    "e": 38.12
+   },
+   {
+    "w": " sebulan.",
+    "s": 38.12,
+    "e": 38.74
+   }
+  ]
+ },
+ {
+  "start": 38.88,
+  "end": 43.34,
+  "text": " Malah tiga orang pelajar dia, sekarang ni bang, sedang menyambut pengajian agama dekat Yaman.",
+  "words": [
+   {
+    "w": " Malah",
+    "s": 38.88,
+    "e": 39.34
+   },
+   {
+    "w": " tiga",
+    "s": 39.34,
+    "e": 39.64
+   },
+   {
+    "w": " orang",
+    "s": 39.64,
+    "e": 39.84
+   },
+   {
+    "w": " pelajar",
+    "s": 39.84,
+    "e": 40.32
+   },
+   {
+    "w": " dia,",
+    "s": 40.32,
+    "e": 40.44
+   },
+   {
+    "w": " sekarang",
+    "s": 40.52,
+    "e": 40.76
+   },
+   {
+    "w": " ni",
+    "s": 40.76,
+    "e": 40.94
+   },
+   {
+    "w": " bang,",
+    "s": 40.94,
+    "e": 41.04
+   },
+   {
+    "w": " sedang",
+    "s": 41.1,
+    "e": 41.2
+   },
+   {
+    "w": " menyambut",
+    "s": 41.2,
+    "e": 41.48
+   },
+   {
+    "w": " pengajian",
+    "s": 41.48,
+    "e": 41.88
+   },
+   {
+    "w": " agama",
+    "s": 41.88,
+    "e": 42.26
+   },
+   {
+    "w": " dekat",
+    "s": 42.26,
+    "e": 42.96
+   },
+   {
+    "w": " Yaman.",
+    "s": 42.96,
+    "e": 43.34
+   }
+  ]
+ },
+ {
+  "start": 43.5,
+  "end": 50.54,
+  "text": " Madrasah yang sama ni juga bang, terus menghidupkan kelas Fardun Ain, majlis ilmu dan juga program dakwah untuk masyarakat semua ni bang.",
+  "words": [
+   {
+    "w": " Madrasah",
+    "s": 43.5,
+    "e": 43.96
+   },
+   {
+    "w": " yang",
+    "s": 43.96,
+    "e": 44.06
+   },
+   {
+    "w": " sama",
+    "s": 44.06,
+    "e": 44.32
+   },
+   {
+    "w": " ni",
+    "s": 44.32,
+    "e": 44.56
+   },
+   {
+    "w": " juga",
+    "s": 44.56,
+    "e": 44.66
+   },
+   {
+    "w": " bang,",
+    "s": 44.66,
+    "e": 44.86
+   },
+   {
+    "w": " terus",
+    "s": 44.98,
+    "e": 45.2
+   },
+   {
+    "w": " menghidupkan",
+    "s": 45.2,
+    "e": 45.82
+   },
+   {
+    "w": " kelas",
+    "s": 45.82,
+    "e": 46.24
+   },
+   {
+    "w": " Fardun",
+    "s": 46.24,
+    "e": 46.66
+   },
+   {
+    "w": " Ain,",
+    "s": 46.66,
+    "e": 46.98
+   },
+   {
+    "w": " majlis",
+    "s": 47.18,
+    "e": 47.68
+   },
+   {
+    "w": " ilmu",
+    "s": 47.68,
+    "e": 48.18
+   },
+   {
+    "w": " dan",
+    "s": 48.18,
+    "e": 48.24
+   },
+   {
+    "w": " juga",
+    "s": 48.24,
+    "e": 48.34
+   },
+   {
+    "w": " program",
+    "s": 48.34,
+    "e": 48.58
+   },
+   {
+    "w": " dakwah",
+    "s": 48.58,
+    "e": 49.08
+   },
+   {
+    "w": " untuk",
+    "s": 49.08,
+    "e": 49.34
+   },
+   {
+    "w": " masyarakat",
+    "s": 49.34,
+    "e": 49.98
+   },
+   {
+    "w": " semua",
+    "s": 49.98,
+    "e": 50.24
+   },
+   {
+    "w": " ni",
+    "s": 50.24,
+    "e": 50.44
+   },
+   {
+    "w": " bang.",
+    "s": 50.44,
+    "e": 50.54
+   }
+  ]
+ },
+ {
+  "start": 50.64,
+  "end": 51.54,
+  "text": " Semua dalam tu.",
+  "words": [
+   {
+    "w": " Semua",
+    "s": 50.64,
+    "e": 51.1
+   },
+   {
+    "w": " dalam",
+    "s": 51.1,
+    "e": 51.32
+   },
+   {
+    "w": " tu.",
+    "s": 51.32,
+    "e": 51.54
+   }
+  ]
+ },
+ {
+  "start": 51.62,
+  "end": 56.76,
+  "text": " Sebab itulah, hari ni saya nak ajak kita semua ni bang, jadi penginfak tetap bulanan.",
+  "words": [
+   {
+    "w": " Sebab",
+    "s": 51.62,
+    "e": 51.92
+   },
+   {
+    "w": " itulah,",
+    "s": 51.92,
+    "e": 52.3
+   },
+   {
+    "w": " hari",
+    "s": 52.32,
+    "e": 52.6
+   },
+   {
+    "w": " ni",
+    "s": 52.6,
+    "e": 52.82
+   },
+   {
+    "w": " saya",
+    "s": 52.82,
+    "e": 52.98
+   },
+   {
+    "w": " nak",
+    "s": 52.98,
+    "e": 53.16
+   },
+   {
+    "w": " ajak",
+    "s": 53.16,
+    "e": 53.5
+   },
+   {
+    "w": " kita",
+    "s": 53.5,
+    "e": 53.66
+   },
+   {
+    "w": " semua",
+    "s": 53.66,
+    "e": 54.26
+   },
+   {
+    "w": " ni",
+    "s": 54.26,
+    "e": 54.5
+   },
+   {
+    "w": " bang,",
+    "s": 54.5,
+    "e": 54.68
+   },
+   {
+    "w": " jadi",
+    "s": 54.78,
+    "e": 55.08
+   },
+   {
+    "w": " penginfak",
+    "s": 55.08,
+    "e": 55.86
+   },
+   {
+    "w": " tetap",
+    "s": 55.86,
+    "e": 56.38
+   },
+   {
+    "w": " bulanan.",
+    "s": 56.38,
+    "e": 56.76
+   }
+  ]
+ },
+ {
+  "start": 56.78,
+  "end": 57.92,
+  "text": " Madrasah Zawiyah.",
+  "words": [
+   {
+    "w": " Madrasah",
+    "s": 56.78,
+    "e": 57.52
+   },
+   {
+    "w": " Zawiyah.",
+    "s": 57.52,
+    "e": 57.92
+   }
+  ]
+ },
+ {
+  "start": 57.98,
+  "end": 60.2,
+  "text": " Bukan apa, untuk meringankan beban dia bang.",
+  "words": [
+   {
+    "w": " Bukan",
+    "s": 57.98,
+    "e": 58.28
+   },
+   {
+    "w": " apa,",
+    "s": 58.28,
+    "e": 58.46
+   },
+   {
+    "w": " untuk",
+    "s": 58.56,
+    "e": 58.86
+   },
+   {
+    "w": " meringankan",
+    "s": 58.86,
+    "e": 59.7
+   },
+   {
+    "w": " beban",
+    "s": 59.7,
+    "e": 60.0
+   },
+   {
+    "w": " dia",
+    "s": 60.0,
+    "e": 60.1
+   },
+   {
+    "w": " bang.",
+    "s": 60.1,
+    "e": 60.2
+   }
+  ]
+ },
+ {
+  "start": 60.22,
+  "end": 62.0,
+  "text": " Tak perlu tunggu sampai duit banyak ni bang.",
+  "words": [
+   {
+    "w": " Tak",
+    "s": 60.22,
+    "e": 60.32
+   },
+   {
+    "w": " perlu",
+    "s": 60.32,
+    "e": 60.58
+   },
+   {
+    "w": " tunggu",
+    "s": 60.58,
+    "e": 60.78
+   },
+   {
+    "w": " sampai",
+    "s": 60.78,
+    "e": 60.98
+   },
+   {
+    "w": " duit",
+    "s": 60.98,
+    "e": 61.34
+   },
+   {
+    "w": " banyak",
+    "s": 61.34,
+    "e": 61.66
+   },
+   {
+    "w": " ni",
+    "s": 61.66,
+    "e": 61.86
+   },
+   {
+    "w": " bang.",
+    "s": 61.86,
+    "e": 62.0
+   }
+  ]
+ },
+ {
+  "start": 62.22,
+  "end": 67.86,
+  "text": " Berapa kita mampu, kemampuan kita, yang penting ikhlas, yang penting ni bang, istiqamah.",
+  "words": [
+   {
+    "w": " Berapa",
+    "s": 62.22,
+    "e": 62.7
+   },
+   {
+    "w": " kita",
+    "s": 62.7,
+    "e": 62.92
+   },
+   {
+    "w": " mampu,",
+    "s": 62.92,
+    "e": 63.64
+   },
+   {
+    "w": " kemampuan",
+    "s": 63.64,
+    "e": 64.2
+   },
+   {
+    "w": " kita,",
+    "s": 64.2,
+    "e": 64.5
+   },
+   {
+    "w": " yang",
+    "s": 64.56,
+    "e": 65.0
+   },
+   {
+    "w": " penting",
+    "s": 65.0,
+    "e": 65.6
+   },
+   {
+    "w": " ikhlas,",
+    "s": 65.6,
+    "e": 66.16
+   },
+   {
+    "w": " yang",
+    "s": 66.32,
+    "e": 66.5
+   },
+   {
+    "w": " penting",
+    "s": 66.5,
+    "e": 66.86
+   },
+   {
+    "w": " ni",
+    "s": 66.86,
+    "e": 66.92
+   },
+   {
+    "w": " bang,",
+    "s": 66.92,
+    "e": 67.08
+   },
+   {
+    "w": " istiqamah.",
+    "s": 67.14,
+    "e": 67.86
+   }
+  ]
+ },
+ {
+  "start": 67.88,
+  "end": 68.64,
+  "text": " Tiap-tiap bulan.",
+  "words": [
+   {
+    "w": " Tiap",
+    "s": 67.88,
+    "e": 68.24
+   },
+   {
+    "w": "-tiap",
+    "s": 68.24,
+    "e": 68.4
+   },
+   {
+    "w": " bulan.",
+    "s": 68.4,
+    "e": 68.64
+   }
+  ]
+ },
+ {
+  "start": 68.72,
+  "end": 78.66,
+  "text": " Bayangkan bang, setiap bulan ada sebahagian rezeki kita ni bang yang bantu orang makan, bantu guru mengajak, bantu ilmu agama untuk terus berkembang.",
+  "words": [
+   {
+    "w": " Bayangkan",
+    "s": 68.72,
+    "e": 69.32
+   },
+   {
+    "w": " bang,",
+    "s": 69.32,
+    "e": 69.52
+   },
+   {
+    "w": " setiap",
+    "s": 69.64,
+    "e": 70.14
+   },
+   {
+    "w": " bulan",
+    "s": 70.14,
+    "e": 70.7
+   },
+   {
+    "w": " ada",
+    "s": 70.7,
+    "e": 71.04
+   },
+   {
+    "w": " sebahagian",
+    "s": 71.04,
+    "e": 71.56
+   },
+   {
+    "w": " rezeki",
+    "s": 71.56,
+    "e": 71.96
+   },
+   {
+    "w": " kita",
+    "s": 71.96,
+    "e": 72.14
+   },
+   {
+    "w": " ni",
+    "s": 72.14,
+    "e": 72.34
+   },
+   {
+    "w": " bang",
+    "s": 72.34,
+    "e": 72.5
+   },
+   {
+    "w": " yang",
+    "s": 72.5,
+    "e": 72.66
+   },
+   {
+    "w": " bantu",
+    "s": 72.66,
+    "e": 73.18
+   },
+   {
+    "w": " orang",
+    "s": 73.18,
+    "e": 73.38
+   },
+   {
+    "w": " makan,",
+    "s": 73.38,
+    "e": 73.8
+   },
+   {
+    "w": " bantu",
+    "s": 74.06,
+    "e": 74.76
+   },
+   {
+    "w": " guru",
+    "s": 74.76,
+    "e": 75.12
+   },
+   {
+    "w": " mengajak,",
+    "s": 75.12,
+    "e": 75.96
+   },
+   {
+    "w": " bantu",
+    "s": 75.98,
+    "e": 76.6
+   },
+   {
+    "w": " ilmu",
+    "s": 76.6,
+    "e": 77.08
+   },
+   {
+    "w": " agama",
+    "s": 77.08,
+    "e": 77.52
+   },
+   {
+    "w": " untuk",
+    "s": 77.52,
+    "e": 77.88
+   },
+   {
+    "w": " terus",
+    "s": 77.88,
+    "e": 78.24
+   },
+   {
+    "w": " berkembang.",
+    "s": 78.24,
+    "e": 78.66
+   }
+  ]
+ },
+ {
+  "start": 78.78,
+  "end": 79.34,
+  "text": " Bayangkan.",
+  "words": [
+   {
+    "w": " Bayangkan.",
+    "s": 78.78,
+    "e": 79.34
+   }
+  ]
+ },
+ {
+  "start": 79.4,
+  "end": 86.76,
+  "text": " Mudah-mudahan ni bang, setiap ilmu yang mereka belajar ni bang dan mereka amalkan, ada juga bahagian pahala yang Allah kuraikan.",
+  "words": [
+   {
+    "w": " Mudah",
+    "s": 79.4,
+    "e": 79.62
+   },
+   {
+    "w": "-mudahan",
+    "s": 79.62,
+    "e": 80.0
+   },
+   {
+    "w": " ni",
+    "s": 80.0,
+    "e": 80.18
+   },
+   {
+    "w": " bang,",
+    "s": 80.18,
+    "e": 80.3
+   },
+   {
+    "w": " setiap",
+    "s": 80.48,
+    "e": 80.9
+   },
+   {
+    "w": " ilmu",
+    "s": 80.9,
+    "e": 81.14
+   },
+   {
+    "w": " yang",
+    "s": 81.14,
+    "e": 81.22
+   },
+   {
+    "w": " mereka",
+    "s": 81.22,
+    "e": 81.34
+   },
+   {
+    "w": " belajar",
+    "s": 81.34,
+    "e": 81.76
+   },
+   {
+    "w": " ni",
+    "s": 81.76,
+    "e": 81.92
+   },
+   {
+    "w": " bang",
+    "s": 81.92,
+    "e": 82.08
+   },
+   {
+    "w": " dan",
+    "s": 82.08,
+    "e": 82.28
+   },
+   {
+    "w": " mereka",
+    "s": 82.28,
+    "e": 82.42
+   },
+   {
+    "w": " amalkan,",
+    "s": 82.42,
+    "e": 83.14
+   },
+   {
+    "w": " ada",
+    "s": 83.14,
+    "e": 83.94
+   },
+   {
+    "w": " juga",
+    "s": 83.94,
+    "e": 84.36
+   },
+   {
+    "w": " bahagian",
+    "s": 84.36,
+    "e": 85.08
+   },
+   {
+    "w": " pahala",
+    "s": 85.08,
+    "e": 85.68
+   },
+   {
+    "w": " yang",
+    "s": 85.68,
+    "e": 86.08
+   },
+   {
+    "w": " Allah",
+    "s": 86.08,
+    "e": 86.46
+   },
+   {
+    "w": " kuraikan.",
+    "s": 86.46,
+    "e": 86.76
+   }
+  ]
+ },
+ {
+  "start": 86.78,
+  "end": 87.74,
+  "text": " Murniakan daripada kita semua.",
+  "words": [
+   {
+    "w": " Murniakan",
+    "s": 86.78,
+    "e": 87.14
+   },
+   {
+    "w": " daripada",
+    "s": 87.14,
+    "e": 87.42
+   },
+   {
+    "w": " kita",
+    "s": 87.42,
+    "e": 87.5
+   },
+   {
+    "w": " semua.",
+    "s": 87.5,
+    "e": 87.74
+   }
+  ]
+ },
+ {
+  "start": 87.84,
+  "end": 89.74,
+  "text": " Cara dia, tak susah, mudah.",
+  "words": [
+   {
+    "w": " Cara",
+    "s": 87.84,
+    "e": 88.04
+   },
+   {
+    "w": " dia,",
+    "s": 88.04,
+    "e": 88.32
+   },
+   {
+    "w": " tak",
+    "s": 88.42,
+    "e": 88.8
+   },
+   {
+    "w": " susah,",
+    "s": 88.8,
+    "e": 89.2
+   },
+   {
+    "w": " mudah.",
+    "s": 89.22,
+    "e": 89.74
+   }
+  ]
+ },
+ {
+  "start": 89.78,
+  "end": 97.4,
+  "text": " Tekan pautan yang disediakan, pilih sumbangan melalui infak pay dan daftar sebagai penginfak tetap bulanan.",
+  "words": [
+   {
+    "w": " Tekan",
+    "s": 89.78,
+    "e": 90.26
+   },
+   {
+    "w": " pautan",
+    "s": 90.26,
+    "e": 90.76
+   },
+   {
+    "w": " yang",
+    "s": 90.76,
+    "e": 90.92
+   },
+   {
+    "w": " disediakan,",
+    "s": 90.92,
+    "e": 91.4
+   },
+   {
+    "w": " pilih",
+    "s": 91.6,
+    "e": 92.36
+   },
+   {
+    "w": " sumbangan",
+    "s": 92.36,
+    "e": 92.82
+   },
+   {
+    "w": " melalui",
+    "s": 92.82,
+    "e": 93.5
+   },
+   {
+    "w": " infak",
+    "s": 93.5,
+    "e": 94.0
+   },
+   {
+    "w": " pay",
+    "s": 94.0,
+    "e": 94.24
+   },
+   {
+    "w": " dan",
+    "s": 94.24,
+    "e": 94.9
+   },
+   {
+    "w": " daftar",
+    "s": 94.9,
+    "e": 95.56
+   },
+   {
+    "w": " sebagai",
+    "s": 95.56,
+    "e": 95.8
+   },
+   {
+    "w": " penginfak",
+    "s": 95.8,
+    "e": 96.58
+   },
+   {
+    "w": " tetap",
+    "s": 96.58,
+    "e": 97.1
+   },
+   {
+    "w": " bulanan.",
+    "s": 97.1,
+    "e": 97.4
+   }
+  ]
+ },
+ {
+  "start": 97.6,
+  "end": 102.2,
+  "text": " Bang, akak-akak semua. Kita mungkin tak mampu jadi orang yang mengajak ilmu agama kan?",
+  "words": [
+   {
+    "w": " Bang,",
+    "s": 97.6,
+    "e": 97.8
+   },
+   {
+    "w": " akak",
+    "s": 98.02,
+    "e": 98.4
+   },
+   {
+    "w": "-akak",
+    "s": 98.4,
+    "e": 98.6
+   },
+   {
+    "w": " semua.",
+    "s": 98.6,
+    "e": 98.76
+   },
+   {
+    "w": " Kita",
+    "s": 98.96,
+    "e": 99.56
+   },
+   {
+    "w": " mungkin",
+    "s": 99.56,
+    "e": 99.86
+   },
+   {
+    "w": " tak",
+    "s": 99.86,
+    "e": 100.1
+   },
+   {
+    "w": " mampu",
+    "s": 100.1,
+    "e": 100.6
+   },
+   {
+    "w": " jadi",
+    "s": 100.6,
+    "e": 100.72
+   },
+   {
+    "w": " orang",
+    "s": 100.72,
+    "e": 101.02
+   },
+   {
+    "w": " yang",
+    "s": 101.02,
+    "e": 101.16
+   },
+   {
+    "w": " mengajak",
+    "s": 101.16,
+    "e": 101.46
+   },
+   {
+    "w": " ilmu",
+    "s": 101.46,
+    "e": 101.74
+   },
+   {
+    "w": " agama",
+    "s": 101.74,
+    "e": 102.08
+   },
+   {
+    "w": " kan?",
+    "s": 102.08,
+    "e": 102.2
+   }
+  ]
+ },
+ {
+  "start": 102.44,
+  "end": 110.7,
+  "text": " Tapi insyaAllah, kita mampu jadi orang yang membantu ilmu itu untuk terus disampaikan, terus diajarkan.",
+  "words": [
+   {
+    "w": " Tapi",
+    "s": 102.44,
+    "e": 103.04
+   },
+   {
+    "w": " insyaAllah,",
+    "s": 103.04,
+    "e": 104.04
+   },
+   {
+    "w": " kita",
+    "s": 104.12,
+    "e": 104.76
+   },
+   {
+    "w": " mampu",
+    "s": 104.76,
+    "e": 105.36
+   },
+   {
+    "w": " jadi",
+    "s": 105.36,
+    "e": 105.5
+   },
+   {
+    "w": " orang",
+    "s": 105.5,
+    "e": 105.86
+   },
+   {
+    "w": " yang",
+    "s": 105.86,
+    "e": 106.18
+   },
+   {
+    "w": " membantu",
+    "s": 106.18,
+    "e": 106.84
+   },
+   {
+    "w": " ilmu",
+    "s": 106.84,
+    "e": 107.34
+   },
+   {
+    "w": " itu",
+    "s": 107.34,
+    "e": 107.48
+   },
+   {
+    "w": " untuk",
+    "s": 107.48,
+    "e": 108.16
+   },
+   {
+    "w": " terus",
+    "s": 108.16,
+    "e": 108.52
+   },
+   {
+    "w": " disampaikan,",
+    "s": 108.52,
+    "e": 109.4
+   },
+   {
+    "w": " terus",
+    "s": 109.48,
+    "e": 110.02
+   },
+   {
+    "w": " diajarkan.",
+    "s": 110.02,
+    "e": 110.7
+   }
+  ]
+ },
+ {
+  "start": 111.3,
+  "end": 111.9,
+  "text": " InsyaAllah.",
+  "words": [
+   {
+    "w": " InsyaAllah.",
+    "s": 111.3,
+    "e": 111.9
+   }
+  ]
+ },
+ {
+  "start": 112.12,
+  "end": 112.92,
+  "text": " Tak gitu.",
+  "words": [
+   {
+    "w": " Tak",
+    "s": 112.12,
+    "e": 112.72
+   },
+   {
+    "w": " gitu.",
+    "s": 112.72,
+    "e": 112.92
+   }
+  ]
+ }
+]

@@ -1,0 +1,4 @@
+numpy
+opencv-python-headless
+Pillow
+faster-whisper   # only needed to re-transcribe (transcript_raw.json is included)
