@@ -14,7 +14,9 @@ PIECES = [
     ("src", 98.92, 102.36),   # HOOK: "Kita mungkin tak mampu jadi orang yang mengajar ilmu agama kan?"
     ("card", "title", 2.0),
     ("src", 0.00, 50.58),     # main story (drops the throwaway "Semua dalam tu.")
-    ("src", 51.58, 110.88),
+    ("src", 51.58, 97.50),
+    ("demo", 0.00, 12.40),    # INSERT: real infaqpay.my sign-up walkthrough (stabilised screen)
+    ("src", 97.50, 110.88),
     ("src", 111.25, 111.98),  # "InsyaAllah." (drops "Tak gitu.")
     ("card", "end", 5.0),
 ]
@@ -34,7 +36,18 @@ FIXES = {
     ("RM150", 25.16): "RM150",
 }
 
+# fixes for the demo clip's voice-over (transcript_demo.json)
+DEMO_FIXES = {
+    ("bank,", 0.70): "bang,",
+    ("nama", 4.30): "nama,",
+    ("nombor,", 4.58): "nombor",
+    ("IC", 4.96): "IC,",
+    ("tetap", 11.16): "tetap.",
+    ("mudah", 11.64): "Mudah",
+}
+
 KEYWORDS = {
+    "link", "nama", "ic", "fon", "email", "sumbangan", "jumlah", "amount", "join",
     "allah", "pondok", "agama", "madrasah", "zawiyah", "ilmu", "warga", "emas",
     "rm150", "makan", "minum", "elektrik", "air", "penyelenggaraan", "guru-guru",
     "yaman", "fardu", "ain", "majlis", "dakwah", "penginfak", "tetap", "bulanan",
@@ -45,14 +58,15 @@ KEYWORDS = {
 }
 
 
-def load_words():
+def load_words(fname="transcript_raw.json", fixes=None):
     """Return transcript words [(text, src_start, src_end)] with fixes applied."""
-    segs = json.load(open(os.path.join(HERE, "transcript_raw.json")))
+    fixes = FIXES if fixes is None else fixes
+    segs = json.load(open(os.path.join(HERE, fname)))
     raw = [(w["w"].strip(), w["s"], w["e"]) for s in segs for w in s["words"]]
     out = []
     for t, s, e in raw:
         fixed = t
-        for (ow, os_), nw in FIXES.items():
+        for (ow, os_), nw in fixes.items():
             if ow == t and abs(os_ - s) < 0.05:
                 fixed = nw
                 break
@@ -74,9 +88,9 @@ def build_timeline():
     t = 0.0
     laid = []
     for p in PIECES:
-        if p[0] == "src":
+        if p[0] in ("src", "demo"):
             d = p[2] - p[1]
-            laid.append(dict(kind="src", s=p[1], e=p[2], o=t, d=d))
+            laid.append(dict(kind=p[0], s=p[1], e=p[2], o=t, d=d))
         else:
             d = p[2]
             laid.append(dict(kind="card", name=p[1], o=t, d=d))
@@ -107,14 +121,26 @@ def out_words():
     """Words placed on the output timeline (hook words appear twice)."""
     words = load_words()
     res = []
+    demo_words = load_words("transcript_demo.json", DEMO_FIXES)
     for L in LAID:
-        if L["kind"] != "src":
+        if L["kind"] not in ("src", "demo"):
             continue
-        for t, s, e in words:
+        for t, s, e in (words if L["kind"] == "src" else demo_words):
             if s >= L["s"] - 0.03 and e <= L["e"] + 0.08:
                 res.append(dict(text=t, t0=L["o"] + s - L["s"], t1=L["o"] + min(e, L["e"]) - L["s"],
-                                hook=(L is LAID[0]), src=s))
+                                hook=(L is LAID[0]), demo=(L["kind"] == "demo"),
+                                src=s if L["kind"] == "src" else -1))
     return res
+
+
+DEMO = next(L for L in LAID if L["kind"] == "demo")
+
+# Step chips over the demo (demo-local times), aligned with the 3 steps the speaker gives
+DEMO_STEPS = [
+    (0.85, 3.25, "1", "Tekan pautan"),
+    (3.25, 9.10, "2", "Isi maklumat & pilih sumbangan"),
+    (9.10, 12.40, "3", "Daftar penginfak tetap"),
+]
 
 
 # --- Visual plan (src times of the main story) --------------------------------
@@ -155,7 +181,7 @@ SHOTS = [
     (83.20, "spk", dict(z0=1.06, z1=1.16, glow=True)),
     (87.80, "spk", dict(z0=1.22, z1=1.26)),
     (89.74, "steps", dict()),
-    (97.50, "spk", dict(z0=1.00, z1=1.08)),
+    (97.52, "spk", dict(z0=1.00, z1=1.08)),
     (102.38, "img", dict(img="tahiyat", z0=1.12, z1=1.02, f0=(0.4, 0.5), f1=(0.5, 0.55))),
     (106.12, "img", dict(img="quran", z0=1.00, z1=1.12, f0=(0.5, 0.45), f1=(0.5, 0.38))),
     (108.50, "img", dict(img="kuliah", z0=1.20, z1=1.05, f0=(0.6, 0.5), f1=(0.5, 0.55))),

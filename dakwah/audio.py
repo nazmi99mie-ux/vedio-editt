@@ -19,13 +19,32 @@ def db(x):
 
 
 # ------------------------------------------------------------------ voice
+def integrated_lufs(path, start=0.0, dur=None):
+    cmd = ["ffmpeg", "-hide_banner", "-ss", str(start), "-i", path]
+    if dur:
+        cmd += ["-t", str(dur)]
+    r = subprocess.run(cmd + ["-af", "highpass=f=75,ebur128", "-f", "null", "-"], capture_output=True, text=True)
+    line = [l for l in r.stderr.splitlines() if l.strip().startswith("I:")][-1]
+    return float(line.split()[1])
+
+
+DEMO_CLIP = os.path.join(P.HERE, "assets", "demo_infaqpay.mp4")
+
+
 def build_voice(src, tmp):
     parts, labels = [], []
+    # match the demo voice-over to the speaker's level before the shared chain
+    gain = integrated_lufs(src, 0, 50) - integrated_lufs(DEMO_CLIP, 0, 12.4)
     for i, L in enumerate(P.LAID):
         d = (L["f1"] - L["f0"]) / P.FPS
         if L["kind"] == "src":
             parts.append(f"[0:a]atrim={L['s']:.3f}:{L['s'] + d:.3f},asetpts=PTS-STARTPTS,"
                          f"afade=t=in:d=0.012,afade=t=out:st={d - 0.03:.3f}:d=0.03,"
+                         f"aformat=sample_rates={SR}:channel_layouts=mono[p{i}]")
+        elif L["kind"] == "demo":
+            parts.append(f"[1:a]atrim={L['s']:.3f}:{L['s'] + d:.3f},asetpts=PTS-STARTPTS,"
+                         f"highpass=f=90,afftdn=nf=-25,volume={gain:.2f}dB,"
+                         f"afade=t=in:d=0.02,afade=t=out:st={d - 0.08:.3f}:d=0.08,"
                          f"aformat=sample_rates={SR}:channel_layouts=mono[p{i}]")
         else:
             parts.append(f"anullsrc=r={SR}:cl=mono,atrim=0:{d:.3f}[p{i}]")
@@ -34,7 +53,7 @@ def build_voice(src, tmp):
         "highpass=f=75,afftdn=nf=-30,equalizer=f=180:t=q:w=1:g=-1.5,equalizer=f=3500:t=q:w=1.2:g=2.5," \
         "acompressor=threshold=-20dB:ratio=3:attack=8:release=120:makeup=2," \
         "loudnorm=I=-15:TP=-2:LRA=7[v]"
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-filter_complex", fc, "-map", "[v]",
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", src, "-i", DEMO_CLIP, "-filter_complex", fc, "-map", "[v]",
                     "-ar", str(SR), "-ac", "1", tmp], check=True)
     import wave
     w = wave.open(tmp)

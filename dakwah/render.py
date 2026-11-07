@@ -237,17 +237,17 @@ def light_leak(img, k, seed=0, gain=1.0):
 class SpeakerReader:
     """Sequential frame reader for one source piece (1080x1920 upscale done later)."""
 
-    def __init__(self, src, s, nframes):
-        self.n = nframes
+    def __init__(self, src, s, nframes, w=720, h=1280):
+        self.n, self.w, self.h = nframes, w, h
         self.p = subprocess.Popen(
             ["ffmpeg", "-v", "error", "-ss", f"{s:.3f}", "-i", src, "-frames:v", str(nframes),
              "-f", "rawvideo", "-pix_fmt", "bgr24", "-"], stdout=subprocess.PIPE)
         self.last = None
 
     def read(self):
-        b = self.p.stdout.read(720 * 1280 * 3)
-        if len(b) == 720 * 1280 * 3:
-            self.last = np.frombuffer(b, np.uint8).reshape(1280, 720, 3)
+        b = self.p.stdout.read(self.w * self.h * 3)
+        if len(b) == self.w * self.h * 3:
+            self.last = np.frombuffer(b, np.uint8).reshape(self.h, self.w, 3)
         return self.last
 
 
@@ -347,9 +347,10 @@ def build_groups(words):
         if cur:
             prev = cur[-1]
             chars = sum(len(x["text"]) + 1 for x in cur) + len(w["text"])
-            if (w["t0"] - prev["t1"] > 0.32 or len(cur) >= 4 or chars > 24
+            lim_n, lim_c = (3, 17) if w.get("demo") else (4, 24)
+            if (w["t0"] - prev["t1"] > 0.32 or len(cur) >= lim_n or chars > lim_c
                     or prev["text"][-1] in ".?!" or (prev["text"][-1] == "," and len(cur) >= 2)
-                    or w["hook"] != prev["hook"]):
+                    or w["hook"] != prev["hook"] or w.get("demo") != prev.get("demo")):
                 groups.append(cur)
                 cur = []
         cur.append(w)
@@ -395,7 +396,7 @@ def layout_group(g):
     lines.append(cur)
     pos = [None] * len(items)
     lh = 118
-    base_y = (1420 if not g[0]["hook"] else 1300) - (len(lines) - 1) * lh / 2
+    base_y = (1300 if g[0]["hook"] else 1735 if g[0].get("demo") else 1420) - (len(lines) - 1) * lh / 2
     for li, line in enumerate(lines):
         tot = sum(items[i][1] for i in line) + space * (len(line) - 1)
         x = (W - tot) / 2
@@ -671,6 +672,85 @@ def yaman_card(t, tl, words):
     return img
 
 
+# ---------------------------------------------------------------- demo (stabilised phone screen)
+DEMO_CLIP = os.path.join(ASSET, "demo_infaqpay.mp4")
+DEMO_Q = None
+SCR_H = 1330
+SCR_W = int(round(SCR_H * 768 / 1696))
+PH_PAD = 20
+PH_X = (W - SCR_W) // 2 - PH_PAD
+PH_Y = 222
+_demo_static = {}
+
+
+def demo_static():
+    """Background + phone body (static), and the rounded screen mask."""
+    if not _demo_static:
+        bg = bg_emerald(0.0)
+        pat = star_pattern() * 0.10
+        bg = np.clip(bg + pat[:, :, None] * np.array([90, 190, 245]), 0, 255).astype(np.uint8)
+        bw, bh = SCR_W + 2 * PH_PAD, SCR_H + 2 * PH_PAD
+        body = Image.new("RGBA", (bw + 160, bh + 160), (0, 0, 0, 0))
+        d = ImageDraw.Draw(body)
+        d.rounded_rectangle([80, 100, 80 + bw, 100 + bh], 66, fill=(0, 0, 0, 170))
+        body = body.filter(ImageFilter.GaussianBlur(34))
+        d = ImageDraw.Draw(body)
+        d.rounded_rectangle([80, 80, 80 + bw, 80 + bh], 66, fill=(16, 17, 19, 255),
+                            outline=GOLD_RGB + (255,), width=4)
+        d.rounded_rectangle([86, 86, 74 + bw, 74 + bh], 61, outline=(60, 60, 64, 255), width=2)
+        _demo_static["bg"] = bg
+        _demo_static["body"] = pil_to_rgba(body)
+        _demo_static["mask"] = np.array(rounded_mask(SCR_W, SCR_H, 46))
+    return _demo_static
+
+
+def rectify(fr, q):
+    dst = np.float32([[0, 0], [SCR_W, 0], [SCR_W, SCR_H], [0, SCR_H]])
+    M = cv2.getPerspectiveTransform(q.astype(np.float32), dst)
+    r = cv2.warpPerspective(fr, M, (SCR_W, SCR_H), flags=cv2.INTER_AREA, borderMode=cv2.BORDER_REPLICATE)
+    # filmed-off-a-screen footage is dim: lift levels, then a gentle unsharp mask
+    r = cv2.convertScaleAbs(r, alpha=1.22, beta=6)
+    bl = cv2.GaussianBlur(r, (0, 0), 1.3)
+    return cv2.addWeighted(r, 1.45, bl, -0.45, 0)
+
+
+def step_chip(img, num, text, a, dy):
+    box = Image.new("RGBA", (W, 110), (0, 0, 0, 0))
+    f = font(F_INTER_BLACK, 44)
+    tw = int(f.getlength(text))
+    bw = tw + 150
+    x0 = (W - bw) // 2
+    d = ImageDraw.Draw(box)
+    d.rounded_rectangle([x0, 8, x0 + bw, 100], 46, fill=(250, 244, 228, 245), outline=GOLD_RGB + (255,), width=3)
+    d.ellipse([x0 + 14, 18, x0 + 86, 90], fill=EMERALD_RGB + (255,))
+    d.text((x0 + 50, 54), num, font=font(F_INTER_BLACK, 44), fill=GOLD_RGB, anchor="mm")
+    d.text((x0 + 106, 55), text, font=f, fill=(20, 40, 28), anchor="lm")
+    blend(img, pil_to_rgba(box), 0, 92 + dy, a)
+
+
+def demo_frame(fr, li, tl, dur):
+    global DEMO_Q
+    if DEMO_Q is None:
+        DEMO_Q = np.load(os.path.join(ASSET, "demo_corners.npy"))
+    st = demo_static()
+    img = st["bg"].copy()
+    k = ease_out(tl / 0.45)
+    dy = int((1 - k) * 110)
+    a = min(1.0, tl / 0.3) * min(1.0, (dur - tl) / 0.15)
+    canvas = img.copy()
+    blend(canvas, st["body"], PH_X - 80, PH_Y - 80 + dy)
+    scr = rectify(fr, DEMO_Q[min(li, len(DEMO_Q) - 1)])
+    blend(canvas, np.dstack([scr, st["mask"]]), PH_X + PH_PAD, PH_Y + PH_PAD + dy)
+    img = cv2.addWeighted(img, 1 - a, canvas, a, 0) if a < 1 else canvas
+    for s0, s1, num, txt in P.DEMO_STEPS:
+        if s0 <= tl < s1:
+            kk = ease_out((tl - s0) / 0.3)
+            out = min(1.0, (s1 - tl) / 0.12) if s1 < P.DEMO["d"] - 0.05 else 1.0
+            step_chip(img, num, txt, kk * out * a, int((1 - kk) * -24))
+    DUST.draw(img, tl + 50, 0.5)
+    return img
+
+
 def steps_card(t, tl, fr, words):
     img = bg_emerald(tl)
     pat = star_pattern() * 0.08
@@ -775,6 +855,9 @@ def main():
             SFX.append((w["t0"] - 0.02, "impact" if w["text"] == "Yaman." else "hit"))
         if w["text"] in ("Tekan", "pilih", "daftar") and w["t0"] > 90:
             SFX.append((w["t0"], "tick"))
+    SFX.append((P.DEMO["o"] - 0.15, "whoosh"))
+    for s0, s1, num, txt in P.DEMO_STEPS:
+        SFX.append((P.DEMO["o"] + s0, "tick"))
     SFX.append((P.LAID[-1]["o"], "impact_soft"))
     SFX.append((P.LAID[-1]["o"] + 0.1, "shimmer"))
     leaks = [P.m(s) for s in P.LEAKS] + [P.LAID[1]["o"], P.LAID[-1]["o"]]
@@ -804,7 +887,15 @@ def main():
         t = fi / FPS
         piece = next(L for L in P.LAID if L["f0"] <= fi < L["f1"])
         fr = None
-        if piece["kind"] == "src":
+        if piece["kind"] == "demo":
+            if reader_piece is not piece or stills:
+                local0 = fi - piece["f0"]
+                reader = SpeakerReader(DEMO_CLIP, piece["s"] + local0 / FPS, piece["f1"] - fi, 1080, 1920)
+                reader_piece = piece
+            fr = reader.read()
+            li = round(piece["s"] * FPS) + fi - piece["f0"]
+            img = demo_frame(fr, li, t - piece["o"], piece["d"])
+        elif piece["kind"] == "src":
             if reader_piece is not piece or stills:
                 local0 = fi - piece["f0"]
                 reader = SpeakerReader(src, piece["s"] + local0 / FPS, piece["f1"] - fi)
@@ -848,7 +939,10 @@ def main():
         for lt in leaks:
             if lt - 0.25 <= t < lt + 0.45:
                 img = light_leak(img, (t - lt + 0.25) / 0.7, seed=int(lt * 10))
-        if piece["kind"] == "src":
+        if piece["kind"] == "demo":
+            img = finish(img, fi, False)
+            subs.draw(img, t)
+        elif piece["kind"] == "src":
             for s0, s1, txt in P.PILLS:
                 draw_pill(img, txt, t, P.m(s0), P.m(s1))
             bigs_on = False

@@ -7,10 +7,10 @@ mkdir -p "$OUT"
 python3 "$HERE/render.py" "$SRC" "$OUT/video_only.mp4"
 python3 "$HERE/audio.py" "$SRC" "$OUT/sfx_cues.txt" "$OUT/mix.wav"
 python3 "$HERE/audio.py" "$SRC" "$OUT/sfx_cues.txt" "$OUT/mix_nomusic.wav" --no-music
-# two-pass delivery encode (~5.8 Mbps: upload-ready, keeps file < 100 MB)
-ffmpeg -v error -y -i "$OUT/video_only.mp4" -c:v libx264 -preset slow -b:v 5800k -pass 1 \
+# two-pass delivery encode (~5.2 Mbps: upload-ready, keeps file < 100 MB)
+ffmpeg -v error -y -i "$OUT/video_only.mp4" -c:v libx264 -preset slow -b:v 5200k -pass 1 \
   -passlogfile "$OUT/x264" -pix_fmt yuv420p -an -f mp4 /dev/null
-ffmpeg -v error -y -i "$OUT/video_only.mp4" -c:v libx264 -preset slow -b:v 5800k -maxrate 9000k \
+ffmpeg -v error -y -i "$OUT/video_only.mp4" -c:v libx264 -preset slow -b:v 5200k -maxrate 9000k \
   -bufsize 13000k -pass 2 -passlogfile "$OUT/x264" -pix_fmt yuv420p -profile:v high -level 4.1 \
   -an "$OUT/video_delivery.mp4"
 for v in "" _tanpa_muzik; do
