@@ -10,27 +10,30 @@ Style: Sub,Poppins,68,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.30,0:00:10.70,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebenar-benar perkataan ialah Kitab Allah, sebaik-baik petunjuk ialah petunjuk Muhammad SAW
-Dialogue: 0,0:00:10.70,0:00:14.10,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Seburuk-buruk perkara ialah yang diada-adakan
-Dialogue: 0,0:00:14.10,0:00:17.00,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Setiap yang diada-adakan itu bid'ah
-Dialogue: 0,0:00:17.00,0:00:19.10,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Setiap bid'ah itu {\c&H68C4E8&}SESAT{\r}
-Dialogue: 0,0:00:19.10,0:00:21.15,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Dan setiap kesesatan itu di dalam {\c&H68C4E8&}NERAKA{\r}
-Dialogue: 0,0:00:21.25,0:00:23.85,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Assalamualaikum — salam sejahtera
-Dialogue: 0,0:00:24.95,0:00:27.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sejahtera daripada siapa? Daripada Allah
-Dialogue: 0,0:00:28.25,0:00:32.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Assalamualaikum warahmatullah...
-Dialogue: 0,0:00:32.55,0:00:36.35,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Salam sejahtera dan rahmat Allah ke atas kamu
-Dialogue: 0,0:00:37.45,0:00:40.45,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Orang {\c&H68C4E8&}kafir{\r} dapat selamat sejahtera?
-Dialogue: 0,0:00:41.25,0:00:43.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Di hari akhirat? {\c&H68C4E8&}TAK DAPAT{\r}
-Dialogue: 0,0:00:43.65,0:00:46.10,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Macam mana boleh jawab "salam sejahtera" kepada dia?
-Dialogue: 0,0:00:46.25,0:00:48.85,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Kalau orang nak masuk Islam, ajar dia mengucap dulu
-Dialogue: 0,0:00:48.85,0:00:50.95,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Jangan kita {\c&H68C4E8&}beri tangguh{\r}
-Dialogue: 0,0:00:51.05,0:00:55.15,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Saja-saja beri tangguh — faqad kafara — {\c&H68C4E8&}KAFIR{\r}
-Dialogue: 0,0:00:55.25,0:01:00.90,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Orang yang minta tangguh kepada orang yang nak mengucap masuk Islam, maka {\c&H68C4E8&}KAFIR{\r}
-Dialogue: 0,0:01:01.05,0:01:02.95,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Faqad kafara — {\c&H68C4E8&}KAFIR{\r}
-Dialogue: 0,0:01:02.95,0:01:06.75,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab {\c&H68C4E8&}meredhai{\r} seseorang itu berada dalam {\c&H68C4E8&}KUFUR{\r}
-Dialogue: 0,0:01:07.45,0:01:11.05,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Selesaikan dia masuk Islam — ajar dia mengucap betul-betul
-Dialogue: 0,0:01:11.05,0:01:12.95,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Esok baru urus perkara lain
-Dialogue: 0,0:01:12.95,0:01:15.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}{\c&H68C4E8&}Man radhiya bil kufri kafara{\r}
-Dialogue: 0,0:01:15.55,0:01:18.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Siapa redha dengan kufur, {\c&H68C4E8&}KUFUR JUGA{\r}
-Dialogue: 0,0:01:18.85,0:01:23.35,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Dia keluar rumah, tiba-tiba dilanggar kereta — mati
-Dialogue: 0,0:01:23.35,0:01:25.30,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Kerana kita {\c&H68C4E8&}beri tangguh{\r}
+Dialogue: 0,0:00:00.00,0:00:01.60,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Tapi apa hukum dia?
+Dialogue: 0,0:00:01.70,0:00:03.45,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Hukum dia {\c&H68C4E8&}KAFIR JUGA{\r}
+Dialogue: 0,0:00:03.45,0:00:07.40,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab dia tak mengucap dua kalimah syahadah
+Dialogue: 0,0:00:08.80,0:00:11.90,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Orang panggil dia "Cina Assalamualaikum"
+Dialogue: 0,0:00:12.20,0:00:15.20,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab bila sampai, dia sebut "Assalamualaikum"
+Dialogue: 0,0:00:15.50,0:00:17.25,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Assalamualaikum — boleh jawab?
+Dialogue: 0,0:00:17.30,0:00:19.30,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Boleh jawab tak? {\c&H68C4E8&}TAK BOLEH JAWAB{\r}
+Dialogue: 0,0:00:20.60,0:00:25.20,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab "Assalamualaikum" bukan sama dengan ucapan biasa
+Dialogue: 0,0:00:26.30,0:00:28.40,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Bukan sama dengan "selamat pagi"
+Dialogue: 0,0:00:29.20,0:00:32.00,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Assalamualaikum — salam sejahtera
+Dialogue: 0,0:00:32.80,0:00:35.60,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sejahtera daripada siapa? Daripada {\c&H68C4E8&}ALLAH{\r}
+Dialogue: 0,0:00:35.65,0:00:38.70,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Orang {\c&H68C4E8&}kafir{\r} dapat selamat sejahtera?
+Dialogue: 0,0:00:39.50,0:00:41.80,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Di hari akhirat? {\c&H68C4E8&}TAK DAPAT{\r}
+Dialogue: 0,0:00:41.90,0:00:44.35,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Macam mana boleh jawab "salam sejahtera" kepada dia?
+Dialogue: 0,0:00:44.45,0:00:47.05,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Kalau orang nak masuk Islam, ajar dia mengucap dulu
+Dialogue: 0,0:00:47.05,0:00:49.15,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Jangan kita {\c&H68C4E8&}beri tangguh{\r}
+Dialogue: 0,0:00:49.25,0:00:53.35,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Saja-saja beri tangguh — faqad kafara — {\c&H68C4E8&}KAFIR{\r}
+Dialogue: 0,0:00:53.45,0:00:59.10,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Orang yang minta tangguh kepada orang yang nak mengucap masuk Islam, maka {\c&H68C4E8&}KAFIR{\r}
+Dialogue: 0,0:00:59.25,0:01:01.15,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Faqad kafara — {\c&H68C4E8&}KAFIR{\r}
+Dialogue: 0,0:01:01.15,0:01:04.95,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab {\c&H68C4E8&}meredhai{\r} seseorang itu berada dalam {\c&H68C4E8&}KUFUR{\r}
+Dialogue: 0,0:01:05.65,0:01:09.25,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Selesaikan dia masuk Islam — ajar dia mengucap betul-betul
+Dialogue: 0,0:01:09.25,0:01:11.15,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Esok baru urus perkara lain
+Dialogue: 0,0:01:11.15,0:01:13.75,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}{\c&H68C4E8&}Man radhiya bil kufri kafara{\r}
+Dialogue: 0,0:01:13.75,0:01:16.75,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Siapa redha dengan kufur, {\c&H68C4E8&}KUFUR JUGA{\r}
+Dialogue: 0,0:01:17.05,0:01:20.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Dia keluar rumah, tiba-tiba dilanggar kereta — mati
+Dialogue: 0,0:01:20.55,0:01:22.50,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Kerana kita {\c&H68C4E8&}beri tangguh{\r}
+Dialogue: 0,0:01:22.55,0:01:24.55,Sub,,0,0,0,,{\pos(540,1360)\fad(120,80)\t(0,150,\fscx104\fscy104)\t(150,300,\fscx100\fscy100)}Sebab itu saya kata: {\c&H68C4E8&}JANGAN BERI TANGGUH{\r}
