@@ -69,20 +69,24 @@ def build():
                   line3="Wakaf Masjid  •  Pondok Zawiyah An-Nur, Gerik"))
     # 3. CONTEXT: the land, the plan
     T.append(S(2.28, 8.24, zoom=(1.0, 1.07), focus=(0.5, 0.45), flash=True,
-               lower=("PONDOK ZAWIYAH AN-NUR", "Gerik, Perak  •  Tapak cadangan masjid")))
+               lower=("PONDOK ZAWIYAH AN-NUR", "Gerik, Perak  •  Tapak cadangan masjid"),
+               broll=[dict(img="real_land", at=(4.4, 6.6), motion="left"),
+                      dict(img="real_road", at=(6.6, 8.6), motion="in")]))
     T.append(S(10.52, 16.94, zoom=(1.1, 1.14), focus=FACE,
-               broll=[dict(img="mosque_a", at=(13.75, 17.5), motion="up")]))
+               broll=[dict(img="real_timber", at=(13.75, 15.6), motion="right"),
+                      dict(img="mosque_a", at=(15.6, 17.5), motion="up")]))
     T.append(S(17.82, 21.24,
-               broll=[dict(img="students_a", at=(17.0, 19.6), motion="left"),
-                      dict(img="elderly_a", at=(19.6, 22.0), motion="in")]))
-    T.append(S(21.24, 23.28, zoom=(1.0, 1.05), focus=(0.5, 0.45)))
+               broll=[dict(img="real_students2", at=(17.0, 19.6), motion="left"),
+                      dict(img="real_women", at=(19.6, 22.0), motion="in")]))
+    T.append(S(21.24, 23.28, zoom=(1.0, 1.05), focus=(0.5, 0.45),
+               broll=[dict(img="real_measure", at=(22.2, 23.6), motion="in")]))
     # 4. THE CALL
     T.append(S(23.28, 30.38, zoom=(1.12, 1.2), focus=FACE, punch=[26.6],
-               broll=[dict(img="donate_a", at=(28.6, 31.0), motion="in")]))
+               broll=[dict(img="real_lorry", at=(28.6, 31.0), motion="left")]))
     # 5. WHY: the reward
     T.append(S(30.38, 47.08, zoom=(1.0, 1.06), focus=FACE, punch=[32.95], flash=True,
                broll=[dict(img="light_sky_b", at=(34.4, 37.5), motion="down"),
-                      dict(img="interior_a", at=(37.5, 39.75), motion="right"),
+                      dict(img="real_men", at=(37.5, 39.75), motion="in"),
                       dict(img="sujud_a", at=(39.75, 41.5), motion="in"),
                       dict(img="quran_a", at=(41.5, 43.4), motion="in"),
                       dict(img="grave_b", at=(44.6, 48.0), motion="out", particles=True)]))
@@ -94,17 +98,19 @@ def build():
                   source="— HR Muslim, no. 1631"))
     # 7. INVITATION
     T.append(S(47.08, 53.50, zoom=(1.0, 1.08), focus=(0.5, 0.42), flash=True,
-               broll=[dict(img="elderly_b", at=(52.7, 54.0), motion="in")]))
+               broll=[dict(img="real_road", at=(48.4, 50.6), motion="up"),
+                      dict(img="real_pillars", at=(50.9, 54.0), motion="right")]))
     T.append(S(53.50, 56.88, zoom=(1.14, 1.2), focus=FACE,
-               broll=[dict(img="dua_a", at=(54.9, 57.5), motion="up")]))
+               broll=[dict(img="dua_a", at=(54.9, 57.5), motion="up")],
+               badge=("IMBAS QR DI AKHIR VIDEO", 1.2)))
     # 8. CTA
     T.append(S(57.20, 64.28, zoom=(1.0, 1.06), focus=FACE,
                broll=[dict(img="village_a", at=(57.0, 59.0), motion="down")],
                badge=("FACEBOOK  •  TIKTOK", 4.2)))
     T.append(S(65.24, 71.58, zoom=(1.12, 1.18), focus=FACE,
                broll=[dict(img="mosque_b", at=(67.4, 69.2), motion="in"),
-                      dict(img="elderly_a", at=(69.2, 70.2), motion="left"),
-                      dict(img="students_b", at=(70.2, 72.0), motion="right")]))
+                      dict(img="real_women", at=(69.2, 70.2), motion="left"),
+                      dict(img="real_students2", at=(70.2, 72.0), motion="right")]))
     T.append(S(71.58, 74.88, zoom=(1.0, 1.05), focus=FACE))
     # 9. OUTRO: hadith on building a masjid + where to find the pondok
     T.append(dict(kind="hadith", key="h2", dur=8.5, bg="path_a", motion="in", flash=True, fade_in=True,
@@ -112,10 +118,10 @@ def build():
                   arabic="مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ فِي الْجَنَّةِ مِثْلَهُ",
                   malay="“Sesiapa yang membina masjid kerana Allah, Allah akan membina untuknya seumpamanya di syurga.”",
                   source="— HR Muslim, no. 533"))
-    T.append(dict(kind="end", dur=5.0, bg="mosque_c",
-                  line1="PONDOK ZAWIYAH AN-NUR", line2="Gerik, Perak",
-                  line3="Hubungi mudir madrasah untuk berwakaf. Ikuti kami di Facebook & TikTok.",
-                  line4="SAMA-SAMA KITA INFAK DI JALAN ALLAH"))
+    T.append(dict(kind="end", dur=9.0, bg="real_road", qr="qr.jpg",
+                  line1="WAKAF MASJID", line2="Pondok Zawiyah An-Nur  •  Gerik, Perak",
+                  line3="Imbas DuitNow QR untuk berwakaf",
+                  line4="Facebook & TikTok: Pondok Zawiyah An-Nur"))
     return T
 
 TIMELINE = build() if WORK else []

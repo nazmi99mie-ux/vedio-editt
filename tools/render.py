@@ -320,15 +320,13 @@ def card_end(c, lt):
     p = lt / c["dur_"]
     fr = dark_bg(c["bg"], p, "out", 0.5, 2).convert("RGBA")
     particles(fr, lt + 50, 1.0)
-    l1 = cached_block("e1", lambda: text_block(c["line1"], font("Anton-Regular.ttf.ttf", 120), GOLD, 1000))
-    l2 = cached_block("e2", lambda: text_block(c["line2"], font("Montserrat.ttf", 44, "SemiBold"), WHITE, 900))
-    l3 = cached_block("e3", lambda: text_block(c["line3"], font("Montserrat.ttf", 40, "Medium"), (235, 235, 235), 900))
-    l4 = cached_block("e4", lambda: text_block(c["line4"], font("Montserrat.ttf", 36, "Bold"), GOLD, 900))
-    y = 680
-    for im, t0 in [(l1, 0.1), (l2, 0.5), (l3, 0.9), (l4, 1.3)]:
+    l1 = cached_block("e1", lambda: text_block(c["line1"], font("Anton-Regular.ttf.ttf", 112), GOLD, 1000))
+    l2 = cached_block("e2", lambda: text_block(c["line2"], font("Montserrat.ttf", 38, "SemiBold"), WHITE, 1000))
+    l3 = cached_block("e3", lambda: text_block(c["line3"], font("Montserrat.ttf", 46, "ExtraBold"), GOLD, 1000))
+    l4 = cached_block("e4", lambda: text_block(c["line4"], font("Montserrat.ttf", 32, "Medium"), (235, 235, 235), 1000))
+    for im, t0, y in [(l1, 0.1, 130), (l2, 0.4, 275), (l3, 1.0, 1385), (l4, 1.3, 1465)]:
         a = ease_out((lt - t0) / 0.6)
         fade_paste(fr, im, (W / 2 - im.width / 2, y), a, 24 * (1 - a))
-        y += im.height + (30 if im is l1 else 10)
     out_a = min(1, (c["dur_"] - lt) / 1.2)
     return fr, max(0, out_a)
 
@@ -393,11 +391,11 @@ for fi in range(f0, f1):
                 if br.get("particles"): particles(bim, tt, 1.0)
                 if a < 1: bim.putalpha(int(255 * a))
                 frame.alpha_composite(bim)
-                label_ai(frame, a)
+                if not br["img"].startswith("real_"): label_ai(frame, a)
         rgb = frame.convert("RGB")
     else:
         fr, a = CARDS[c["kind"]](c, lt)
-        label_ai(fr, 1.0)
+        if not c["bg"].startswith("real_"): label_ai(fr, 1.0)
         rgb = fr.convert("RGB")
         if a < 1: rgb = Image.blend(Image.new("RGB", (W, H), (0, 0, 0)), rgb, max(a, 0))
         if c["kind"] == "end" or c.get("fade_in"):
@@ -427,6 +425,17 @@ for fi in range(f0, f1):
                 fade_paste(ov, l1, (60 + 40 * a - 20, 216), a)
                 fade_paste(ov, l2, (60 + 40 * a - 20, 284), a)
         draw_captions(ov, tt)
+    elif c.get("qr"):
+        q = cached_block("qr", lambda: Image.open(f"{WORK}/{c['qr']}").convert("RGBA").resize((600, 951), Image.LANCZOS))
+        a = ease_out((lt - 0.6) / 0.6) * max(0, min(1, (c["dur_"] - lt) / 1.2))
+        if a > 0:
+            sc = 0.94 + 0.06 * ease_out((lt - 0.6) / 0.8)
+            qi = q.resize((int(600 * sc), int(951 * sc)), Image.LANCZOS) if sc < 1 else q
+            x, y = W / 2 - qi.width / 2, 395 + (951 - qi.height) / 2
+            sh = Image.new("RGBA", (qi.width + 80, qi.height + 80), (0, 0, 0, 0))
+            ImageDraw.Draw(sh).rounded_rectangle((40, 50, qi.width + 40, qi.height + 50), 30, fill=(0, 0, 0, 160))
+            fade_paste(ov, sh.filter(ImageFilter.GaussianBlur(18)), (x - 40, y - 40), a)
+            fade_paste(ov, qi, (x, y), a)
         top = c.get("badge")
         if top:
             a = min(ease_out((lt - top[1]) / 0.4), 1)
