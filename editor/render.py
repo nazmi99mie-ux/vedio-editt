@@ -541,6 +541,83 @@ class BokehScene:
         add_light(f, cv2.resize(lay, (W, H)), 1.0)
         return f
 
+class PhotoScene:
+    """Real event photo with a slow Ken Burns move (faces never covered)."""
+    def __init__(self, spec):
+        im = cv2.imread(spec["path"]); h, w = im.shape[:2]
+        s = max(W / w, H / h)
+        im = cv2.resize(im, (int(w * s) + 2, int(h * s) + 2), interpolation=cv2.INTER_AREA)
+        b, g, r = cv2.split(im)
+        x = np.arange(256) / 255.0
+        curve = np.clip(x + 0.06 * np.sin(2 * np.pi * x) * -0.5, 0, 1)
+        im = cv2.merge([cv2.LUT(b, (curve * 248).astype(np.uint8)), cv2.LUT(g, (curve * 252).astype(np.uint8)),
+                        cv2.LUT(r, (np.clip(curve * 1.03, 0, 1) * 255).astype(np.uint8))])
+        self.img = im; self.spec = spec
+        self.dust = Particles(35, 61, color=(150, 210, 255), alpha=(0.1, 0.4))
+    def xform(self, u):
+        sp = self.spec; ih, iw = self.img.shape[:2]
+        z = lerp(sp["z"][0], sp["z"][1], u)
+        fx, fy = sp["focus"]; px, py = sp["pan"]
+        tx = W / 2 - z * fx * iw + px * u; ty = H / 2 - z * fy * ih + py * u
+        tx = min(0, max(W - z * iw, tx)); ty = min(0, max(H - z * ih, ty))
+        return z, tx, ty
+    def face_band(self, u):
+        z, tx, ty = self.xform(u); ih = self.img.shape[0]
+        a, b = self.spec["face_band"]
+        return ty + z * a * ih, ty + z * b * ih
+    def render(self, t, dur):
+        u = ease(t / max(dur, 0.1))
+        z, tx, ty = self.xform(u)
+        M = np.float32([[z, 0, tx], [0, z, ty]])
+        f = cv2.warpAffine(self.img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        self.dust.draw(f, t, rise=0.4)
+        return f
+
+@functools.lru_cache(4)
+def qr_card(width):
+    q = cv2.imread(P.QR_IMAGE)
+    x0, y0, x1, y1 = P.QR_CROP
+    q = q[y0:y1, x0:x1]
+    h = int(q.shape[0] * width / q.shape[1])
+    q = cv2.resize(q, (width, h), interpolation=cv2.INTER_AREA)
+    pad = 26
+    card = np.full((h + pad * 2, width + pad * 2, 3), 255, np.uint8)
+    card[pad:pad + h, pad:pad + width] = q
+    m = rounded_mask(card.shape[1], card.shape[0], 34)
+    return np.dstack([card, m])
+
+def draw_qr(f, tr, y0, title=True):
+    """QR + account number, drawn AFTER grain/vignette so it stays scannable."""
+    a = ease_out(tr / 0.5)
+    if a <= 0: return
+    card = qr_card(600)
+    ch, cw = card.shape[:2]
+    x = W / 2 - cw / 2; y = y0 + (1 - a) * 60
+    sh = np.zeros((ch + 120, cw + 120), np.uint8); sh[60:-60, 60:-60] = 255
+    sh = cv2.GaussianBlur(sh, (0, 0), 24)
+    blend_rgba(f, np.dstack([np.zeros((*sh.shape, 3), np.uint8), (sh * 0.7).astype(np.uint8)]), x - 60, y - 40, a)
+    ring = rounded_mask(cw + 12, ch + 12, 38)
+    blend_rgba(f, np.dstack([np.full_like(ring, 70), np.full_like(ring, 196), np.full_like(ring, 255), ring]), x - 6, y - 6, a)
+    blend_rgba(f, card, x, y, a)
+    if title:
+        t1 = text_sprite("IMBAS QR UNTUK WAKAF", F_BLACK, 56, fill=WHITE, stroke=6)
+        blend_rgba(f, t1, W / 2 - t1.shape[1] / 2, y0 - 110 + (1 - a) * 30, a)
+    # account box
+    b = ease_out((tr - 0.35) / 0.5)
+    if b <= 0: return
+    by = y0 + ch + 40
+    lab = text_sprite("NO. AKAUN", F_BOLD, 38, fill=CREAM, stroke=0, shadow=False, tracking=6)
+    num = text_sprite(P.ACCOUNT_NO, F_BLACK, 92, fill=GOLD, stroke=0, shadow=False, tracking=4)
+    bw, bh = max(num.shape[1], lab.shape[1]) + 90, num.shape[0] + lab.shape[0] + 50
+    box = np.zeros((bh, bw, 4), np.uint8); box[..., 0], box[..., 1], box[..., 2] = 34, 20, 10
+    box[..., 3] = (rounded_mask(bw, bh, 26) * 0.88).astype(np.uint8)
+    bx = W / 2 - bw / 2
+    blend_rgba(f, box, bx, by, b)
+    ring = cv2.subtract(rounded_mask(bw, bh, 26), cv2.erode(rounded_mask(bw, bh, 26), np.ones((5, 5), np.uint8)))
+    blend_rgba(f, np.dstack([np.full_like(ring, 70), np.full_like(ring, 196), np.full_like(ring, 255), ring]), bx, by, b)
+    blend_rgba(f, lab, W / 2 - lab.shape[1] / 2, by + 18, b)
+    blend_rgba(f, sweep_sprite(num, clamp01((tr - 0.6) / 1.2)), W / 2 - num.shape[1] / 2, by + 24 + lab.shape[0], b)
+
 # ============================================================== speaker
 class Speaker:
     def __init__(self, path):
@@ -646,17 +723,18 @@ def build_edl(voice):
     """List of (src_start, src_end) segments composing the output, plus hook."""
     sil = find_silences(voice)
     segs = [P.HOOK]
-    b0, b1 = P.BODY; cur = b0
-    for a, b in sil:
-        if b <= b0 or a >= b1: continue
-        a, b = max(a, b0), min(b, b1)
-        keep = P.MAX_PAUSE
-        if P.PEAK_PAUSE[0] <= a <= P.PEAK_PAUSE[1]: keep = P.PEAK_PAUSE[2]
-        if b - a > keep + 0.05:
-            cut0, cut1 = a + keep * 0.5, b - keep * 0.5
-            if cut0 > cur: segs.append((cur, cut0))
-            cur = cut1
-    segs.append((cur, b1))
+    for b0, b1 in P.BODY:
+        cur = b0
+        for a, b in sil:
+            if b <= b0 or a >= b1: continue
+            a, b = max(a, b0), min(b, b1)
+            keep = P.MAX_PAUSE
+            if P.PEAK_PAUSE[0] <= a <= P.PEAK_PAUSE[1]: keep = P.PEAK_PAUSE[2]
+            if b - a > keep + 0.05:
+                cut0, cut1 = a + keep * 0.5, b - keep * 0.5
+                if cut0 > cur + 0.02: segs.append((cur, cut0))
+                cur = cut1
+        segs.append((cur, b1))
     return segs
 
 class Timeline:
@@ -691,15 +769,23 @@ class Subs:
     def __init__(self, words, tl):
         self.items = []  # (t_start, t_end, word, kind, is_hook)
         hook = P.HOOK
+        imp = set()
+        for t_imp, n in P.IMPORTANT:
+            for i, w in enumerate(words):
+                if abs(w["s"] - t_imp) < 0.02:
+                    for k in range(n): imp.add(round(words[i + k]["s"], 3))
+        self.imp_times = []
         for w in words:
+            important = round(w["s"], 3) in imp
             k = norm(w["w"])
             kind = "allah" if k in P.KEY_ALLAH else ("gold" if k in P.KEY_GOLD else "n")
             if hook[0] - 0.05 <= w["s"] < hook[1] - 0.08:
                 t0 = tl.segs[0][0] + w["s"] - hook[0]
-                self.items.append([max(0, t0), t0 + (w["e"] - w["s"]), w["w"], kind, True])
-            if P.BODY[0] <= w["s"] < P.BODY[1]:
+                self.items.append([max(0, t0), t0 + (w["e"] - w["s"]), w["w"], kind, True, important])
+            if any(a <= w["s"] < b for a, b in P.BODY):
                 t0 = tl.tl(w["s"]); t1 = tl.tl(min(w["e"], w["s"] + 1.2))
-                self.items.append([t0, max(t1, t0 + 0.12), w["w"], kind, False])
+                self.items.append([t0, max(t1, t0 + 0.12), w["w"], kind, False, important])
+        self.imp_times = [it[0] for it in self.items if it[5]]
         self.items.sort(key=lambda x: x[0])
         # chunk
         self.chunks = []
@@ -762,10 +848,21 @@ class Subs:
                         a = clamp01((t - it[0] + 0.02) / 0.10)
                         pop = 1 + 0.14 * math.sin(math.pi * clamp01((t - it[0]) / 0.22)) if it[3] != "allah" else 1.0
                         sc = (0.78 + 0.22 * ease_out(a)) * pop
+                        oy = (1 - ease_out(a)) * 26
+                        if it[5]:   # marker highlight for the most important words
+                            dk = text_sprite(it[2].upper(), F_BLACK, int((104 if big else 74) * 1.12),
+                                             fill=(26, 18, 8), stroke=0, shadow=False)
+                            m = clamp01((t - it[0]) / 0.16)
+                            bw, bh = int((dk.shape[1] + 22) * sc), int((dk.shape[0] + 10) * sc)
+                            box = np.zeros((bh, bw, 4), np.uint8)
+                            box[..., 0], box[..., 1], box[..., 2] = 70, 196, 255
+                            box[..., 3] = rounded_mask(bw, bh, 14)
+                            box[:, int(bw * ease_out(m)):, 3] = 0
+                            blend_rgba(f, box, x + w / 2 - bw / 2, y - bh / 2 + oy, min(1, a * 1.5) * fade)
+                            sp = dk
                         sp2 = scale_sprite(sp, sc)
                         if it[3] == "allah":   # respectful soft light reveal
                             sp2 = sweep_sprite(sp2, clamp01((t - it[0]) / 0.9), strength=70)
-                        oy = (1 - ease_out(a)) * 26
                         shake = 0
                         if norm(it[2]) == "kubur" and it[0] <= t < it[0] + 0.25:
                             shake = 3 * math.sin((t - it[0]) * 90)
@@ -796,7 +893,7 @@ def draw_title(f, ov, t_rel, tl_dur):
 def draw_lower3(f, ov, t_rel, dur):
     p = ease_out(t_rel / 0.7); q = clamp01((dur - t_rel) / 0.4)
     if p <= 0 or q <= 0: return
-    x0, y0 = 70, 1130
+    x0, y0 = 70, ov.get("y", 1130)
     barw = int(8 + 520 * p)
     g = f[y0 - 20:y0 + 150, x0:x0 + 640].astype(np.float32)
     f[y0 - 20:y0 + 150, x0:x0 + 640] = (g * (1 - 0.35 * p * q)).astype(np.uint8)
@@ -891,6 +988,8 @@ class Renderer:
                                  interpolation=cv2.INTER_NEAREST)[..., None] for _ in range(6)]
 
     def scene(self, name):
+        if name.startswith("photo:") and name not in self.scenes:
+            self.scenes[name] = PhotoScene(P.PHOTOS[name[6:]])
         if name not in self.scenes:
             self.scenes[name] = {
                 "dawn": lambda: SkyScene("dawn", "dawn", 2), "dusk": lambda: SkyScene("dusk", "dusk", 4),
@@ -921,6 +1020,8 @@ class Renderer:
                 ab = self.tl.tl(160.2); lift = 1 - 0.10 * math.exp(-((t - ab) / 1.2) ** 2)
                 f = (f.astype(np.float32) * self.vig_peak * lift).clip(0, 255).astype(np.uint8)
             return f
+        if mode == "photo":
+            return self.scene("photo:" + sh["photo"]).render(tr, dur)
         name = sh.get("scene")
         sc = self.scene(name)
         cam = sh.get("cam", (0, 0))
@@ -976,22 +1077,20 @@ class Renderer:
             blend_rgba(f, l2, W / 2 - l2.shape[1] / 2, 700, clamp01((tr - t0) / 0.5))
 
     def draw_end(self, f, tr, dur):
-        items = [("WAKAF SEKAKI", F_BLACK, 82, WHITE, 300), ("RM50", F_BLACK, 220, GOLD, 470),
-                 ("Pondok Warga Emas & Musolla", F_SERIF_I, 56, CREAM, 640),
-                 ("PONDOK ZAWIYAH AN-NUR  ·  GERIK, PERAK", F_BOLD, 34, WHITE, 730)]
-        for k, (txt, fp, s, col, y) in enumerate(items):
-            a = ease_out((tr - 0.2 - k * 0.25) / 0.6)
+        items = [("WAKAF SEKAKI", F_BLACK, 66, WHITE, 150), ("RM50", F_BLACK, 150, GOLD, 270)]
+        for k, (txt, fp, sz, col, y) in enumerate(items):
+            a = ease_out((tr - 0.1 - k * 0.2) / 0.5)
             if a <= 0: continue
-            sp = text_sprite(txt, fp, s, fill=col, stroke=0 if fp == F_SERIF_I else 6,
-                             extrude=10 if txt == "RM50" else 0, glow=(255, 170, 60) if txt == "RM50" else None)
-            sp = sweep_sprite(scale_sprite(sp, lerp(1.15, 1.0, a)), clamp01((tr - 0.9 - k * 0.2) / 1.2))
+            sp = text_sprite(txt, fp, sz, fill=col, stroke=6, extrude=10 if txt == "RM50" else 0,
+                             glow=(255, 170, 60) if txt == "RM50" else None)
+            sp = sweep_sprite(scale_sprite(sp, lerp(1.15, 1.0, a)), clamp01((tr - 0.8 - k * 0.2) / 1.2))
             blend_rgba(f, sp, W / 2 - sp.shape[1] / 2, y - sp.shape[0] / 2 + (1 - a) * 30, a)
-        quote = "“...sedekah jariah kita yang berkekalan...”"
-        a = ease_out((tr - 1.4) / 0.8)
+        a = ease_out((tr - 1.2) / 0.8)
         if a > 0:
-            sp = text_sprite(quote, F_SERIF_I, 46, fill=CREAM, stroke=0)
-            blend_rgba(f, sp, W / 2 - sp.shape[1] / 2, 1450, a)
-        draw_panel(f, {"y": 880}, tr - 0.8, dur + 5, y=880)
+            sp = text_sprite("“...sedekah jariah kita yang berkekalan...”", F_SERIF_I, 44, fill=CREAM, stroke=0)
+            blend_rgba(f, sp, W / 2 - sp.shape[1] / 2, 1640, a)
+            sp = text_sprite("PONDOK ZAWIYAH AN-NUR  ·  GERIK, PERAK", F_BOLD, 32, fill=WHITE, stroke=4)
+            blend_rgba(f, sp, W / 2 - sp.shape[1] / 2, 1730, a)
 
     # ---------------------------------------------------------- transitions
     def shot_index(self, t):
@@ -1020,6 +1119,13 @@ class Renderer:
             A = self.render_shot(self.shots[i - 1], t); B = self.render_shot(sh, t)
             f = self.transition(A, B, ease(p), sh["trans"])
         f = self.finish(f, t, sh)
+        if sh.get("qr") and not (t > self.total - 1.0):
+            tr = t - sh["t0"]
+            if sh["at"] == "end": draw_qr(f, tr - 0.4, 450, title=False)
+            else: draw_qr(f, tr, 330)
+        if sh["at"] == "end" and t > self.total - 1.0:
+            draw_qr(f, 9, 450, title=False)
+            f[:] = (f.astype(np.float32) * clamp01((self.total - t) / 1.0)).astype(np.uint8)
         return f
 
     def transition(self, A, B, p, kind):
@@ -1068,7 +1174,7 @@ class Renderer:
         if sh["at"] != "end":
             fl = f.astype(np.float32) * self.botshade
             f = fl.astype(np.uint8)
-            self.subs.draw(f, t, y_center=sh.get("sub_y", 1540 if sh["mode"] != "card" else 1560))
+            self.subs.draw(f, t, y_center=sh.get("sub_y", 1660 if sh.get("qr") else (1540 if sh["mode"] != "card" else 1560)))
         for s in self.shots:
             for ov in s.get("overlays", []):
                 tr = t - ov["tt"]
@@ -1083,8 +1189,77 @@ class Renderer:
         return np.clip(out, 0, 255).astype(np.uint8)
 
 # ============================================================== audio design
-def synth_audio(R):
+def midi_hz(n): return 440.0 * 2 ** ((n - 69) / 12)
+
+def piano_note(f, L, vel, rng):
+    n = int((L + 2.2) * SR); t = np.arange(n) / SR
+    out = np.zeros(n, np.float32)
+    for k in range(1, 8):
+        fk = f * k * (1 + 0.0004 * k * k)
+        if fk > 9000: break
+        out += (np.sin(2 * np.pi * fk * t + rng.uniform(0, 6.28)) / k ** 1.4 *
+                np.exp(-t * (0.9 + 0.55 * k + f / 1400))).astype(np.float32)
+    out *= np.clip(t / 0.004, 0, 1)
+    rel = np.clip(1 - (t - L - 0.15) / 0.9, 0, 1); out *= rel.astype(np.float32)
+    return out * vel
+
+def strings_chord(notes, L, rng):
+    n = int((L + 2.5) * SR); t = np.arange(n) / SR
+    env = (np.clip(t / 1.6, 0, 1) * np.clip((L + 2.5 - t) / 2.0, 0, 1)).astype(np.float32)
+    st = np.zeros((n, 2), np.float32)
+    for m in notes:
+        f0 = midi_hz(m)
+        for side, det in ((0, -0.0025), (1, 0.0025)):
+            vib = 1 + 0.003 * np.sin(2 * np.pi * 5.2 * t + rng.uniform(0, 6))
+            ph = 2 * np.pi * np.cumsum(f0 * (1 + det) * vib) / SR
+            w = sum(np.sin(k * ph) / k for k in range(1, 7))
+            st[:, side] += (w * env).astype(np.float32)
+    return st
+
+def sad_music(T, R, rng):
+    """Original emotional piano + strings bed in A minor, 68 bpm."""
     from scipy.signal import butter, sosfilt, fftconvolve
+    N = int(T * SR) + SR
+    beat = 60 / 68; bar = 4 * beat
+    # Am  F  C  G | Am  F  Dm  E
+    prog = [(45, [57, 60, 64]), (41, [53, 57, 60]), (48, [55, 60, 64]), (43, [55, 59, 62]),
+            (45, [57, 60, 64]), (41, [53, 57, 60]), (38, [53, 57, 62]), (40, [56, 59, 64])]
+    mel = [[(0, 76, 2), (2, 74, 1), (3, 72, 1)], [(0, 72, 2), (2, 69, 2)],
+           [(0, 67, 1.5), (1.5, 72, .5), (2, 76, 2)], [(0, 74, 3), (3, 71, 1)],
+           [(0, 69, 2), (2, 72, 1), (3, 76, 1)], [(0, 77, 2), (2, 76, 1), (3, 72, 1)],
+           [(0, 74, 2), (2, 72, 1), (3, 69, 1)], [(0, 71, 3), (3, 68, 1)]]
+    piano = np.zeros(N, np.float32); strings = np.zeros((N, 2), np.float32)
+    hook_end = R.tl.body_start
+    nbars = int(T / bar) + 2
+    for b in range(nbars):
+        t0 = b * bar
+        bass, tri = prog[b % 8]
+        arp = [bass - 12 + 12, tri[1], tri[2], tri[0] + 12, tri[2], tri[1] + 12, tri[2], tri[1]]
+        for e, m in enumerate(arp):
+            ts = t0 + e * beat / 2
+            if ts >= T: break
+            nt = piano_note(midi_hz(m), beat / 2, 0.16 if e else 0.24, rng)
+            i = int(ts * SR); j = min(N, i + len(nt)); piano[i:j] += nt[:j - i]
+        if t0 >= hook_end - 0.5:        # melody enters after the hook
+            for pos, m, L in mel[b % 8]:
+                ts = t0 + pos * beat
+                if ts >= T: break
+                nt = piano_note(midi_hz(m), L * beat, 0.30, rng)
+                i = int(ts * SR); j = min(N, i + len(nt)); piano[i:j] += nt[:j - i]
+        stc = strings_chord([bass, tri[0], tri[1], tri[2]], bar, rng)
+        i = int(max(0, t0 - 0.6) * SR); j = min(N, i + len(stc)); strings[i:j] += stc[:j - i] * 0.035
+    strings = sosfilt(butter(2, 2200, "low", fs=SR, output="sos"), strings, axis=0).astype(np.float32)
+    strings = sosfilt(butter(1, 90, "high", fs=SR, output="sos"), strings, axis=0).astype(np.float32)
+    mus = np.stack([piano * 0.95, piano * 1.0], 1) + strings
+    for c in range(2):
+        ir = (rng.normal(0, 1, int(3.2 * SR)) * np.exp(-np.arange(int(3.2 * SR)) / (0.85 * SR))).astype(np.float32)
+        ir /= np.sqrt((ir ** 2).sum())
+        mus[:, c] = 0.62 * mus[:, c] + 0.38 * fftconvolve(mus[:, c], ir)[:N]
+    rms = np.sqrt(np.mean(mus[:int(T * SR)] ** 2)) + 1e-9
+    return mus * (0.06 / rms)
+
+def synth_audio(R):
+    from scipy.signal import butter, sosfilt
     voice = load_voice()
     T = R.total; N = int(T * SR) + SR
     vo = np.zeros(N, np.float32)
@@ -1094,91 +1269,53 @@ def synth_audio(R):
         seg[:fl] *= ramp; seg[-fl:] *= ramp[::-1]
         i0 = int(t0 * SR); vo[i0:i0 + len(seg)] += seg
     rng = np.random.default_rng(7)
-    tt = np.arange(N) / SR
-    # ---- ambient pad (no beat, soft, low)
-    chords = [[50, 57, 62, 65, 69], [46, 53, 58, 62, 65], [41, 48, 53, 57, 60], [48, 55, 60, 64, 67]]
-    pad = np.zeros((N, 2), np.float32); CL = 8.0
-    for k in range(int(T / CL) + 2):
-        ch = chords[k % 4]; s0 = k * CL - 2
-        i0 = max(0, int(s0 * SR)); i1 = min(N, int((s0 + CL + 4) * SR))
-        if i1 <= i0: continue
-        tl_ = tt[i0:i1] - s0
-        env = np.clip(tl_ / 3, 0, 1) * np.clip((CL + 4 - tl_) / 3, 0, 1)
-        for n in ch:
-            fr = 440 * 2 ** ((n - 69) / 12)
-            for side, det in ((0, -0.18), (1, 0.18)):
-                w = np.sin(2 * np.pi * (fr + det) * tl_ + rng.uniform(0, 6)) + 0.25 * np.sin(2 * np.pi * 2 * (fr + det) * tl_)
-                pad[i0:i1, side] += (w * env * 0.05).astype(np.float32)
-    sos = butter(2, 1400, "low", fs=SR, output="sos"); pad = sosfilt(sos, pad, axis=0).astype(np.float32)
-    ir = (rng.normal(0, 1, int(2.8 * SR)) * np.exp(-np.arange(int(2.8 * SR)) / (0.9 * SR))).astype(np.float32)
-    ir /= np.sqrt((ir ** 2).sum())
-    for c in range(2): pad[:, c] = 0.6 * pad[:, c] + 0.4 * fftconvolve(pad[:, c], ir)[:N]
-    # voice-ducking
-    env = np.abs(vo); hop = SR // 50
-    e = np.convolve(env, np.ones(hop * 10) / (hop * 10), "same")
-    duck = 1 - 0.55 * np.clip(e / (np.percentile(e[e > 0], 90) + 1e-6), 0, 1)
-    dyn = np.ones(N, np.float32) * 0.55
-    pk0, pk1 = R.tl.tl(148.3), R.tl.tl(161.9)
-    dyn[int(pk0 * SR):int(pk1 * SR)] = 0.38                                       # peak: softer
-    ie = int(R.tl.speech_end * SR); dyn[ie:] = np.linspace(0.55, 1.6, N - ie)    # end swell
-    hook_end = int(R.tl.body_start * SR); dyn[:hook_end] = 0.45
-    pad *= (duck * dyn)[:, None]
-    fo = int(1.2 * SR); pad[-fo - SR:-SR] *= np.linspace(1, 0, fo)[:, None]; pad[-SR:] = 0
-    # ---- sfx
+    mus = sad_music(T, R, rng)
+    # duck under the voice, swell at the end card
+    hop = SR // 50
+    e = np.convolve(np.abs(vo), np.ones(hop * 12) / (hop * 12), "same")
+    duck = 1 - 0.45 * np.clip(e / (np.percentile(e[e > 1e-4], 85) + 1e-6), 0, 1)
+    dyn = np.ones(N, np.float32)
+    ie = int(R.tl.speech_end * SR); dyn[ie:] = np.linspace(1.0, 1.9, N - ie)
+    dyn[:int(0.6 * SR)] = np.linspace(0.3, 1.0, int(0.6 * SR))
+    mus *= (duck * dyn)[:, None]
+    fo = int(2.0 * SR); mus[int(T * SR) - fo:int(T * SR)] *= np.linspace(1, 0, fo)[:, None]
+    # ---- whoosh-only sound effects
     sfx = np.zeros((N, 2), np.float32)
-    def put(sig, t, g):
-        i = int(t * SR); j = min(N, i + len(sig))
-        if i < 0 or i >= N: return
-        if sig.ndim == 1: sig = np.stack([sig, sig], 1)
-        sfx[i:j] += sig[:j - i] * g
-    def impact(d=1.6):
-        x = np.arange(int(d * SR)) / SR
-        f = 58 * np.exp(-x * 1.4) + 32
-        s = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-x * 2.6)
-        nz = sosfilt(butter(2, 300, "low", fs=SR, output="sos"), rng.normal(0, 1, len(x))) * np.exp(-x * 9) * 0.6
-        return (s + nz).astype(np.float32)
-    def whoosh(d=0.55):
+    last = [-9.0]
+    def whoosh(d=0.55, bright=1.0):
         n = int(d * SR); x = np.linspace(0, 1, n)
         nz = rng.normal(0, 1, n)
-        lo = sosfilt(butter(2, [300, 2500], "band", fs=SR, output="sos"), nz)
-        hi = sosfilt(butter(2, [1500, 7000], "band", fs=SR, output="sos"), nz)
-        env = np.sin(np.pi * x ** 0.8) ** 2
-        mix = lo * (1 - x) + hi * x
+        lo = sosfilt(butter(2, [250, 2000], "band", fs=SR, output="sos"), nz)
+        hi = sosfilt(butter(2, [1200, 5500 * bright], "band", fs=SR, output="sos"), nz)
+        env = np.sin(np.pi * x ** 0.75) ** 2
+        mix = lo * (1 - x) + hi * x * 0.7
         return np.stack([mix * env * (1 - 0.5 * x), mix * env * (0.5 + 0.5 * x)], 1).astype(np.float32)
-    def riser(d=2.2):
-        x = np.arange(int(d * SR)) / SR
-        f = 180 + 500 * (x / d) ** 2
-        s = np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.3 + sosfilt(butter(2, [800, 6000], "band", fs=SR, output="sos"),
-                                                                rng.normal(0, 1, len(x))) * 0.6
-        return (s * (x / d) ** 2).astype(np.float32)
-    def shimmer(d=2.0):
-        x = np.arange(int(d * SR)) / SR
-        s = sum(np.sin(2 * np.pi * f * x + rng.uniform(0, 6)) for f in (1318, 1760, 2217, 2637, 3520))
-        return (s * np.exp(-x * 2.2) * np.clip(x / 0.05, 0, 1) * 0.12).astype(np.float32)
-    put(impact(), 0.0, 0.55)                                    # hook hit
-    put(shimmer(), 0.05, 0.6)
+    def put(sig, t, g, gap=0.5):
+        if t - last[0] < gap: return
+        last[0] = t
+        i = int(t * SR); j = min(N, i + len(sig))
+        if i < 0 or i >= N: return
+        sfx[i:j] += sig[:j - i] * g
+    events = [(0.0, "big")]
     for sh in R.shots[1:]:
-        tr = sh["trans"]; t0 = sh["t0"]
-        if tr.startswith("whip") or tr.startswith("slide"): put(whoosh(), t0 - 0.28, 0.32)
-        elif tr == "zoom": put(whoosh(0.7), t0 - 0.35, 0.26); put(impact(1.0), t0, 0.18)
-        elif tr == "light": put(shimmer(), t0 - 0.2, 0.55)
+        if sh["trans"] != "cut": events.append((sh["t0"] - 0.3, "trans"))
     for sh in R.shots:
         for ov in sh.get("overlays", []):
-            if ov.get("sfx") == "impact": put(impact(1.2), ov["tt"], 0.35)
-            if ov.get("color") == "allah": put(shimmer(2.5), ov["tt"], 0.45)
-        if "count" in sh: put(impact(1.0), R.tl.tl(sh["count"]["t"]), 0.3)
-        if "rm" in sh: put(impact(1.2), R.tl.tl(sh["rm"]["t"]), 0.35)
-    put(riser(), R.tl.body_start - 2.2 - P.HOOK_TAIL + 0.3, 0.0)  # (kept silent: strategic silence after hook)
-    put(riser(2.0), R.tl.speech_end - 1.8, 0.22)
-    put(impact(2.0), R.tl.speech_end + 0.0, 0.4)
-    # ---- room tone / ambience: very soft wind
-    amb = sosfilt(butter(2, [200, 1200], "band", fs=SR, output="sos"), rng.normal(0, 1, (N, 2)), axis=0).astype(np.float32)
-    amb *= 0.004
-    mix = np.stack([vo, vo], 1) + pad + sfx + amb
+            if ov.get("sfx"): events.append((ov["tt"] - 0.15, "hi"))
+        if "count" in sh: events.append((R.tl.tl(sh["count"]["t"]) - 0.15, "hi"))
+        if "rm" in sh: events.append((R.tl.tl(sh["rm"]["t"]) - 0.15, "hi"))
+        if sh.get("qr") and sh["at"] != "end": events.append((sh["t0"] + 0.05, "hi"))
+    for tt in R.subs.imp_times: events.append((tt - 0.12, "word"))
+    for tt, kind in sorted(events):
+        if kind == "big": put(whoosh(0.9, 0.8), tt, 0.40, 0)
+        elif kind == "trans": put(whoosh(0.6), tt, 0.30)
+        elif kind == "hi": put(whoosh(0.5, 1.1), tt, 0.26)
+        else: put(whoosh(0.35, 1.2), tt, 0.15, 0.9)
+    mix = np.stack([vo, vo], 1) + mus + sfx
+    mix = mix[:int(T * SR)]
     mix[-int(0.4 * SR):] *= np.linspace(1, 0, int(0.4 * SR))[:, None]
     peak = np.abs(mix).max()
     if peak > 0.98: mix *= 0.98 / peak
-    mix = mix[:int(T * SR)]
     out = "out/mix.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
                     "-af", "alimiter=limit=0.95", "-c:a", "pcm_s16le", out], input=mix.astype(np.float32).tobytes(), check=True)

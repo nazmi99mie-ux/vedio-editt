@@ -1,58 +1,60 @@
 # Video Dakwah Sinematik: Rayuan Wakaf Pondok Zawiyah An-Nur
 
 Renderer berasaskan Python yang menukar rakaman ceramah asal (720×1280, 3:20)
-kepada video menegak sinematik **1080×1920, 30 FPS, ±2:47**.
+kepada video menegak sinematik **1080×1920, 30 FPS, 1:49**.
 
 ## Isi kandungan
 
 | Fail | Fungsi |
 |---|---|
-| `plan.py` | Pelan pengarah: hook, babak, mod komposisi, transisi, overlay, maklumat wakaf |
-| `render.py` | Enjin render: latar procedural, parallax, kinetic typography, gred warna, reka bunyi |
+| `plan.py` | Pelan pengarah: hook, julat rakaman yang digunakan, babak, transisi, overlay, no. akaun dan QR |
+| `render.py` | Enjin render: latar procedural, parallax, gambar Ken Burns, kinetic typography, muzik dan bunyi |
 | `data/words.json` | Transkrip perkataan demi perkataan berserta masa (Whisper large-v3, disemak) |
+| `assets/` | Gambar majlis (ketibaan, banner pelancaran, tanam pokok) dan QR DuitNow |
 | `fonts/` | Montserrat dan Playfair Display (lesen SIL OFL) |
 
-## Struktur video
+## Struktur video (v2)
 
 | Masa | Babak | Visual |
 |---|---|---|
-| 0:00–0:05 | **Hook** | Petikan sebenar *"sedekah jariah kita yang berkekalan sampai kita di alam kubur nanti"*, kad penceramah dengan punch-in, langit senja, impact dan teks besar |
-| 0:05–0:31 | Connection | Salam dan pembuka, judul *Pondok Warga Emas & Musolla*, lower-third lokasi |
-| 0:31–1:33 | Deep message | Blueprint pembinaan, grid perspektif **1 EKAR**, kampung parallax, kiraan **30 PINTU**, siluet musolla dengan cip *Warga Emas / Pondok / Tahfiz*, jubin **RM50 sekaki** |
-| 1:33–1:55 | Maklumat dan doa | Panel maklumat wakaf, sinar cahaya, *ALLAH* dengan penegasan lembut |
-| 1:55–2:08 | **Emotional peak** | Close-up penceramah, gerakan push-in perlahan, vignette, muzik direndahkan |
-| 2:08–2:47 | Final impact | Rayuan, cahaya bokeh (membaca al-Quran dan mengaji), penutup salam, kad akhir |
+| 0:00–0:05 | **Hook** | *"sedekah jariah kita yang berkekalan sampai kita di alam kubur nanti"* |
+| 0:05–0:24 | Lokasi dan majlis | Gambar ketibaan dengan lower-third lokasi, banner *Majlis Pelancaran*, gambar tanam pokok dengan **1 EKAR** |
+| 0:24–0:54 | Isi | Kiraan **30 PINTU**, siluet musolla (Warga Emas, Pondok, Tahfiz), **WAKAF RM50 sekaki** |
+| 0:54–1:06 | Cara menyumbang | **QR DuitNow + No. Akaun 5580793838** (dipapar besar dan tidak bergerak supaya mudah diimbas) |
+| 1:06–1:18 | Emotional peak | Close-up penceramah |
+| 1:18–1:42 | Rayuan | Penceramah, banner majlis, cahaya bokeh |
+| 1:42–1:49 | Kad akhir | WAKAF SEKAKI RM50, QR dan no. akaun |
 
-Setiap latar belakang sentiasa bergerak melalui beberapa lapisan: langit, cahaya
-matahari dan sinar, awan dua lapisan, bukit jauh, lapisan tengah (rumah kampung,
-pokok kelapa atau masjid) dan latar depan. Setiap lapisan bergerak pada kelajuan
-parallax yang berbeza. Sesetengah babak menggunakan gerakan kamera menegak, dan
-ada yang menggunakan gelongsor mendatar. Kesemuanya dilengkapi partikel debu,
-grain dan vignette.
+Mukadimah (salam dan selawat) tidak dimasukkan. Tiga ayat yang berulang juga
+dibuang supaya video tidak melebihi 2 minit. Ayat-ayat yang digunakan tetap
+dimainkan mengikut susunan asal.
+
+- **Muzik:** piano dan strings yang sedih, digubah dan dijana sendiri (A minor, 68 bpm).
+  Muzik direndahkan ketika penceramah bercakap dan dinaikkan pada kad akhir.
+- **Kesan bunyi:** whoosh sahaja, iaitu pada transisi, tajuk penting dan
+  perkataan yang di-highlight (penanda emas). Tiada bunyi "ting".
+- **Wajah:** setiap gambar mempunyai `face_band`. Semua teks diletakkan di luar
+  kawasan wajah.
 
 ## Amanah kandungan
 
-- Hanya suara asal penceramah yang digunakan. Jeda yang panjang dipendekkan,
-  tetapi tiada perkataan dibuang atau disusun semula.
+- Hanya suara asal penceramah yang digunakan. Jeda yang panjang dipendekkan, dan
+  ayat yang digunakan tidak disusun semula atau dipotong di tengah.
 - Hook ialah petikan sebenar dari minit 2:36. Petikan itu didengar semula dalam
   konteks penuhnya pada babak emosi.
-- Sari kata diambil terus daripada transkrip rakaman. Lafaz Arab pembuka dan penutup
-  ditulis mengikut ejaan rumi yang lazim.
+- Sari kata diambil terus daripada transkrip rakaman.
 - Wajah dan suara penceramah tidak diubah. Hanya gred warna dan pembingkaian digunakan.
-- Semua visual dijana secara procedural. Tiada klip pihak ketiga digunakan dan tiada
-  gambaran perkara ghaib atau suci.
-- Muzik latar ialah pad ambien lembut tanpa rentak, dan direndahkan setiap kali
-  penceramah bercakap.
+- Visual terdiri daripada gambar sebenar majlis dan grafik procedural. Tiada klip
+  pihak ketiga digunakan dan tiada gambaran perkara ghaib atau suci.
 
 ## Perlu disemak / diisi
 
-1. **Nombor akaun.** Penceramah menyebut *"melalui skrin yang tertera, nombor akaun..."*.
-   Maklumat ini tiada dalam rakaman. Isikan `INFO["account"]`, `account_name`, dan
-   `contact` dalam `plan.py`, kemudian render semula.
+1. **Nama bank** tidak dipaparkan. Hanya no. akaun dan QR dipaparkan. Jika perlu,
+   tambah nama bank pada `ACCOUNT_NO` dalam `plan.py`.
 2. **Nama kampung.** Transkrip mendengar "Padang Stang". Sila sahkan ejaannya
    dalam `data/words.json`.
-3. Perkataan *"menginfak"* (sekitar 1:20) dan *"lima..."* (sebelum "30 pintu") ialah
-   tafsiran transkripsi. Sila semak dengan audio.
+3. Perkataan *"lima..."* (sebelum "30 pintu") ialah tafsiran transkripsi. Sila
+   semak dengan audio.
 
 ## Cara render
 
