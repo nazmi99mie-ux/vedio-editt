@@ -608,7 +608,8 @@ def draw_qr(f, tr, y0, title=True):
     by = y0 + ch + 40
     lab = text_sprite("NO. AKAUN", F_BOLD, 38, fill=CREAM, stroke=0, shadow=False, tracking=6)
     num = text_sprite(P.ACCOUNT_NO, F_BLACK, 92, fill=GOLD, stroke=0, shadow=False, tracking=4)
-    bw, bh = max(num.shape[1], lab.shape[1]) + 90, num.shape[0] + lab.shape[0] + 50
+    nm = text_sprite(P.ACCOUNT_NAME, F_BOLD, 40, fill=WHITE, stroke=0, shadow=False)
+    bw, bh = max(num.shape[1], lab.shape[1], nm.shape[1]) + 90, num.shape[0] + lab.shape[0] + nm.shape[0] + 62
     box = np.zeros((bh, bw, 4), np.uint8); box[..., 0], box[..., 1], box[..., 2] = 34, 20, 10
     box[..., 3] = (rounded_mask(bw, bh, 26) * 0.88).astype(np.uint8)
     bx = W / 2 - bw / 2
@@ -617,6 +618,7 @@ def draw_qr(f, tr, y0, title=True):
     blend_rgba(f, np.dstack([np.full_like(ring, 70), np.full_like(ring, 196), np.full_like(ring, 255), ring]), bx, by, b)
     blend_rgba(f, lab, W / 2 - lab.shape[1] / 2, by + 18, b)
     blend_rgba(f, sweep_sprite(num, clamp01((tr - 0.6) / 1.2)), W / 2 - num.shape[1] / 2, by + 24 + lab.shape[0], b)
+    blend_rgba(f, nm, W / 2 - nm.shape[1] / 2, by + 34 + lab.shape[0] + num.shape[0], b)
 
 # ============================================================== speaker
 class Speaker:

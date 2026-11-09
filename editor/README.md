@@ -20,7 +20,7 @@ kepada video menegak sinematik **1080×1920, 30 FPS, 1:49**.
 | 0:00–0:05 | **Hook** | *"sedekah jariah kita yang berkekalan sampai kita di alam kubur nanti"* |
 | 0:05–0:24 | Lokasi dan majlis | Gambar ketibaan dengan lower-third lokasi, banner *Majlis Pelancaran*, gambar tanam pokok dengan **1 EKAR** |
 | 0:24–0:54 | Isi | Kiraan **30 PINTU**, siluet musolla (Warga Emas, Pondok, Tahfiz), **WAKAF RM50 sekaki** |
-| 0:54–1:06 | Cara menyumbang | **QR DuitNow + No. Akaun 5580793838** (dipapar besar dan tidak bergerak supaya mudah diimbas) |
+| 0:54–1:06 | Cara menyumbang | **QR DuitNow + No. Akaun 558079530303 (An Nur Resources)** (dipapar besar dan tidak bergerak supaya mudah diimbas) |
 | 1:06–1:18 | Emotional peak | Close-up penceramah |
 | 1:18–1:42 | Rayuan | Penceramah, banner majlis, cahaya bokeh |
 | 1:42–1:49 | Kad akhir | WAKAF SEKAKI RM50, QR dan no. akaun |
@@ -49,7 +49,7 @@ dimainkan mengikut susunan asal.
 
 ## Perlu disemak / diisi
 
-1. **Nama bank** tidak dipaparkan. Hanya no. akaun dan QR dipaparkan. Jika perlu,
+1. **Nama bank** tidak dipaparkan. Yang dipaparkan ialah no. akaun, nama akaun dan QR. Jika perlu,
    tambah nama bank pada `ACCOUNT_NO` dalam `plan.py`.
 2. **Nama kampung.** Transkrip mendengar "Padang Stang". Sila sahkan ejaannya
    dalam `data/words.json`.

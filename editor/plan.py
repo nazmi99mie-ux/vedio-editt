@@ -26,7 +26,8 @@ HOOK_TAIL = 0.45
 END_CARD = 6.5
 
 # ---------------------------------------------------------------- donation info
-ACCOUNT_NO = "5580793838"
+ACCOUNT_NO = "558079530303"
+ACCOUNT_NAME = "An Nur Resources"
 QR_IMAGE = "assets/qr_duitnow.jpg"
 QR_CROP = (60, 60, 747, 872)        # x0, y0, x1, y1 of the white QR card
 
