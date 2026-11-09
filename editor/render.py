@@ -606,7 +606,7 @@ def draw_qr(f, tr, y0, title=True):
     b = ease_out((tr - 0.35) / 0.5)
     if b <= 0: return
     by = y0 + ch + 40
-    lab = text_sprite("NO. AKAUN", F_BOLD, 38, fill=CREAM, stroke=0, shadow=False, tracking=6)
+    lab = text_sprite(P.BANK + "  ·  NO. AKAUN", F_BOLD, 38, fill=CREAM, stroke=0, shadow=False, tracking=6)
     num = text_sprite(P.ACCOUNT_NO, F_BLACK, 92, fill=GOLD, stroke=0, shadow=False, tracking=4)
     nm = text_sprite(P.ACCOUNT_NAME, F_BOLD, 40, fill=WHITE, stroke=0, shadow=False)
     bw, bh = max(num.shape[1], lab.shape[1], nm.shape[1]) + 90, num.shape[0] + lab.shape[0] + nm.shape[0] + 62
@@ -1218,47 +1218,98 @@ def strings_chord(notes, L, rng):
             st[:, side] += (w * env).astype(np.float32)
     return st
 
+def oud_note(f, L, vel, rng):
+    """Plucked oud-like tone: bright harmonics decaying fast, slight pitch settle."""
+    n = int((L + 1.8) * SR); t = np.arange(n) / SR
+    bend = 1 + 0.006 * np.exp(-t * 40)
+    ph = 2 * np.pi * np.cumsum(f * bend) / SR
+    out = np.zeros(n, np.float32)
+    for k in range(1, 11):
+        if f * k > 7000: break
+        out += (np.sin(k * ph + rng.uniform(0, 6)) / k ** 0.9 * np.exp(-t * (2.2 + 1.3 * k))).astype(np.float32)
+    out *= np.clip(t / 0.002, 0, 1)
+    return out * vel
+
+def ney_phrase(notes, beat, total_n, rng):
+    """Breathy ney-like flute line with glides and delayed vibrato."""
+    from scipy.signal import butter, sosfilt
+    if not notes: return np.zeros(total_n, np.float32)
+    end = max(p + d for p, _, d in notes) * beat + 1.2
+    n = min(total_n, int(end * SR)); t = np.arange(n) / SR
+    fcur = np.zeros(n); amp = np.zeros(n); vibd = np.zeros(n)
+    for p, m, d in notes:
+        a, b = int(p * beat * SR), min(n, int((p + d) * beat * SR))
+        fcur[a:b] = midi_hz(m)
+        tt = np.arange(b - a) / SR; L = (b - a) / SR
+        amp[a:b] = np.maximum(amp[a:b], np.clip(tt / 0.18, 0, 1) * np.clip((L - tt) / 0.25 + 0.15, 0, 1))
+        vibd[a:b] = np.clip((tt - 0.35) / 0.6, 0, 1)
+    # fill gaps with previous pitch, glide 90 ms
+    last = fcur[fcur > 0][0]
+    for i in range(n):
+        if fcur[i] == 0: fcur[i] = last
+        else: last = fcur[i]
+    k = int(0.09 * SR); fcur = np.convolve(fcur, np.ones(k) / k, "same")
+    amp = np.convolve(amp, np.ones(int(0.05 * SR)) / int(0.05 * SR), "same")
+    vib = 1 + 0.006 * vibd * np.sin(2 * np.pi * 5.0 * t)
+    ph = 2 * np.pi * np.cumsum(fcur * vib) / SR
+    tone = np.sin(ph) + 0.18 * np.sin(2 * ph) + 0.07 * np.sin(3 * ph)
+    breath = sosfilt(butter(2, [700, 4500], "band", fs=SR, output="sos"), rng.normal(0, 1, n)) * 0.22
+    out = np.zeros(total_n, np.float32)
+    out[:n] = ((tone + breath) * amp).astype(np.float32)
+    return out
+
 def sad_music(T, R, rng):
-    """Original emotional piano + strings bed in A minor, 68 bpm."""
+    """Original sad Middle-Eastern style bed: maqam Hijaz on D, ney + oud + drone.
+    No percussion, kept soft under the voice."""
     from scipy.signal import butter, sosfilt, fftconvolve
     N = int(T * SR) + SR
-    beat = 60 / 68; bar = 4 * beat
-    # Am  F  C  G | Am  F  Dm  E
-    prog = [(45, [57, 60, 64]), (41, [53, 57, 60]), (48, [55, 60, 64]), (43, [55, 59, 62]),
-            (45, [57, 60, 64]), (41, [53, 57, 60]), (38, [53, 57, 62]), (40, [56, 59, 64])]
-    mel = [[(0, 76, 2), (2, 74, 1), (3, 72, 1)], [(0, 72, 2), (2, 69, 2)],
-           [(0, 67, 1.5), (1.5, 72, .5), (2, 76, 2)], [(0, 74, 3), (3, 71, 1)],
-           [(0, 69, 2), (2, 72, 1), (3, 76, 1)], [(0, 77, 2), (2, 76, 1), (3, 72, 1)],
-           [(0, 74, 2), (2, 72, 1), (3, 69, 1)], [(0, 71, 3), (3, 68, 1)]]
-    piano = np.zeros(N, np.float32); strings = np.zeros((N, 2), np.float32)
-    hook_end = R.tl.body_start
-    nbars = int(T / bar) + 2
-    for b in range(nbars):
-        t0 = b * bar
-        bass, tri = prog[b % 8]
-        arp = [bass - 12 + 12, tri[1], tri[2], tri[0] + 12, tri[2], tri[1] + 12, tri[2], tri[1]]
-        for e, m in enumerate(arp):
-            ts = t0 + e * beat / 2
-            if ts >= T: break
-            nt = piano_note(midi_hz(m), beat / 2, 0.16 if e else 0.24, rng)
-            i = int(ts * SR); j = min(N, i + len(nt)); piano[i:j] += nt[:j - i]
-        if t0 >= hook_end - 0.5:        # melody enters after the hook
-            for pos, m, L in mel[b % 8]:
-                ts = t0 + pos * beat
-                if ts >= T: break
-                nt = piano_note(midi_hz(m), L * beat, 0.30, rng)
-                i = int(ts * SR); j = min(N, i + len(nt)); piano[i:j] += nt[:j - i]
-        stc = strings_chord([bass, tri[0], tri[1], tri[2]], bar, rng)
-        i = int(max(0, t0 - 0.6) * SR); j = min(N, i + len(stc)); strings[i:j] += stc[:j - i] * 0.035
-    strings = sosfilt(butter(2, 2200, "low", fs=SR, output="sos"), strings, axis=0).astype(np.float32)
-    strings = sosfilt(butter(1, 90, "high", fs=SR, output="sos"), strings, axis=0).astype(np.float32)
-    mus = np.stack([piano * 0.95, piano * 1.0], 1) + strings
+    beat = 1.0     # 60 bpm
+    # Hijaz on D: D Eb F# G A Bb C D
+    P = [
+        [(0, 69, 1.5), (1.5, 70, .5), (2, 69, 1), (3, 67, 1), (4, 66, 2), (6, 63, 1), (7, 62, 3)],
+        [(0, 62, 1), (1, 63, 1), (2, 66, 1), (3, 67, 1), (4, 69, 3), (7, 70, 1), (8, 69, 2), (10, 67, 1.5)],
+        [(0, 74, 2), (2, 72, 1), (3, 70, 1), (4, 69, 2), (6, 67, 1), (7, 66, 1), (8, 63, 2), (10, 62, 1.5)],
+        [(0, 66, 1), (1, 67, 1), (2, 69, 2), (4, 67, 1), (5, 66, 1), (6, 63, 1.5), (7.5, 62, 4)],
+    ]
+    ney = np.zeros(N, np.float32)
+    start = R.tl.body_start + 0.5
+    k = 0; t0 = start
+    while t0 < T - 4:
+        ph = ney_phrase(P[k % 4], beat, N - int(t0 * SR), rng)
+        ney[int(t0 * SR):] += ph[:N - int(t0 * SR)]
+        t0 += 14.0; k += 1
+    # oud: sparse plucks, D-A-D with Hijaz colour notes
+    oud = np.zeros(N, np.float32)
+    pat = [50, 57, 62, 57, 50, 54, 51, 57]   # D3 A3 D4 A3 D3 F#3 Eb3 A3
+    nb = int(T / beat)
+    for i in range(nb):
+        ts = i * beat
+        if i % 8 in (3, 7): continue
+        m = pat[i % 8]
+        nt = oud_note(midi_hz(m), beat, 0.20 if i % 4 == 0 else 0.13, rng)
+        a = int(ts * SR); b = min(N, a + len(nt)); oud[a:b] += nt[:b - a]
+    # drone: D2 + A2 + D3, slowly breathing
+    t = np.arange(N) / SR
+    dr = np.zeros(N, np.float32)
+    for m, g in ((38, 1.0), (45, 0.6), (50, 0.45)):
+        f = midi_hz(m)
+        for det in (-0.08, 0.08):
+            ph = 2 * np.pi * (f + det) * t
+            dr += (g * (np.sin(ph) + 0.35 * np.sin(2 * ph) + 0.15 * np.sin(3 * ph))).astype(np.float32)
+    dr *= (0.75 + 0.25 * np.sin(2 * np.pi * t / 9.0)).astype(np.float32)
+    dr *= np.clip(t / 2.5, 0, 1).astype(np.float32)
+    dr = sosfilt(butter(2, 900, "low", fs=SR, output="sos"), dr).astype(np.float32)
+    def norm_(x): return x / (np.sqrt(np.mean(x[:int(T * SR)] ** 2)) + 1e-9)
+    mono_n, oud_n, dr_n = norm_(ney), norm_(oud), norm_(dr)
+    mus = np.zeros((N, 2), np.float32)
+    mus[:, 0] = 0.55 * mono_n * 0.9 + 0.50 * oud_n * 1.0 + 0.45 * dr_n
+    mus[:, 1] = 0.55 * mono_n * 1.0 + 0.50 * oud_n * 0.85 + 0.45 * dr_n
     for c in range(2):
-        ir = (rng.normal(0, 1, int(3.2 * SR)) * np.exp(-np.arange(int(3.2 * SR)) / (0.85 * SR))).astype(np.float32)
+        ir = (rng.normal(0, 1, int(3.5 * SR)) * np.exp(-np.arange(int(3.5 * SR)) / (0.9 * SR))).astype(np.float32)
         ir /= np.sqrt((ir ** 2).sum())
-        mus[:, c] = 0.62 * mus[:, c] + 0.38 * fftconvolve(mus[:, c], ir)[:N]
+        mus[:, c] = 0.55 * mus[:, c] + 0.45 * fftconvolve(mus[:, c], ir)[:N]
     rms = np.sqrt(np.mean(mus[:int(T * SR)] ** 2)) + 1e-9
-    return mus * (0.06 / rms)
+    return mus * (0.04 / rms)      # soft: well under the voice
 
 def synth_audio(R):
     from scipy.signal import butter, sosfilt
@@ -1275,9 +1326,9 @@ def synth_audio(R):
     # duck under the voice, swell at the end card
     hop = SR // 50
     e = np.convolve(np.abs(vo), np.ones(hop * 12) / (hop * 12), "same")
-    duck = 1 - 0.45 * np.clip(e / (np.percentile(e[e > 1e-4], 85) + 1e-6), 0, 1)
+    duck = 1 - 0.50 * np.clip(e / (np.percentile(e[e > 1e-4], 85) + 1e-6), 0, 1)
     dyn = np.ones(N, np.float32)
-    ie = int(R.tl.speech_end * SR); dyn[ie:] = np.linspace(1.0, 1.9, N - ie)
+    ie = int(R.tl.speech_end * SR); dyn[ie:] = np.linspace(1.0, 1.6, N - ie)
     dyn[:int(0.6 * SR)] = np.linspace(0.3, 1.0, int(0.6 * SR))
     mus *= (duck * dyn)[:, None]
     fo = int(2.0 * SR); mus[int(T * SR) - fo:int(T * SR)] *= np.linspace(1, 0, fo)[:, None]

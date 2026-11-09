@@ -20,7 +20,7 @@ kepada video menegak sinematik **1080×1920, 30 FPS, 1:49**.
 | 0:00–0:05 | **Hook** | *"sedekah jariah kita yang berkekalan sampai kita di alam kubur nanti"* |
 | 0:05–0:24 | Lokasi dan majlis | Gambar ketibaan dengan lower-third lokasi, banner *Majlis Pelancaran*, gambar tanam pokok dengan **1 EKAR** |
 | 0:24–0:54 | Isi | Kiraan **30 PINTU**, siluet musolla (Warga Emas, Pondok, Tahfiz), **WAKAF RM50 sekaki** |
-| 0:54–1:06 | Cara menyumbang | **QR DuitNow + No. Akaun 558079530303 (An Nur Resources)** (dipapar besar dan tidak bergerak supaya mudah diimbas) |
+| 0:54–1:06 | Cara menyumbang | **QR DuitNow + Maybank 558079530303 (An Nur Resources)** (dipapar besar dan tidak bergerak supaya mudah diimbas) |
 | 1:06–1:18 | Emotional peak | Close-up penceramah |
 | 1:18–1:42 | Rayuan | Penceramah, banner majlis, cahaya bokeh |
 | 1:42–1:49 | Kad akhir | WAKAF SEKAKI RM50, QR dan no. akaun |
@@ -29,8 +29,9 @@ Mukadimah (salam dan selawat) tidak dimasukkan. Tiga ayat yang berulang juga
 dibuang supaya video tidak melebihi 2 minit. Ayat-ayat yang digunakan tetap
 dimainkan mengikut susunan asal.
 
-- **Muzik:** piano dan strings yang sedih, digubah dan dijana sendiri (A minor, 68 bpm).
-  Muzik direndahkan ketika penceramah bercakap dan dinaikkan pada kad akhir.
+- **Muzik:** instrumental sedih bernuansa Islamik/Timur Tengah (maqam Hijaz pada D):
+  seruling ney, petikan oud dan dengung drone, tanpa gendang. Muzik ini digubah dan
+  dijana sendiri, dimainkan perlahan dan direndahkan lagi ketika penceramah bercakap.
 - **Kesan bunyi:** whoosh sahaja, iaitu pada transisi, tajuk penting dan
   perkataan yang di-highlight (penanda emas). Tiada bunyi "ting".
 - **Wajah:** setiap gambar mempunyai `face_band`. Semua teks diletakkan di luar
@@ -49,8 +50,7 @@ dimainkan mengikut susunan asal.
 
 ## Perlu disemak / diisi
 
-1. **Nama bank** tidak dipaparkan. Yang dipaparkan ialah no. akaun, nama akaun dan QR. Jika perlu,
-   tambah nama bank pada `ACCOUNT_NO` dalam `plan.py`.
+1. Butiran akaun (`BANK`, `ACCOUNT_NO`, `ACCOUNT_NAME`) ada dalam `plan.py`.
 2. **Nama kampung.** Transkrip mendengar "Padang Stang". Sila sahkan ejaannya
    dalam `data/words.json`.
 3. Perkataan *"lima..."* (sebelum "30 pintu") ialah tafsiran transkripsi. Sila
