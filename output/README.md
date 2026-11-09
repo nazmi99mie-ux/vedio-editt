@@ -14,3 +14,20 @@ Untuk render semula: `python3 scripts/make.py <folder build>`
 
 Font: Cinzel (tajuk), Poppins (sari kata), Amiri (ayat Al-Quran).
 Muzik: muzik ambient yang dijana sendiri (`scripts/music.py`), jadi tiada isu hak cipta.
+
+---
+
+# Bahaya Fahaman Selain Islam (1:32, 9:16)
+
+Fail: `bahaya-fahaman-selain-islam.mp4`
+
+| Masa | Bab | Masa asal | Isi |
+|---|---|---|---|
+| 0:00–0:02 | Hook | – | "3 Fahaman Paling Bahaya untuk Umat Islam Hari Ini" |
+| 0:02–0:37 | 01 KHAWARIJ | 18:56–19:20, 19:58–20:13 | Tak boleh tumpah darah sesama ahli kiblat; Khawarij kafirkan pelaku dosa besar; pakai serban jubah tapi sembelih sesama Islam |
+| 0:37–0:56 | 02 LIBERAL | 38:08–38:21, 38:51–38:54, 40:54–41:01 | Nikah beza agama "macam Indonesia" tak sah; dua lelaki tak boleh nikah; jangan ada hukum kata boleh, kena ikut Al-Quran |
+| 0:56–1:27 | 03 SEKULAR | 41:12–41:26, 41:46–41:57, 42:13–42:22 | Azerbaijan: 97% Islam tapi akidah sekular; penting pegang kuasa; kalau tidak, parlimen & kementerian di tangan orang lain |
+| 1:27–1:32 | Penutup | – | Surah Al-Baqarah: 208, "Masuklah ke dalam Islam secara keseluruhan" |
+
+Efek: kad bab bernombor dengan animasi, tab bab aktif, sari kata "pop" (Anton), syot lebar/dekat silih berganti dengan zum perlahan, kilat putih pada pertukaran bab, bar kemajuan, bunyi whoosh/impak/riser, dan muzik sinematik gelap yang direndahkan secara automatik ketika ustaz bercakap.
+Bina semula: `python3 scripts/v2/audio.py <dir>` kemudian `python3 scripts/v2/build.py` (susun atur folder: `<root>/v2`, `<root>/fonts`, `<root>/src/video.mp4`).

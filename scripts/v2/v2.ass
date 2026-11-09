@@ -1,0 +1,104 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Anton,100,&H00FFFFFF,&H00FFFFFF,&H00000000,&HA0000000,0,0,0,0,100,100,1,0,1,6,4,5,60,60,0,1
+Style: Big,Anton,200,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,2,0,1,8,6,5,40,40,0,1
+Style: Pop,Poppins ExtraBold,52,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,0,0,1,4,3,5,60,60,0,1
+Style: Tab,Poppins ExtraBold,36,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,2,0,1,0,0,5,0,0,0,1
+Style: Box,Poppins ExtraBold,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+Style: Ar,Amiri,84,&H0060C8FF,&H0060C8FF,&H00000000,&H90000000,-1,0,0,0,100,100,0,0,1,3,3,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.60,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H50&}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 2,0:00:00.10,0:00:02.60,Big,,0,0,0,,{\pos(540,680)\fs240\fscx260\fscy260\alpha&HFF&\t(0,140,\fscx100\fscy100\alpha&H00&)\fad(0,150)}3 FAHAMAN
+Dialogue: 1,0:00:00.55,0:00:02.60,Box,,0,0,0,,{\pos(150,820)\p1\c&H281ECD&\clip(0,0,0,1920)\t(0,180,\clip(0,0,1080,1920))\fad(0,150)}m 30 0 l 810 0 780 220 0 220{\p0}
+Dialogue: 2,0:00:00.55,0:00:02.60,Big,,0,0,0,,{\pos(540,930)\fs175\alpha&HFF&\t(80,200,\alpha&H00&)\fad(0,150)}PALING BAHAYA
+Dialogue: 2,0:00:01.10,0:00:02.60,Pop,,0,0,0,,{\pos(540,1130)\fs72\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}UNTUK UMAT ISLAM HARI INI
+Dialogue: 2,0:00:01.55,0:00:02.60,Pop,,0,0,0,,{\pos(540,1250)\c&H00D7FF&\fs56\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}KHAWARIJ  •  LIBERAL  •  SEKULAR
+Dialogue: 1,0:00:02.60,0:00:37.55,Box,,0,0,0,,{\pos(100,508)\p1\c&H3CC8FF&}m 0 0 l 260 0 260 50 0 50{\p0}
+Dialogue: 2,0:00:02.60,0:00:37.55,Tab,,0,0,0,,{\pos(230,533)\c&H0A0A0A&}KHAWARIJ
+Dialogue: 2,0:00:02.60,0:00:37.55,Tab,,0,0,0,,{\pos(540,533)\alpha&H70&}LIBERAL
+Dialogue: 2,0:00:02.60,0:00:37.55,Tab,,0,0,0,,{\pos(850,533)\alpha&H70&}SEKULAR
+Dialogue: 2,0:00:37.55,0:00:56.30,Tab,,0,0,0,,{\pos(230,533)\alpha&H70&}KHAWARIJ
+Dialogue: 1,0:00:37.55,0:00:56.30,Box,,0,0,0,,{\pos(410,508)\p1\c&H3CC8FF&}m 0 0 l 260 0 260 50 0 50{\p0}
+Dialogue: 2,0:00:37.55,0:00:56.30,Tab,,0,0,0,,{\pos(540,533)\c&H0A0A0A&}LIBERAL
+Dialogue: 2,0:00:37.55,0:00:56.30,Tab,,0,0,0,,{\pos(850,533)\alpha&H70&}SEKULAR
+Dialogue: 2,0:00:56.30,0:01:27.50,Tab,,0,0,0,,{\pos(230,533)\alpha&H70&}KHAWARIJ
+Dialogue: 2,0:00:56.30,0:01:27.50,Tab,,0,0,0,,{\pos(540,533)\alpha&H70&}LIBERAL
+Dialogue: 1,0:00:56.30,0:01:27.50,Box,,0,0,0,,{\pos(720,508)\p1\c&H3CC8FF&}m 0 0 l 260 0 260 50 0 50{\p0}
+Dialogue: 2,0:00:56.30,0:01:27.50,Tab,,0,0,0,,{\pos(850,533)\c&H0A0A0A&}SEKULAR
+Dialogue: 3,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:02.60,0:00:04.70,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}01
+Dialogue: 5,0:00:02.68,0:00:04.70,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs150\fad(0,200)}KHAWARIJ
+Dialogue: 5,0:00:02.85,0:00:04.70,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Ekstremis yang halalkan darah sesama Muslim
+Dialogue: 3,0:00:37.55,0:00:39.65,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:37.55,0:00:39.65,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:37.55,0:00:39.65,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:37.55,0:00:39.65,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}02
+Dialogue: 5,0:00:37.63,0:00:39.65,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs150\fad(0,200)}LIBERAL
+Dialogue: 5,0:00:37.80,0:00:39.65,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Menghalalkan apa yang Allah haramkan
+Dialogue: 3,0:00:56.30,0:00:58.40,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:56.30,0:00:58.40,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:56.30,0:00:58.40,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:56.30,0:00:58.40,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}03
+Dialogue: 5,0:00:56.38,0:00:58.40,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs150\fad(0,200)}SEKULAR
+Dialogue: 5,0:00:56.55,0:00:58.40,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Memisahkan agama daripada kuasa
+Dialogue: 6,0:00:02.70,0:00:04.80,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TIDAK BOLEH MENUMPAHKAN DARAH
+Dialogue: 6,0:00:04.85,0:00:06.80,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SESAMA {\c&H00D7FF&}AHLI KIBLAT{\r}
+Dialogue: 6,0:00:06.85,0:00:08.10,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}YANG TUMPAH DARAH
+Dialogue: 6,0:00:08.10,0:00:10.10,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KITA TENGOK DALAM TV, TIKTOK
+Dialogue: 6,0:00:10.10,0:00:12.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KADANG-KADANG DI LUAR NEGARA
+Dialogue: 6,0:00:12.40,0:00:14.10,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BUKAN PEGANGAN AHLI SUNNAH WAL JAMAAH
+Dialogue: 6,0:00:14.10,0:00:14.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ITU {\c&H3C3CFF&}KHAWARIJ{\r}
+Dialogue: 6,0:00:15.05,0:00:17.15,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SATU PUAK YANG {\c&H3C3CFF&}MENGHALALKAN{\r}
+Dialogue: 6,0:00:17.15,0:00:18.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}DARAH{\r} SESAMA ISLAM
+Dialogue: 6,0:00:18.60,0:00:20.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BUAT DOSA BESAR — {\c&H3C3CFF&}KAFIR{\r}
+Dialogue: 6,0:00:21.10,0:00:22.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MINUM ARAK — {\c&H3C3CFF&}KAFIR{\r}
+Dialogue: 6,0:00:22.50,0:00:23.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}HUKUMNYA {\c&H3C3CFF&}BUNUH{\r}
+Dialogue: 6,0:00:23.35,0:00:25.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JANGAN HAIRAN — PAKAI SERBAN, JUBAH, JANGGUT
+Dialogue: 6,0:00:25.40,0:00:28.60,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KATA PERANG FISABILILLAH DI LUAR NEGARA
+Dialogue: 6,0:00:28.75,0:00:31.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}SEMBELIH{\r} TENGKUK SESAMA ISLAM
+Dialogue: 6,0:00:31.35,0:00:33.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BUDAK-BUDAK, PEREMPUAN — TAK KIRA
+Dialogue: 6,0:00:33.90,0:00:36.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DIPUJI {\c&H00D7FF&}"FISABILILLAH"{\r}
+Dialogue: 6,0:00:36.20,0:00:37.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}PADAHAL DIA {\c&H3C3CFF&}KHAWARIJ{\r}
+Dialogue: 6,0:00:37.60,0:00:41.70,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU UNDANG-UNDANG BERTUKAR {\c&H00D7FF&}MACAM INDONESIA{\r}
+Dialogue: 6,0:00:41.75,0:00:44.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SEORANG KAFIR, SEORANG ISLAM — KAHWIN
+Dialogue: 6,0:00:44.40,0:00:45.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H00D7FF&}SAH TAK?{\r}
+Dialogue: 6,0:00:45.55,0:00:46.85,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JAWAPANNYA: {\c&H3C3CFF&}TAK SAH{\r}
+Dialogue: 6,0:00:46.90,0:00:48.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAK PAYAH TANYA MUFTI!
+Dialogue: 6,0:00:48.55,0:00:49.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU DUA-DUA LELAKI
+Dialogue: 6,0:00:49.55,0:00:50.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}TAK BOLEH NIKAH{\r}
+Dialogue: 6,0:00:50.55,0:00:51.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JANGAN ADA HUKUM KATA {\c&H3C3CFF&}BOLEH{\r}
+Dialogue: 6,0:00:51.95,0:00:54.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BILA BERTEMBUNG HUKUM DENGAN AL-QURAN
+Dialogue: 6,0:00:55.05,0:00:56.30,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KENA {\c&H00D7FF&}IKUT AL-QURAN{\r}
+Dialogue: 6,0:00:56.35,0:00:58.45,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}CONTOHNYA {\c&H00D7FF&}AZERBAIJAN{\r}
+Dialogue: 6,0:00:58.50,0:01:01.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ISLAM SEMUA — {\c&H00D7FF&}97 PERATUS{\r}
+Dialogue: 6,0:01:01.20,0:01:03.00,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}LEBIH RAMAI DARI MALAYSIA
+Dialogue: 6,0:01:03.00,0:01:05.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAPI ISLAM ZAHIR SAHAJA
+Dialogue: 6,0:01:05.55,0:01:07.60,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}AKIDAH DIA {\c&H3C3CFF&}SEKULAR{\r}
+Dialogue: 6,0:01:07.60,0:01:08.70,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAK BOLEH KATA APA
+Dialogue: 6,0:01:08.75,0:01:10.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}PENTING KITA {\c&H00D7FF&}PEGANG KUASA{\r}
+Dialogue: 6,0:01:10.55,0:01:14.45,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SUPAYA BOLEH LAKSANA APA YANG ALLAH TETAPKAN DALAM AL-QURAN
+Dialogue: 6,0:01:14.45,0:01:16.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU KITA TAK PEGANG
+Dialogue: 6,0:01:16.25,0:01:17.60,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ORANG {\c&H3C3CFF&}SEKULAR{\r} AKAN PEGANG
+Dialogue: 6,0:01:17.60,0:01:19.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JADI MACAM AZERBAIJAN
+Dialogue: 6,0:01:19.10,0:01:21.30,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU TAK ADA {\c&H00D7FF&}KUASA{\r} — JADI MACAM AZERBAIJAN
+Dialogue: 6,0:01:21.30,0:01:22.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KUASA DI TANGAN ORANG LAIN
+Dialogue: 6,0:01:22.35,0:01:24.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}PARLIMEN DI TANGAN ORANG LAIN
+Dialogue: 6,0:01:24.05,0:01:26.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KEMENTERIAN DI TANGAN ORANG LAIN
+Dialogue: 6,0:01:26.20,0:01:27.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ISLAM KITA {\c&H3C3CFF&}TERPAKSA IKUT{\r}
+Dialogue: 7,0:01:27.50,0:01:31.70,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H40&\fad(250,0)}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 8,0:01:27.65,0:01:31.70,Ar,,0,0,0,,{\pos(540,600)\fs200\fad(300,300)\blur1}يَا أَيُّهَا الَّذِينَ آمَنُوا
+Dialogue: 8,0:01:27.85,0:01:31.70,Ar,,0,0,0,,{\pos(540,820)\fs215\fad(300,300)\blur1}ادْخُلُوا فِي السِّلْمِ كَافَّةً
+Dialogue: 8,0:01:28.20,0:01:31.70,Pop,,0,0,0,,{\pos(540,1060)\fs70\fad(300,300)}"Wahai orang-orang yang beriman,
+Dialogue: 8,0:01:28.20,0:01:31.70,Pop,,0,0,0,,{\pos(540,1150)\fs70\fad(300,300)}masuklah ke dalam Islam
+Dialogue: 8,0:01:28.20,0:01:31.70,Pop,,0,0,0,,{\pos(540,1240)\fs70\fad(300,300)\c&H00D7FF&}secara keseluruhan."
+Dialogue: 8,0:01:28.50,0:01:31.70,Tab,,0,0,0,,{\pos(540,1370)\fs56\c&H3CC8FF&\fad(300,300)}SURAH AL-BAQARAH : 208
