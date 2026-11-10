@@ -47,3 +47,20 @@ Fail: `jangan-mudah-kafirkan-orang.mp4`
 | 1:25–1:29 | Penutup | – | Surah An-Nisa': 94, "Jangan katakan kepada orang yang memberi salam: kamu bukan orang beriman" |
 
 Bina semula: `python3 scripts/v3/build.py` (reka bentuk, muzik dan SFX sama seperti v2).
+
+---
+
+# Ustaz Buat Lawak, Tapi Ada Isi! (1:27, 9:16)
+
+Fail: `ustaz-buat-lawak-tapi-ada-isi.mp4`
+
+| Masa | Bab | Masa asal | Isi |
+|---|---|---|---|
+| 0:00–0:02 | Hook | – | "Senyum sikit, kuliah pun masuk!" |
+| 0:02–0:33 | 01 CINA BISMILLAH | 12:35–13:16 | Peniaga pinggan mangkuk yang lebih fasih sebut Bismillah, Astaghfirullah, Alhamdulillah |
+| 0:33–0:49 | 02 NAK TENGOK BAJET | 26:55–27:17 | Orang nak masuk Islam disuruh datang esok sebab "nak tengok bajet", padahal itu boleh jadi kafir! |
+| 0:49–1:23 | 03 KEROPOK LEKOR | 33:25–34:34 | Hukum nikah: wajib, sunat ("nombor dua") dan haram, diterangkan dengan cara lawak |
+| 1:23–1:27 | Penutup | – | Hadis: "Senyumanmu kepada saudaramu adalah sedekah" (HR At-Tirmizi) |
+
+Efek tambahan: pelekat "HAHA!" bersama bunyi boing pada setiap punchline, muzik ceria (C major, 116 bpm), dan warna oren/kuning.
+Bina semula: `python3 scripts/v4/fun_audio.py <dir>` kemudian `python3 scripts/v4/build.py`.
