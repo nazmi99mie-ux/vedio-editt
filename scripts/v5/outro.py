@@ -1,0 +1,6 @@
+ev(o+0.15,TOTAL,'Ar',"{\\pos(540,600)\\fs230\\fad(300,300)\\blur1}قَدْ أَفْلَحَ الْمُؤْمِنُونَ",8)
+ev(o+0.35,TOTAL,'Ar',"{\\pos(540,810)\\fs175\\fad(300,300)\\blur1}الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1030)\\fs62\\fad(300,300)}\"Sesungguhnya berjayalah orang beriman,",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1115)\\fs62\\fad(300,300)}iaitu mereka yang",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1205)\\fs72\\fad(300,300)\\c&H5CB8DE&}KHUSYUK DALAM SOLATNYA.\"",8)
+ev(o+1.0,TOTAL,'Tab',"{\\pos(540,1325)\\fs50\\c&H5CB8DE&\\fad(300,300)}SURAH AL-MU'MINUN : 1-2",8)

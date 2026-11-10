@@ -64,3 +64,23 @@ Fail: `ustaz-buat-lawak-tapi-ada-isi.mp4`
 
 Efek tambahan: pelekat "HAHA!" bersama bunyi boing pada setiap punchline, muzik ceria (C major, 116 bpm), dan warna oren/kuning.
 Bina semula: `python3 scripts/v4/fun_audio.py <dir>` kemudian `python3 scripts/v4/build.py`.
+
+---
+
+# Solat Sah... Tapi Tak Diterima? (1:29, 9:16)
+
+Fail: `solat-sah-tapi-tak-diterima.mp4`
+Sumber: video kedua (Drive id 1uPPYZa1Kp587GebQRcn4AMRlBszRSP4q), 58 minit. Mukadimah tidak dimasukkan.
+
+| Masa | Bab | Masa asal | Isi |
+|---|---|---|---|
+| 0:00–0:02 | Hook | – | "Solat kita sah... tapi Allah tak terima? 4 penyakit hati pemusnah pahala" |
+| 0:02–0:21 | 01 TAKBUR | 1:57–3:34 | Takbur: solat sah tapi tak diterima, ibarat "lulus temuduga, namun syarikat tak dapat menerima encik" |
+| 0:21–0:44 | 02 MENGUMPAT | 7:37–8:24 | Paling payah nak hilang; "minit ke-20 mula goreng"; Haji Anu, AJK surau semua tak boleh pakai; "memang sedap, boleh minum kopi" |
+| 0:44–0:59 | 03 SUM'AH | 33:47–34:06 | Umrah 7-8 kali, bawa handset buat TikTok tawaf, TikTok jalan |
+| 0:59–1:24 | 04 KHUSYUK | 40:03–41:00 | Perumpamaan tarik lembu atas batas bendang; tengah solat teringat "PRN Melaka!" |
+| 1:24–1:29 | Penutup | – | Surah Al-Mu'minun: 1-2 |
+
+Latar: corak geometri Islamik (bintang 8 bucu) yang samar, siluet masjid kecil, bintang emas pada bingkai video, dan warna zamrud & emas.
+Muzik: skala Hijaz dengan bunyi seakan oud/qanun dan rebana halus (`islamic_audio.py`), dibuat sendiri jadi bebas hak cipta.
+Bina semula: `python3 scripts/v5/mk.py` (menjana build.py daripada v2) kemudian `python3 scripts/v5/build.py`.
