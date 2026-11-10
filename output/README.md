@@ -84,3 +84,19 @@ Sumber: video kedua (Drive id 1uPPYZa1Kp587GebQRcn4AMRlBszRSP4q), 58 minit. Muka
 Latar: corak geometri Islamik (bintang 8 bucu) yang samar, siluet masjid kecil, bintang emas pada bingkai video, dan warna zamrud & emas.
 Muzik: skala Hijaz dengan bunyi seakan oud/qanun dan rebana halus (`islamic_audio.py`), dibuat sendiri jadi bebas hak cipta.
 Bina semula: `python3 scripts/v5/mk.py` (menjana build.py daripada v2) kemudian `python3 scripts/v5/build.py`.
+
+---
+
+# Khusyuk Dalam Solat: Ibarat Tarik Lembu (1:26, 9:16)
+
+Fail: `khusyuk-ibarat-tarik-lembu.mp4`. Satu topik sahaja (khusyuk), dan setiap ayat disebut habis.
+Sumber: video kedua, 39:54–42:12. Titik potongan diletakkan pada saat paling senyap, dan tiada fade pada sambungan berturutan.
+
+| Masa | Bab | Isi |
+|---|---|---|
+| 0:00 | Hook | "Solat kita... khusyuk atau tidak?" |
+| 0:03 | 01 MAKNA KHUSYUK | Khusyuk hati kepada Allah, baru Allah terima. Maknanya tetap: hati sedar "aku sedang solat" |
+| 0:16 | 02 IBARAT LEMBU | Heret lembu atas batas bendang, kepala nak capai padi, tarik balik... "macam itulah solat kita" |
+| 0:37 | 03 SEDAR SETIAP RUKUN | "Aku sedang berdiri dalam rukun pertama, membaca Al-Fatihah dan faham maknanya" |
+| 1:01 | 04 BILA HATI LARI | Tiba-tiba "PRN Melaka!"; tarik balik; yang ingat dikira pahala; baru solat diterima Allah |
+| 1:21 | Penutup | Surah Al-Mu'minun: 1-2 |
