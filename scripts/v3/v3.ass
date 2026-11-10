@@ -1,0 +1,95 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Anton,100,&H00FFFFFF,&H00FFFFFF,&H00000000,&HA0000000,0,0,0,0,100,100,1,0,1,6,4,5,60,60,0,1
+Style: Big,Anton,200,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,2,0,1,8,6,5,40,40,0,1
+Style: Pop,Poppins ExtraBold,52,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,0,0,1,4,3,5,60,60,0,1
+Style: Tab,Poppins ExtraBold,36,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,2,0,1,0,0,5,0,0,0,1
+Style: Box,Poppins ExtraBold,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+Style: Ar,Amiri,84,&H0060C8FF,&H0060C8FF,&H00000000,&H90000000,-1,0,0,0,100,100,0,0,1,3,3,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.60,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H50&}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 2,0:00:00.10,0:00:02.60,Big,,0,0,0,,{\pos(540,680)\fs240\fscx260\fscy260\alpha&HFF&\t(0,140,\fscx100\fscy100\alpha&H00&)\fad(0,150)}BERHATI-HATI
+Dialogue: 1,0:00:00.55,0:00:02.60,Box,,0,0,0,,{\pos(60,820)\p1\c&H281ECD&\clip(0,0,0,1920)\t(0,180,\clip(0,0,1080,1920))\fad(0,150)}m 30 0 l 990 0 960 220 0 220{\p0}
+Dialogue: 2,0:00:00.55,0:00:02.60,Big,,0,0,0,,{\pos(540,930)\fs130\alpha&HFF&\t(80,200,\alpha&H00&)\fad(0,150)}JANGAN MUDAH KAFIRKAN
+Dialogue: 2,0:00:01.10,0:00:02.60,Pop,,0,0,0,,{\pos(540,1130)\fs72\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}SAUDARA SESAMA ISLAM
+Dialogue: 2,0:00:01.55,0:00:02.60,Pop,,0,0,0,,{\pos(540,1250)\c&H00D7FF&\fs56\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}HUKUM ZAHIR  •  BERDOSA  •  MEDAN PERANG
+Dialogue: 1,0:00:02.60,0:00:30.20,Box,,0,0,0,,{\pos(80,508)\p1\c&H3CC8FF&}m 0 0 l 300 0 300 50 0 50{\p0}
+Dialogue: 2,0:00:02.60,0:00:30.20,Tab,,0,0,0,,{\pos(230,533)\c&H0A0A0A&}HUKUM ZAHIR
+Dialogue: 2,0:00:02.60,0:00:30.20,Tab,,0,0,0,,{\pos(540,533)\alpha&H70&}BERDOSA
+Dialogue: 2,0:00:02.60,0:00:30.20,Tab,,0,0,0,,{\pos(850,533)\alpha&H70&}MEDAN PERANG
+Dialogue: 2,0:00:30.20,0:00:55.25,Tab,,0,0,0,,{\pos(230,533)\alpha&H70&}HUKUM ZAHIR
+Dialogue: 1,0:00:30.20,0:00:55.25,Box,,0,0,0,,{\pos(390,508)\p1\c&H3CC8FF&}m 0 0 l 300 0 300 50 0 50{\p0}
+Dialogue: 2,0:00:30.20,0:00:55.25,Tab,,0,0,0,,{\pos(540,533)\c&H0A0A0A&}BERDOSA
+Dialogue: 2,0:00:30.20,0:00:55.25,Tab,,0,0,0,,{\pos(850,533)\alpha&H70&}MEDAN PERANG
+Dialogue: 2,0:00:55.25,0:01:25.20,Tab,,0,0,0,,{\pos(230,533)\alpha&H70&}HUKUM ZAHIR
+Dialogue: 2,0:00:55.25,0:01:25.20,Tab,,0,0,0,,{\pos(540,533)\alpha&H70&}BERDOSA
+Dialogue: 1,0:00:55.25,0:01:25.20,Box,,0,0,0,,{\pos(700,508)\p1\c&H3CC8FF&}m 0 0 l 300 0 300 50 0 50{\p0}
+Dialogue: 2,0:00:55.25,0:01:25.20,Tab,,0,0,0,,{\pos(850,533)\c&H0A0A0A&}MEDAN PERANG
+Dialogue: 3,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:02.60,0:00:04.70,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}01
+Dialogue: 5,0:00:02.68,0:00:04.70,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fad(0,200)\fs118}HUKUM ZAHIR
+Dialogue: 5,0:00:02.85,0:00:04.70,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Kita hanya menghukum apa yang nampak
+Dialogue: 3,0:00:30.20,0:00:32.30,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:30.20,0:00:32.30,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:30.20,0:00:32.30,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:30.20,0:00:32.30,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}02
+Dialogue: 5,0:00:30.28,0:00:32.30,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fad(0,200)\fs150}BERDOSA
+Dialogue: 5,0:00:30.45,0:00:32.30,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Pendosa tetap mukmin — selagi tak halalkan dosa
+Dialogue: 3,0:00:55.25,0:00:57.35,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:55.25,0:00:57.35,Box,,0,0,0,,{\pos(0,805)\p1\c&H281ECD&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:55.25,0:00:57.35,Box,,0,0,0,,{\pos(0,1135)\p1\c&H281ECD&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:55.25,0:00:57.35,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H3CC8FF&\fs230\fad(0,200)}03
+Dialogue: 5,0:00:55.33,0:00:57.35,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fad(0,200)\fs118}MEDAN PERANG
+Dialogue: 5,0:00:55.50,0:00:57.35,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Kisah sahabat & orang yang mengucap syahadah
+Dialogue: 6,0:00:02.60,0:00:04.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H00D7FF&}MUDAH{\r} NAK HUKUM ISLAM
+Dialogue: 6,0:00:04.05,0:00:06.50,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SEBAB TU {\c&H3C3CFF&}TAK BOLEH{\r} SUKA-SUKA HUKUM ORANG KAFIR
+Dialogue: 6,0:00:06.50,0:00:07.30,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}TAK BOLEH!{\r}
+Dialogue: 6,0:00:07.30,0:00:09.75,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SELAGI DIA SEMBAHYANG — {\c&H00D7FF&}ISLAM{\r}
+Dialogue: 6,0:00:09.75,0:00:13.75,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SELAGI DIA MENGAKU SEMBAHYANG TU WAJIB — {\c&H00D7FF&}ISLAM{\r}
+Dialogue: 6,0:00:14.10,0:00:17.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KECUALI DIA KATA SEMBAHYANG TAK WAJIB — {\c&H3C3CFF&}KAFIR{\r}
+Dialogue: 6,0:00:17.40,0:00:18.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}IMAN DALAM HATI — {\c&H00D7FF&}KITA TAK TAHU{\r}
+Dialogue: 6,0:00:20.05,0:00:21.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BOLEH KITA HUKUM DIA KAFIR?
+Dialogue: 6,0:00:21.95,0:00:24.45,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}TAK BOLEH{\r} — SEBAB ZAHIRNYA ISLAM
+Dialogue: 6,0:00:24.50,0:00:27.10,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JANGAN PANDAI-PANDAI HUKUM: {\c&H3C3CFF&}"AKU TAHU NIAT DALAM HATIMU"{\r}
+Dialogue: 6,0:00:27.10,0:00:30.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ITU {\c&H00D7FF&}BUKAN KERJA KITA{\r}
+Dialogue: 6,0:00:30.25,0:00:32.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DIA TAK BUAT (SEMBAHYANG)
+Dialogue: 6,0:00:32.05,0:00:33.80,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAPI TETAP {\c&H00D7FF&}BERIMAN{\r}
+Dialogue: 6,0:00:33.80,0:00:36.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SEBAB DIA TIDAK MENAFIKAN
+Dialogue: 6,0:00:36.05,0:00:38.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}MENAFIKAN{\r} — BARU KAFIR
+Dialogue: 6,0:00:38.40,0:00:41.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DIA KATA SEMBAHYANG BUKAN DARI ISLAM — {\c&H3C3CFF&}KAFIR{\r}
+Dialogue: 6,0:00:41.95,0:00:43.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BUKAN {\c&H00D7FF&}SENANG{\r} NAK HUKUM ORANG KAFIR
+Dialogue: 6,0:00:43.90,0:00:46.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BUAT DOSA BESAR — {\c&H00D7FF&}TETAP ORANG BERIMAN{\r}
+Dialogue: 6,0:00:47.40,0:00:50.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SELAGI DIA {\c&H3C3CFF&}TIDAK MENGHALALKAN{\r} DOSA BESAR ITU
+Dialogue: 6,0:00:50.80,0:00:53.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KATA "ZINA NI HARUS" — {\c&H3C3CFF&}BARU KAFIR{\r}
+Dialogue: 6,0:00:53.40,0:00:55.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}JANGAN HUKUM SUKA-SUKA!{\r}
+Dialogue: 6,0:00:55.30,0:00:57.80,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DALAM SATU PEPERANGAN — CABUT PEDANG
+Dialogue: 6,0:00:57.85,0:01:00.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BILA PEDANG NAK DITETAK
+Dialogue: 6,0:01:00.25,0:01:02.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ORANG KAFIR TU {\c&H00D7FF&}MENGUCAP{\r}
+Dialogue: 6,0:01:02.35,0:01:04.25,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAPI SAHABAT TU {\c&H3C3CFF&}BUNUH JUGA{\r}
+Dialogue: 6,0:01:04.30,0:01:06.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}"MUNGKIN YA RASULULLAH..."
+Dialogue: 6,0:01:06.35,0:01:08.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}"...DIA TAKUT DENGAN MATA PEDANGKU"
+Dialogue: 6,0:01:08.55,0:01:09.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H00D7FF&}"KAMU TAHUKAH?"{\r}
+Dialogue: 6,0:01:09.60,0:01:11.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}NABI SURUH {\c&H3C3CFF&}BAYAR DIYAT{\r}
+Dialogue: 6,0:01:12.40,0:01:14.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SEBAB APA?
+Dialogue: 6,0:01:14.05,0:01:16.00,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H00D7FF&}APA YANG KAMU TAHU DALAM HATI DIA?{\r}
+Dialogue: 6,0:01:16.05,0:01:17.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BILA ORANG MENGUCAP — {\c&H3C3CFF&}TAK BOLEH BUNUH{\r}
+Dialogue: 6,0:01:17.95,0:01:19.95,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H3C3CFF&}HARAM DARAHNYA{\r}
+Dialogue: 6,0:01:20.00,0:01:23.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BILA SESEORANG MENGUCAP — {\c&H00D7FF&}HARAM{\r} DIA DISAKITI
+Dialogue: 6,0:01:23.55,0:01:25.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TAK BOLEH TUMPAHKAN {\c&H3C3CFF&}DARAHNYA{\r}
+Dialogue: 7,0:01:25.20,0:01:29.40,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H40&\fad(250,0)}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 8,0:01:25.35,0:01:29.40,Ar,,0,0,0,,{\pos(540,620)\fs120\fad(300,300)\blur1}وَلَا تَقُولُوا لِمَنْ أَلْقَىٰ إِلَيْكُمُ السَّلَامَ
+Dialogue: 8,0:01:25.55,0:01:29.40,Ar,,0,0,0,,{\pos(540,800)\fs200\fad(300,300)\blur1}لَسْتَ مُؤْمِنًا
+Dialogue: 8,0:01:25.90,0:01:29.40,Pop,,0,0,0,,{\pos(540,1010)\fs64\fad(300,300)}"Dan janganlah kamu berkata kepada
+Dialogue: 8,0:01:25.90,0:01:29.40,Pop,,0,0,0,,{\pos(540,1095)\fs64\fad(300,300)}orang yang memberi salam kepadamu:
+Dialogue: 8,0:01:25.90,0:01:29.40,Pop,,0,0,0,,{\pos(540,1185)\fs70\fad(300,300)\c&H00D7FF&}'Kamu bukan orang beriman.'"
+Dialogue: 8,0:01:26.20,0:01:29.40,Tab,,0,0,0,,{\pos(540,1310)\fs56\c&H3CC8FF&\fad(300,300)}SURAH AN-NISA' : 94
