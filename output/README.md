@@ -100,3 +100,19 @@ Sumber: video kedua, 39:54–42:12. Titik potongan diletakkan pada saat paling s
 | 0:37 | 03 SEDAR SETIAP RUKUN | "Aku sedang berdiri dalam rukun pertama, membaca Al-Fatihah dan faham maknanya" |
 | 1:01 | 04 BILA HATI LARI | Tiba-tiba "PRN Melaka!"; tarik balik; yang ingat dikira pahala; baru solat diterima Allah |
 | 1:21 | Penutup | Surah Al-Mu'minun: 1-2 |
+
+---
+
+# Mengumpat: Dosa Paling Sedap? (1:31, 9:16)
+
+Fail: `mengumpat-dosa-paling-sedap.mp4`. Satu topik sahaja, dan setiap ayat disebut habis. Titik potongan diletakkan pada saat senyap (`cuts.txt`).
+Sumber: video kedua, 6:47–9:02.
+
+| Masa | Bab | Isi |
+|---|---|---|
+| 0:00 | Hook | "Mengumpat... dosa paling sedap! Tapi solat Tuhan tak terima" |
+| 0:03 | 01 APA ITU MENGUMPAT | Kata di belakang, benar, dan dia marah bila dengar: itu mengumpat. Kalau tak betul: fitnah |
+| 0:29 | 02 DOSA PALING SEDAP | Paling payah nak hilang; minit ke-20 mula "goreng"; Haji Anu, AJK surau tak boleh pakai; "memang sedap, boleh minum kopi" |
+| 0:57 | 03 AKIBATNYA | Solat sah pun, sah saja, tak diterima |
+| 1:05 | 04 BILA DIBOLEHKAN | Imam Al-Ghazali: harus dalam enam tempat, contohnya orang dizalimi mengadu kepada pemerintah |
+| 1:27 | Penutup | Surah Al-Hujurat: 12 |

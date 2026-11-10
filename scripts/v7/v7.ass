@@ -1,0 +1,104 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Anton,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&HA0000000,0,0,0,0,100,100,1,0,1,6,4,5,60,60,0,1
+Style: Big,Anton,200,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,2,0,1,8,6,5,40,40,0,1
+Style: Pop,Poppins ExtraBold,52,&H00FFFFFF,&H00FFFFFF,&H00000000,&H90000000,0,0,0,0,100,100,0,0,1,4,3,5,60,60,0,1
+Style: Tab,Poppins ExtraBold,30,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,2,0,1,0,0,5,0,0,0,1
+Style: Box,Poppins ExtraBold,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
+Style: Ar,Amiri,84,&H005CB8DE,&H005CB8DE,&H00000000,&H90000000,-1,0,0,0,100,100,0,0,1,3,3,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.60,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H50&}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 2,0:00:00.10,0:00:02.60,Big,,0,0,0,,{\pos(540,680)\fs170\fscx260\fscy260\alpha&HFF&\t(0,140,\fscx100\fscy100\alpha&H00&)\fad(0,150)}MENGUMPAT...
+Dialogue: 1,0:00:00.55,0:00:02.60,Box,,0,0,0,,{\pos(60,820)\p1\c&H486E00&\clip(0,0,0,1920)\t(0,180,\clip(0,0,1080,1920))\fad(0,150)}m 30 0 l 990 0 960 220 0 220{\p0}
+Dialogue: 2,0:00:00.55,0:00:02.60,Big,,0,0,0,,{\pos(540,930)\fs118\alpha&HFF&\t(80,200,\alpha&H00&)\fad(0,150)}DOSA PALING SEDAP!
+Dialogue: 2,0:00:01.10,0:00:02.60,Pop,,0,0,0,,{\pos(540,1130)\fs72\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}TAPI SOLAT TUHAN TAK TERIMA
+Dialogue: 2,0:00:01.55,0:00:02.60,Pop,,0,0,0,,{\pos(540,1250)\c&H00D7FF&\fs56\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,150)}MAKNA  •  SEDAP  •  AKIBAT  •  BILA BOLEH
+Dialogue: 1,0:00:02.60,0:00:29.05,Box,,0,0,0,,{\pos(30,508)\p1\c&H5CB8DE&}m 0 0 l 240 0 240 50 0 50{\p0}
+Dialogue: 2,0:00:02.60,0:00:29.05,Tab,,0,0,0,,{\pos(150,533)\c&H0A0A0A&}MAKNA
+Dialogue: 2,0:00:02.60,0:00:29.05,Tab,,0,0,0,,{\pos(410,533)\alpha&H70&}SEDAP
+Dialogue: 2,0:00:02.60,0:00:29.05,Tab,,0,0,0,,{\pos(670,533)\alpha&H70&}AKIBAT
+Dialogue: 2,0:00:02.60,0:00:29.05,Tab,,0,0,0,,{\pos(930,533)\alpha&H70&}BILA BOLEH
+Dialogue: 2,0:00:29.05,0:00:56.68,Tab,,0,0,0,,{\pos(150,533)\alpha&H70&}MAKNA
+Dialogue: 1,0:00:29.05,0:00:56.68,Box,,0,0,0,,{\pos(290,508)\p1\c&H5CB8DE&}m 0 0 l 240 0 240 50 0 50{\p0}
+Dialogue: 2,0:00:29.05,0:00:56.68,Tab,,0,0,0,,{\pos(410,533)\c&H0A0A0A&}SEDAP
+Dialogue: 2,0:00:29.05,0:00:56.68,Tab,,0,0,0,,{\pos(670,533)\alpha&H70&}AKIBAT
+Dialogue: 2,0:00:29.05,0:00:56.68,Tab,,0,0,0,,{\pos(930,533)\alpha&H70&}BILA BOLEH
+Dialogue: 2,0:00:56.68,0:01:04.60,Tab,,0,0,0,,{\pos(150,533)\alpha&H70&}MAKNA
+Dialogue: 2,0:00:56.68,0:01:04.60,Tab,,0,0,0,,{\pos(410,533)\alpha&H70&}SEDAP
+Dialogue: 1,0:00:56.68,0:01:04.60,Box,,0,0,0,,{\pos(550,508)\p1\c&H5CB8DE&}m 0 0 l 240 0 240 50 0 50{\p0}
+Dialogue: 2,0:00:56.68,0:01:04.60,Tab,,0,0,0,,{\pos(670,533)\c&H0A0A0A&}AKIBAT
+Dialogue: 2,0:00:56.68,0:01:04.60,Tab,,0,0,0,,{\pos(930,533)\alpha&H70&}BILA BOLEH
+Dialogue: 2,0:01:04.60,0:01:27.23,Tab,,0,0,0,,{\pos(150,533)\alpha&H70&}MAKNA
+Dialogue: 2,0:01:04.60,0:01:27.23,Tab,,0,0,0,,{\pos(410,533)\alpha&H70&}SEDAP
+Dialogue: 2,0:01:04.60,0:01:27.23,Tab,,0,0,0,,{\pos(670,533)\alpha&H70&}AKIBAT
+Dialogue: 1,0:01:04.60,0:01:27.23,Box,,0,0,0,,{\pos(810,508)\p1\c&H5CB8DE&}m 0 0 l 240 0 240 50 0 50{\p0}
+Dialogue: 2,0:01:04.60,0:01:27.23,Tab,,0,0,0,,{\pos(930,533)\c&H0A0A0A&}BILA BOLEH
+Dialogue: 3,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H486E00&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:02.60,0:00:04.70,Box,,0,0,0,,{\pos(0,1135)\p1\c&H486E00&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:02.60,0:00:04.70,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H5CB8DE&\fs230\fad(0,200)}01
+Dialogue: 5,0:00:02.68,0:00:04.70,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs92\fad(0,200)}APA ITU MENGUMPAT
+Dialogue: 5,0:00:02.85,0:00:04.70,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Beza mengumpat & fitnah
+Dialogue: 3,0:00:29.05,0:00:31.15,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:29.05,0:00:31.15,Box,,0,0,0,,{\pos(0,805)\p1\c&H486E00&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:29.05,0:00:31.15,Box,,0,0,0,,{\pos(0,1135)\p1\c&H486E00&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:29.05,0:00:31.15,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H5CB8DE&\fs230\fad(0,200)}02
+Dialogue: 5,0:00:29.13,0:00:31.15,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs92\fad(0,200)}DOSA PALING SEDAP
+Dialogue: 5,0:00:29.30,0:00:31.15,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Paling payah nak ditinggalkan
+Dialogue: 3,0:00:56.68,0:00:58.78,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:00:56.68,0:00:58.78,Box,,0,0,0,,{\pos(0,805)\p1\c&H486E00&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:00:56.68,0:00:58.78,Box,,0,0,0,,{\pos(0,1135)\p1\c&H486E00&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:00:56.68,0:00:58.78,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H5CB8DE&\fs230\fad(0,200)}03
+Dialogue: 5,0:00:56.76,0:00:58.78,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs150\fad(0,200)}AKIBATNYA
+Dialogue: 5,0:00:56.93,0:00:58.78,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Solat sah, tapi tak diterima
+Dialogue: 3,0:01:04.60,0:01:06.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H0A0806&\alpha&H30&\fad(80,200)}m 0 0 l 1080 0 1080 340 0 340{\p0}
+Dialogue: 4,0:01:04.60,0:01:06.70,Box,,0,0,0,,{\pos(0,805)\p1\c&H486E00&\fad(80,200)\clip(0,0,0,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 4,0:01:04.60,0:01:06.70,Box,,0,0,0,,{\pos(0,1135)\p1\c&H486E00&\fad(80,200)\clip(1080,0,1080,1920)\t(0,220,\clip(0,0,1080,1920))}m 0 0 l 1080 0 1080 10 0 10{\p0}
+Dialogue: 5,0:01:04.60,0:01:06.70,Big,,0,0,0,,{\an6\move(-200,955,330,955,0,180)\c&H5CB8DE&\fs230\fad(0,200)}04
+Dialogue: 5,0:01:04.68,0:01:06.70,Big,,0,0,0,,{\an4\move(1200,925,370,925,0,200)\fs92\fad(0,200)}BILA DIBOLEHKAN
+Dialogue: 5,0:01:04.85,0:01:06.70,Pop,,0,0,0,,{\an4\pos(375,1045)\fs40\alpha&HFF&\t(0,200,\alpha&H00&)\fad(0,200)}Enam tempat — kitab Imam Al-Ghazali
+Dialogue: 6,0:00:02.78,0:00:04.34,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H4646FF&}JANGAN MENGUMPAT.{\r}
+Dialogue: 6,0:00:04.39,0:00:06.04,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}APA TAKRIF MENGUMPAT?
+Dialogue: 6,0:00:06.09,0:00:07.84,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H00D7FF&}KATA DI BELAKANG.{\r}
+Dialogue: 6,0:00:07.84,0:00:09.83,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KATA ITU BENAR, BETUL.
+Dialogue: 6,0:00:09.83,0:00:11.03,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MENGUMPAT NI — BENDA BETUL.
+Dialogue: 6,0:00:11.13,0:00:14.93,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DAN JIKA DIDENGAR OLEH TUAN YANG DIKATA, DIA MARAH —
+Dialogue: 6,0:00:14.93,0:00:16.59,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H4646FF&}ITU MENGUMPAT.{\r}
+Dialogue: 6,0:00:16.75,0:00:19.45,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU TAK BETUL, DIA TAK PANGGIL MENGUMPAT —
+Dialogue: 6,0:00:19.45,0:00:21.10,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}DIA PANGGIL {\c&H4646FF&}FITNAH.{\r}
+Dialogue: 6,0:00:21.10,0:00:25.55,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KATA DI BELAKANG, TAPI TAK BETUL — {\c&H4646FF&}FITNAH.{\r}
+Dialogue: 6,0:00:25.60,0:00:29.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KATA DI BELAKANG, BENAR, TAPI KAWAN ITU MARAH — {\c&H4646FF&}MENGUMPAT.{\r}
+Dialogue: 6,0:00:30.05,0:00:32.05,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}JANGAN MENGUMPAT AKAN ORANG.
+Dialogue: 6,0:00:32.10,0:00:36.15,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}INI BENDA YANG {\c&H00D7FF&}PALING PAYAH NAK HILANG{\r} DARIPADA KITA.
+Dialogue: 6,0:00:36.15,0:00:38.54,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ORANG LELAKI SAMA, ORANG PEREMPUAN SAMA.
+Dialogue: 6,0:00:38.71,0:00:42.61,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MASUK SATU TAJUK, DUA TAJUK, HABIS — 15 MINIT.
+Dialogue: 6,0:00:42.61,0:00:44.96,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MASUK MINIT KE-20, {\c&H4646FF&}MULA "GORENG"!{\r}
+Dialogue: 6,0:00:45.15,0:00:47.35,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}"HAJI ANU — {\c&H4646FF&}TAK BOLEH PAKAI.{\r}"
+Dialogue: 6,0:00:47.40,0:00:49.60,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}"AJK SURAU — {\c&H4646FF&}TAK BOLEH PAKAI.{\r}"
+Dialogue: 6,0:00:49.60,0:00:51.75,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}"TENGAH-TENGAH MASJID PUN — TAK BOLEH PAKAI."
+Dialogue: 6,0:00:51.80,0:00:53.02,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H4646FF&}HABIS SEMUA TAK BOLEH PAKAI!{\r}
+Dialogue: 6,0:00:53.19,0:00:54.94,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MENGUMPAT NI {\c&H00D7FF&}MEMANG SEDAP.{\r}
+Dialogue: 6,0:00:54.94,0:00:56.68,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}BOLEH MINUM KOPI LAGI KAT SITU.
+Dialogue: 6,0:00:56.70,0:00:59.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}KALAU MENGUMPAT ORANG, {\c&H4646FF&}SOLAT TUHAN TAK TERIMA.{\r}
+Dialogue: 6,0:01:00.85,0:01:01.80,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}{\c&H4646FF&}TAK MAKBUL.{\r}
+Dialogue: 6,0:01:01.85,0:01:04.40,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}SOLAT SAH PUN — {\c&H00D7FF&}SAH SAJA, TAK TERIMA.{\r}
+Dialogue: 6,0:01:05.00,0:01:09.20,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}TETAPI DALAM KITAB IMAM AL-GHAZALI DISEBUT,
+Dialogue: 6,0:01:09.20,0:01:12.90,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}MENGUMPAT DIHARUSKAN DALAM {\c&H00D7FF&}ENAM TEMPAT.{\r}
+Dialogue: 6,0:01:13.16,0:01:15.06,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}APA ANTARANYA?
+Dialogue: 6,0:01:15.06,0:01:20.66,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ORANG YANG {\c&H00D7FF&}DIZALIMI{\r} MENGADU KEPADA RAJA —
+Dialogue: 6,0:01:20.66,0:01:27.23,Sub,,0,0,0,,{\q0\pos(540,1540)\fscx70\fscy70\t(0,90,\fscx108\fscy108)\t(90,170,\fscx100\fscy100)}ORANG BERKUASA — MAKA {\c&H00D7FF&}BOLEH DIA CERITA{\r} BAHAWA ORANG ITU ZALIM KEPADANYA.
+Dialogue: 7,0:01:27.23,0:01:31.43,Box,,0,0,0,,{\pos(0,0)\p1\c&H0A0806&\alpha&H40&\fad(250,0)}m 0 0 l 1080 0 1080 1920 0 1920{\p0}
+Dialogue: 8,0:01:27.38,0:01:31.43,Ar,,0,0,0,,{\pos(540,590)\fs250\fad(300,300)\blur1}وَلَا يَغْتَب بَّعْضُكُم بَعْضًا
+Dialogue: 8,0:01:27.58,0:01:31.43,Ar,,0,0,0,,{\pos(540,800)\fs160\fad(300,300)\blur1}أَيُحِبُّ أَحَدُكُمْ أَن يَأْكُلَ لَحْمَ أَخِيهِ مَيْتًا
+Dialogue: 8,0:01:27.93,0:01:31.43,Pop,,0,0,0,,{\pos(540,1010)\fs60\fad(300,300)}"Janganlah kamu mengumpat satu sama lain.
+Dialogue: 8,0:01:27.93,0:01:31.43,Pop,,0,0,0,,{\pos(540,1095)\fs60\fad(300,300)}Sukakah kamu memakan daging
+Dialogue: 8,0:01:27.93,0:01:31.43,Pop,,0,0,0,,{\pos(540,1185)\fs70\fad(300,300)\c&H5CB8DE&}SAUDARAMU YANG TELAH MATI?"
+Dialogue: 8,0:01:28.23,0:01:31.43,Tab,,0,0,0,,{\pos(540,1305)\fs50\c&H5CB8DE&\fad(300,300)}SURAH AL-HUJURAT : 12

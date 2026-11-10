@@ -1,0 +1,6 @@
+ev(o+0.15,TOTAL,'Ar',"{\\pos(540,590)\\fs250\\fad(300,300)\\blur1}وَلَا يَغْتَب بَّعْضُكُم بَعْضًا",8)
+ev(o+0.35,TOTAL,'Ar',"{\\pos(540,800)\\fs160\\fad(300,300)\\blur1}أَيُحِبُّ أَحَدُكُمْ أَن يَأْكُلَ لَحْمَ أَخِيهِ مَيْتًا",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1010)\\fs60\\fad(300,300)}\"Janganlah kamu mengumpat satu sama lain.",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1095)\\fs60\\fad(300,300)}Sukakah kamu memakan daging",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1185)\\fs70\\fad(300,300)\\c&H5CB8DE&}SAUDARAMU YANG TELAH MATI?\"",8)
+ev(o+1.0,TOTAL,'Tab',"{\\pos(540,1305)\\fs50\\c&H5CB8DE&\\fad(300,300)}SURAH AL-HUJURAT : 12",8)
