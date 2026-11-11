@@ -116,3 +116,19 @@ Sumber: video kedua, 6:47–9:02.
 | 0:57 | 03 AKIBATNYA | Solat sah pun, sah saja, tak diterima |
 | 1:05 | 04 BILA DIBOLEHKAN | Imam Al-Ghazali: harus dalam enam tempat, contohnya orang dizalimi mengadu kepada pemerintah |
 | 1:27 | Penutup | Surah Al-Hujurat: 12 |
+
+---
+
+# Islam 97%... Tapi Tak Berkuasa? (1:29, 9:16)
+
+Fail: `islam-97-peratus-tapi-tak-berkuasa.mp4`. Satu topik sahaja, dan setiap ayat disebut habis.
+Sumber: video pertama, 40:56–42:30 (satu bahagian berterusan, dengan satu potongan di 41:57–42:08).
+
+| Masa | Bab | Isi |
+|---|---|---|
+| 0:00 | Hook | "Bila kuasa di tangan orang sekular, hukum Al-Quran pun tak boleh jalan" |
+| 0:03 | 01 AL-QURAN VS KUASA | Bila bertembung, kena ikut Al-Quran; tapi kekuasaan boleh mengubah sesuatu |
+| 0:19 | 02 AZERBAIJAN | 97% Islam, lebih ramai daripada Malaysia, tapi Islam zahir sahaja dan akidahnya sekular |
+| 0:33 | 03 KESANNYA | Orang Islam tak ambil tahu tentang kuasa, maka kuasa dipegang orang lain; yang benar pun boleh ditutup |
+| 0:48 | 04 MESTI ADA KUASA | Tak cukup sekadar solat dan puasa; parlimen dan kementerian di tangan orang lain, Islam terpaksa ikut |
+| 1:25 | Penutup | Surah Al-Ma'idah: 49 |

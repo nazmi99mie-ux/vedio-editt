@@ -1,0 +1,6 @@
+ev(o+0.15,TOTAL,'Ar',"{\\pos(540,600)\\fs175\\fad(300,300)\\blur1}وَأَنِ احْكُم بَيْنَهُم بِمَا أَنزَلَ اللَّهُ",8)
+ev(o+0.35,TOTAL,'Ar',"{\\pos(540,800)\\fs175\\fad(300,300)\\blur1}وَلَا تَتَّبِعْ أَهْوَاءَهُمْ",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1010)\\fs60\\fad(300,300)}\"Dan hendaklah engkau menghukum antara",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1095)\\fs60\\fad(300,300)}mereka dengan apa yang Allah turunkan,",8)
+ev(o+0.7,TOTAL,'Pop',"{\\pos(540,1185)\\fs68\\fad(300,300)\\c&H5CB8DE&}DAN JANGAN IKUT HAWA NAFSU MEREKA.\"",8)
+ev(o+1.0,TOTAL,'Tab',"{\\pos(540,1305)\\fs50\\c&H5CB8DE&\\fad(300,300)}SURAH AL-MA'IDAH : 49",8)
