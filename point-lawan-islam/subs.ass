@@ -1,0 +1,60 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Hook,Anton,118,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,2,0,1,9,6,5,60,60,0,1
+Style: PNum,Anton,62,&H00000000,&H00000000,&H0000D7FF,&H00000000,0,0,0,0,100,100,4,0,3,14,0,8,0,0,0,1
+Style: PTitle,Anton,96,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,0,0,0,0,100,100,1,0,1,7,5,8,40,40,0,1
+Style: Sub,Poppins ExtraBold,80,&H00FFFFFF,&H00FFFFFF,&H00000000,&HA0000000,0,0,0,0,100,100,0,0,1,7,4,8,70,70,0,1
+Style: Tag,Poppins ExtraBold,34,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,0,0,0,0,100,100,3,0,3,10,0,2,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:03.60,0:00:25.10,PNum,,0,0,0,,{\pos(540,150)\fad(150,150)\t(0,180,\fscx115\fscy115)\t(180,320,\fscx100\fscy100)}  POINT 1  
+Dialogue: 1,0:00:03.75,0:00:25.10,PTitle,,0,0,0,,{\fad(0,150)\move(-500,280,540,280,0,280)}{\c&H00D7FF&}AGAMA TAK BOLEH
+Dialogue: 1,0:00:03.95,0:00:25.10,PTitle,,0,0,0,,{\fad(0,150)\move(1600,400,540,400,0,280)}DIPISAH DARI KEHIDUPAN
+Dialogue: 0,0:00:00.00,0:00:02.60,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Maka agama ni
+Dialogue: 0,0:00:02.60,0:00:05.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}tidak boleh {\c&H00D7FF&}{\fscx112\fscy112}dipisah{\c&HFFFFFF&}{\fscx100\fscy100} dengan kehidupan
+Dialogue: 0,0:00:05.70,0:00:10.30,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Maka tak boleh pisah kehidupan kita dengan {\c&H00D7FF&}{\fscx112\fscy112}agama{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:10.30,0:00:13.30,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Siapa kata agama asing, kehidupan asing...
+Dialogue: 0,0:00:13.30,0:00:18.50,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}{\c&H00D7FF&}{\fscx112\fscy112}Kafir{\c&HFFFFFF&}{\fscx100\fscy100}, keluar dari Islam!
+Dialogue: 0,0:00:18.50,0:00:23.20,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Kalau kata agama hanya waktu {\c&H00D7FF&}{\fscx112\fscy112}ibadat{\c&HFFFFFF&}{\fscx100\fscy100} sahaja...
+Dialogue: 0,0:00:23.20,0:00:25.10,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}orang tu {\c&H00D7FF&}{\fscx112\fscy112}SEKULAR{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 1,0:00:25.25,0:00:45.70,PNum,,0,0,0,,{\pos(540,150)\fad(150,150)\t(0,180,\fscx115\fscy115)\t(180,320,\fscx100\fscy100)}  POINT 2  
+Dialogue: 1,0:00:25.40,0:00:45.70,PTitle,,0,0,0,,{\fad(0,150)\move(-500,280,540,280,0,280)}{\c&H00D7FF&}ADA YANG
+Dialogue: 1,0:00:25.60,0:00:45.70,PTitle,,0,0,0,,{\fad(0,150)\move(1600,400,540,400,0,280)}BERKEPENTINGAN DUNIA
+Dialogue: 0,0:00:25.10,0:00:29.10,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Tapi oleh kerana ada orang {\c&H00D7FF&}{\fscx112\fscy112}berkepentingan{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:29.10,0:00:31.50,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}untuk mendapatkan {\c&H00D7FF&}{\fscx112\fscy112}dunia{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:31.50,0:00:36.10,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}maka dia buatlah ajaran macam ni, untunglah dia
+Dialogue: 0,0:00:36.10,0:00:38.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}sebab benda ni {\c&H00D7FF&}{\fscx112\fscy112}mudah{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:38.70,0:00:41.60,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}"Kita nak agama ni di {\c&H00D7FF&}{\fscx112\fscy112}masjid{\c&HFFFFFF&}{\fscx100\fscy100} sahaja"
+Dialogue: 0,0:00:41.60,0:00:45.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}"Keluar sini, jangan kira agama"... senang lah!
+Dialogue: 1,0:00:45.85,0:01:04.70,PNum,,0,0,0,,{\pos(540,150)\fad(150,150)\t(0,180,\fscx115\fscy115)\t(180,320,\fscx100\fscy100)}  POINT 3  
+Dialogue: 1,0:00:46.00,0:01:04.70,PTitle,,0,0,0,,{\fad(0,150)\move(-500,280,540,280,0,280)}{\c&H00D7FF&}JAHIL AGAMA
+Dialogue: 1,0:00:46.20,0:01:04.70,PTitle,,0,0,0,,{\fad(0,150)\move(1600,400,540,400,0,280)}SENDIRI
+Dialogue: 0,0:00:45.70,0:00:48.60,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Bukan kerana apa...
+Dialogue: 0,0:00:48.60,0:00:50.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}kerana {\c&H00D7FF&}{\fscx112\fscy112}jahilnya{\c&HFFFFFF&}{\fscx100\fscy100} kita orang Islam
+Dialogue: 0,0:00:50.70,0:00:54.00,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}kita tak faham agama kita {\c&H00D7FF&}{\fscx112\fscy112}sendiri{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:54.00,0:00:55.30,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Sebab tu jangan hairan
+Dialogue: 0,0:00:55.30,0:00:58.20,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}orang nama Islam, {\c&H00D7FF&}{\fscx112\fscy112}IC Islam{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:00:58.20,0:01:00.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}dia paling kuat {\c&H00D7FF&}{\fscx112\fscy112}menentang Islam{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:01:00.70,0:01:02.60,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Jangan hairan. Kenapa?
+Dialogue: 0,0:01:02.60,0:01:04.70,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Dia tak faham agama dia {\c&H00D7FF&}{\fscx112\fscy112}sendiri{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 1,0:01:04.85,0:01:31.90,PNum,,0,0,0,,{\pos(540,150)\fad(150,150)\t(0,180,\fscx115\fscy115)\t(180,320,\fscx100\fscy100)}  POINT 4  
+Dialogue: 1,0:01:05.00,0:01:31.90,PTitle,,0,0,0,,{\fad(0,150)\move(-500,280,540,280,0,280)}{\c&H00D7FF&}FAHAM AGAMA SEMPIT,
+Dialogue: 1,0:01:05.20,0:01:31.90,PTitle,,0,0,0,,{\fad(0,150)\move(1600,400,540,400,0,280)}UMAT JADI LEMAH
+Dialogue: 0,0:01:04.70,0:01:08.80,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Ni yang jadi {\c&H00D7FF&}{\fscx112\fscy112}jahil{\c&HFFFFFF&}{\fscx100\fscy100} kita, tak selesai-selesai
+Dialogue: 0,0:01:08.80,0:01:09.90,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Islam jadi {\c&H00D7FF&}{\fscx112\fscy112}lemah{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:01:09.90,0:01:14.20,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}sebab kita faham agama secara {\c&H00D7FF&}{\fscx112\fscy112}sempit{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 0,0:01:14.20,0:01:17.00,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Bila faham macam tu...
+Dialogue: 0,0:01:17.00,0:01:22.40,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}dia {\c&H00D7FF&}{\fscx112\fscy112}lawan{\c&HFFFFFF&}{\fscx100\fscy100} sesama orang Islam, sama-sama kita
+Dialogue: 0,0:01:22.40,0:01:26.10,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Bukan orang {\c&H00D7FF&}{\fscx112\fscy112}kafir{\c&HFFFFFF&}{\fscx100\fscy100}, orang kafir memang kafir dah
+Dialogue: 0,0:01:26.10,0:01:29.00,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}Yang ada nama Islam, ada IC Islam
+Dialogue: 0,0:01:29.00,0:01:31.90,Sub,,0,0,0,,{\pos(540,1320)\fad(60,0)\frz-3\t(0,140,\frz0)}{\c&H00D7FF&}{\fscx112\fscy112}dia yang kuat lawan!{\c&HFFFFFF&}{\fscx100\fscy100}
+Dialogue: 2,0:00:00.00,0:00:03.50,Hook,,0,0,0,,{\pos(540,330)\fscx40\fscy40\t(0,180,\fscx110\fscy110)\t(180,300,\fscx100\fscy100)\fad(0,200)}KENAPA\N{\c&H00D7FF&}ORANG ISLAM{\c&HFFFFFF&}\NLAWAN ISLAM?
+Dialogue: 2,0:01:27.40,0:01:31.90,Hook,,0,0,0,,{\pos(540,1640)\fscx40\fscy40\t(0,180,\fscx105\fscy105)\t(180,300,\fscx100\fscy100)\fs80}FAHAMI AGAMA\N{\c&H00D7FF&}SEBAGAI CARA HIDUP
+Dialogue: 0,0:00:00.00,0:01:31.90,Tag,,0,0,0,,{\pos(540,1880)\alpha&H40&}  KULIAH KITAB  
