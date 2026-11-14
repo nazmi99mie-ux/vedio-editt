@@ -101,7 +101,7 @@ sfx = np.zeros(N, np.float32)
 place(sfx, impact(0.8), 0.0, 0)                      # hook opens
 place(sfx, impact(0.5), TL.HOOK_DUR, 0)              # title
 place(sfx, impact(0.25, 2.5), TL.m(37.8), 0)         # emotional peak: low, soft
-place(sfx, impact(0.3, 2.5), TL.OUTRO_T0 + 5.75, 0)  # end card
+place(sfx, impact(0.3, 2.5), TL.OUTRO_T0, 0)         # QR / account card
 
 # 2. ambience: soft wind bed (title + outro louder)
 amb = bandnoise(N, 120, 900, 1) * 0.02

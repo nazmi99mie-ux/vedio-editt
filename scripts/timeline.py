@@ -16,7 +16,7 @@ TITLE_DUR = 1.40
 MAIN_START = 3.0                         # skip the opening salam: go straight from the hook into the message
 MAIN_OFFSET = HOOK_DUR + TITLE_DUR - MAIN_START   # out = src + MAIN_OFFSET
 SRC_END = 74.98                          # end of closing salam
-OUTRO_DUR = 15.6
+OUTRO_DUR = 8.0
 OUTRO_T0 = MAIN_OFFSET + SRC_END
 BODY_T0 = HOOK_DUR + TITLE_DUR
 TOTAL = OUTRO_T0 + OUTRO_DUR
@@ -43,6 +43,7 @@ def we(word, after=0.0):
 
 P1, P2, P3, P4, P5 = ("01_banner_pelancaran.jpg", "02_pecah_tanah.jpg", "03_warga_emas.jpg",
                       "04_tapak_tiang.jpg", "05_lori_kerunai.jpg")
+P12 = "12_qr_akaun.jpg"
 P6, P7, P8, P9, P10, P11 = ("06_udara_tanah_kosong.jpg", "07_ilustrasi_cadangan.jpg", "08_udara_pondok.jpg",
                             "09_asrama.jpg", "10_chalet.jpg", "11_wakaf_infak.jpg")
 # boundary of the empty land in 06_udara_tanah_kosong.jpg (pixel coords, 1280x720)
@@ -89,11 +90,8 @@ SHOTS = [
     S("spk", m(65.2), m(68.3), z=(1.30, 1.34), punch=True),
     S("card", m(68.3), m(71.65), img=P3, bgpath=(0.7, 0.3), cardx=(110, -70), cardy=(0, 0), cz=(1.02, 1.10), cw=980, tr="zoom", trd=0.45),
     S("spk", m(71.65), m(SRC_END), z=(1.25, 1.02), tr="sweep", trd=0.45),
-    # OUTRO — visual breathing room, end card, then the wakaf/infak poster (held long enough to scan the QR)
-    S("fill", OUTRO_T0, OUTRO_T0 + 3.0, img=P8, zoom=(1.0, 1.15), path=((0.4, 0.6), (0.55, 0.4)), tr="sweep", trd=0.8, mood="golden", pdrift=(0, 1)),
-    S("fill", OUTRO_T0 + 3.0, OUTRO_T0 + 5.75, img=P2, zoom=(1.22, 1.06), path=((0.5, 0.3), (0.5, 0.6)), tr="whipL", trd=0.40, mood="golden"),
-    S("title", OUTRO_T0 + 5.75, OUTRO_T0 + 9.6, img=P3, tr="fade", trd=0.8, mood="golden"),
-    S("card", OUTRO_T0 + 9.6, TOTAL + 1, img=P11, bgpath=(0.3, 0.6), cardx=(0, 0), cardy=(40, 40), cz=(1.0, 1.03), cw=1000, parts=0.25, tr="slideU", trd=0.5, mood="neutral"),
+    # OUTRO — straight to the wakaf/infak QR + account (cropped from the official poster, never retyped)
+    S("card", OUTRO_T0, TOTAL + 1, img=P12, bgpath=(0.3, 0.6), cardx=(0, 0), cardy=(150, 150), cz=(1.0, 1.03), cw=1000, parts=0.15, tr="sweep", trd=0.6, mood="neutral"),
 ]
 
 KY_SPK, KY_BROLL = 1150, 330   # speaker: on the chest, well below the face; photos: top band (sky/roof)
@@ -129,14 +127,10 @@ O = OUTRO_T0 + 5.75
 TEXTCARDS = [
     (HOOK_DUR + 0.30, "bold", 44, "cream", 1070, "UNTUK WARGA EMAS & PELAJAR PONDOK"),
     (HOOK_DUR + 0.45, "semi", 38, "gold", 1140, "Pondok Zawiyah An-Nur · Gerik, Perak"),
-    (O + 0.50, "serif", 64, "cream", 600, "“Sama-sama kita infaq harta kita"),
-    (O + 0.70, "serif", 64, "cream", 680, "pada jalan Allah.”"),
-    (O + 1.60, "black", 72, "gold", 930, "PONDOK ZAWIYAH AN-NUR"),
-    (O + 1.80, "semi", 40, "cream", 1010, "Kg. Kerunai, Gerik, Perak"),
-    (O + 2.20, "bold", 38, "cream", 1120, "PEMBINAAN MASJID & PONDOK WARGA EMAS"),
-    (O + 2.40, "bold", 46, "gold", 1190, "30 Unit Pintu  ·  1 Sebiji Masjid"),
+    (OUTRO_T0 + 0.30, "black", 66, "gold", 420, "SALURKAN WAKAF / INFAK"),
+    (OUTRO_T0 + 0.50, "semi", 40, "cream", 1480, "Madrasah Zawiyah An Nur \u00b7 Gerik, Perak"),
 ]
-TEXT_END = {0: BODY_T0 - 0.5, 1: BODY_T0 - 0.5, **{i: O + 3.75 for i in range(2, 8)}}   # title lines disappear with the title
+TEXT_END = {0: BODY_T0 - 0.5, 1: BODY_T0 - 0.5, }   # title lines disappear with the title
 
 # (t0, t1, exposure0, exposure1) — dramatic light change in the hook
 EXPOSURE = [
@@ -146,7 +140,7 @@ EXPOSURE = [
     (m(37.8), m(38.6), 1.0, 0.94),
     (m(38.6), m(47.2), 0.94, 0.94),
 ]
-SWEEPS = [(1.25, 2.1), (HOOK_DUR + 0.1, HOOK_DUR + 1.1), (m(wt("berkat", 57)) - 0.1, m(wt("berkat", 57)) + 0.9), (O + 1.4, O + 2.6)]
+SWEEPS = [(1.25, 2.1), (HOOK_DUR + 0.1, HOOK_DUR + 1.1), (m(wt("berkat", 57)) - 0.1, m(wt("berkat", 57)) + 0.9)]
 
 
 def sub_y(t):
