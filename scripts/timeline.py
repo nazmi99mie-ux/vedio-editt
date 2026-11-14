@@ -13,10 +13,12 @@ WORDS = json.load(open(os.path.join(ROOT, "data", "words_final.json")))
 HOOK_SRC = 33.55
 HOOK_DUR = 4.07
 TITLE_DUR = 1.40
-MAIN_OFFSET = HOOK_DUR + TITLE_DUR      # main body starts here
+MAIN_START = 3.0                         # skip the opening salam: go straight from the hook into the message
+MAIN_OFFSET = HOOK_DUR + TITLE_DUR - MAIN_START   # out = src + MAIN_OFFSET
 SRC_END = 74.98                          # end of closing salam
 OUTRO_DUR = 15.6
 OUTRO_T0 = MAIN_OFFSET + SRC_END
+BODY_T0 = HOOK_DUR + TITLE_DUR
 TOTAL = OUTRO_T0 + OUTRO_DUR
 
 
@@ -56,10 +58,9 @@ def S(kind, t0_, t1_, **k):
 SHOTS = [
     # ACT 1 — HOOK: punch-in on the speaker, camera drifting vertically
     S("spk", 0.0, HOOK_DUR, z=(1.40, 1.52), punch=True, drift=((0, 60), (0, -60)), mood="neutral"),
-    S("title", HOOK_DUR, MAIN_OFFSET, img=P2, tr="zoom", trd=0.40, mood="golden"),
+    S("title", HOOK_DUR, BODY_T0, img=P2, tr="zoom", trd=0.40, mood="golden"),
     # ACT 2 — CONNECTION
-    S("spk", m(0.0), m(3.0), z=(1.04, 1.12), tr="zoom", trd=0.45),
-    S("spk", m(3.0), m(4.40), z=(1.20, 1.24), punch=True),
+    S("spk", m(3.0), m(4.40), z=(1.16, 1.22), tr="zoom", trd=0.40),
     # "kawasan tanah lapang" -> drone view, gold boundary traced around the whole empty land
     S("land", m(4.40), m(8.36), img=P6, poly=LAND, zoom=(1.30, 1.42), path=((0.30, 0.5), (0.36, 0.5)), draw=(0.25, 2.0), tr="whipL", trd=0.34),
     S("fill", m(8.36), m(11.0), img=P5, zoom=(1.0, 1.12), path=((0.66, 0.5), (0.40, 0.5)), tr="whipL", trd=0.34, pdrift=(-1, -0.3)),
@@ -95,13 +96,13 @@ SHOTS = [
     S("card", OUTRO_T0 + 9.6, TOTAL + 1, img=P11, bgpath=(0.3, 0.6), cardx=(0, 0), cardy=(40, 40), cz=(1.0, 1.03), cw=1000, parts=0.25, tr="slideU", trd=0.5, mood="neutral"),
 ]
 
-KY_SPK, KY_BROLL = 1120, 760
+KY_SPK, KY_BROLL = 1150, 330   # speaker: on the chest, well below the face; photos: top band (sky/roof)
 # (t0, t1, text, style, y_center, direction)
 KEYWORDS = [
     (0.02, 1.30, "SIAPA MEMBINA\nMASJID", "hook", 1230, "Z"),
     (1.37, 2.60, "PAHALA\nSANGAT BESAR", "hookgold", 1230, "U"),
     (2.65, 4.00, "DARI SISI\nALLAH SWT", "serif", 1230, "Z"),
-    (HOOK_DUR + 0.08, MAIN_OFFSET - 0.05, "MEMBINA\nMASJID", "serif", 840, "Z"),
+    (HOOK_DUR + 0.08, BODY_T0 - 0.55, "MEMBINA\nMASJID", "serif", 840, "Z"),
     (m(wt("Kampung", 8)), m(10.6), "KAMPUNG\nKERUNAI", "white", KY_BROLL, "L"),
     (m(wt("tanah", 4)) + 1.2, m(8.3), "KELUASAN\nTAPAK", "gold", 300, "Z"),
     (m(wt("masjid", 15)), m(16.95), "MASJID", "gold", KY_SPK, "Z"),
@@ -118,7 +119,6 @@ KEYWORDS = [
 
 # lower-third pills: (t0, t1, line1, line2, y)
 PILLS = [
-    (m(0.4), m(4.3), "Pondok Zawiyah An-Nur", "Kg. Kerunai, Gerik, Perak", 190),
     (m(28.9), m(30.5), "Gambaran Ilustrasi", "Cadangan Masjid & Pondok Warga Emas", 190),
     (m(51.1), m(53.4), "Gambaran Ilustrasi", "Cadangan Masjid & Pondok Warga Emas", 190),
     (m(60.8), m(67.9), "Ikuti di Facebook & TikTok", "Pondok Zawiyah An-Nur", 190),
@@ -136,7 +136,7 @@ TEXTCARDS = [
     (O + 2.20, "bold", 38, "cream", 1120, "PEMBINAAN MASJID & PONDOK WARGA EMAS"),
     (O + 2.40, "bold", 46, "gold", 1190, "30 Unit Pintu  ·  1 Sebiji Masjid"),
 ]
-TEXT_END = {0: MAIN_OFFSET - 0.05, 1: MAIN_OFFSET - 0.05, **{i: O + 3.75 for i in range(2, 8)}}   # title lines disappear with the title
+TEXT_END = {0: BODY_T0 - 0.5, 1: BODY_T0 - 0.5, **{i: O + 3.75 for i in range(2, 8)}}   # title lines disappear with the title
 
 # (t0, t1, exposure0, exposure1) — dramatic light change in the hook
 EXPOSURE = [

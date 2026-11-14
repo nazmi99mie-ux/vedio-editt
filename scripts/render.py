@@ -149,9 +149,16 @@ def cover_xform(iw, ih, zoom, cx, cy, fx=0.5, fy=0.5):
     return s, tx, ty
 
 
+QC = {"on": False, "rec": False, "boxes": [], "base": None}
+
+
 def over(base, rgba, x, y):
     """Composite premultiplied float RGBA layer onto float base at integer offset."""
     h, w = rgba.shape[:2]
+    if QC["on"] and QC["rec"]:
+        ys, xs = np.where(rgba[..., 3] > 0.35)
+        if len(xs):
+            QC["boxes"].append((x + xs.min(), y + ys.min(), x + xs.max(), y + ys.max()))
     x0, y0 = max(0, x), max(0, y)
     x1, y1 = min(base.shape[1], x + w), min(base.shape[0], y + h)
     if x1 <= x0 or y1 <= y0:
@@ -706,15 +713,18 @@ def compose(ctx, t, fi):
         if ls[0] <= t <= ls[1]:
             img = light_sweep(img, (t - ls[0]) / (ls[1] - ls[0]), 340, 0.28)
     # overlays
+    if QC["on"]:
+        QC["base"] = np.clip(img, 0, 255).astype(np.uint8); QC["boxes"] = []; QC["rec"] = True
     for kw in TL.KEYWORDS:
         draw_keyword(img, kw, t)
     for lt in TL.PILLS:
         draw_pill(img, lt, t)
     for i, tc in enumerate(TL.TEXTCARDS):
         draw_textcard(img, i, tc, t)
-    if TL.HOOK_DUR + TL.TITLE_DUR <= t < TL.MAIN_OFFSET + TL.SRC_END + 0.4:
+    if TL.BODY_T0 <= t < TL.MAIN_OFFSET + TL.SRC_END + 0.4:
         st = src_time(t)
         draw_subs(img, st, TL.sub_y(t))
+    QC["rec"] = False
     # fade from/to black
     if t < 0.12:
         img *= t / 0.12

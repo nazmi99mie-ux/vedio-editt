@@ -40,7 +40,7 @@ def place(buf, clip, t, fade=0.015):
 
 
 place(voice, v[int(TL.HOOK_SRC * SR):int((TL.HOOK_SRC + TL.HOOK_DUR) * SR)], 0.0)
-place(voice, v[0:int(TL.SRC_END * SR)], TL.MAIN_OFFSET, fade=0.06)
+place(voice, v[int(TL.MAIN_START * SR):int(TL.SRC_END * SR)], TL.BODY_T0, fade=0.06)
 voice *= 0.5 / (np.percentile(np.abs(voice), 99.5) + 1e-9)
 
 
@@ -97,32 +97,17 @@ def shimmer(gain=0.08, dur=1.6):
 
 
 sfx = np.zeros(N, np.float32)
-place(sfx, impact(0.9), 0.0, 0)
-place(sfx, riser(1.1, 0.22), TL.HOOK_DUR - 1.1, 0)
-place(sfx, impact(0.75), TL.HOOK_DUR, 0)
-place(sfx, shimmer(0.07), 1.37)
-for t0, tr in TL.TRANSITION_TIMES:
-    if tr in ("whipL", "whipR"):
-        place(sfx, whoosh(0.42, 0.30), t0 - 0.21, 0)
-    elif tr in ("slideU", "slideD"):
-        place(sfx, whoosh(0.5, 0.26, rising=False), t0 - 0.25, 0)
-    elif tr == "zoom":
-        place(sfx, whoosh(0.6, 0.18), t0 - 0.4, 0)
-    elif tr == "sweep":
-        place(sfx, whoosh(0.8, 0.10), t0 - 0.4, 0)
-    elif tr == "punch":
-        place(sfx, impact(0.16, 0.6), t0, 0)
-for kw in TL.KEYWORDS[3:]:
-    if kw[3] in ("gold", "serif"):
-        place(sfx, shimmer(0.045), kw[0])
-place(sfx, impact(0.35, 2.5), TL.m(37.8), 0)          # emotional peak: low, soft
-place(sfx, impact(0.4, 2.5), TL.OUTRO_T0 + 5.75, 0)  # end card
+# kept deliberately sparse: only four accents in the whole video
+place(sfx, impact(0.8), 0.0, 0)                      # hook opens
+place(sfx, impact(0.5), TL.HOOK_DUR, 0)              # title
+place(sfx, impact(0.25, 2.5), TL.m(37.8), 0)         # emotional peak: low, soft
+place(sfx, impact(0.3, 2.5), TL.OUTRO_T0 + 5.75, 0)  # end card
 
 # 2. ambience: soft wind bed (title + outro louder)
 amb = bandnoise(N, 120, 900, 1) * 0.02
 amb = signal.lfilter(*signal.butter(1, 400 / (SR / 2)), amb).astype(np.float32) * 2.5
 amb_gain = np.full(N, 0.35, np.float32)
-amb_gain[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 1.0
+amb_gain[int(TL.HOOK_DUR * SR):int(TL.BODY_T0 * SR)] = 1.0
 amb_gain[int(TL.OUTRO_T0 * SR):] = 1.0
 amb *= signal.filtfilt(*signal.butter(1, 2 / (SR / 2)), amb_gain).astype(np.float32)
 
@@ -198,7 +183,7 @@ def verb(x, wet=0.55):
 music = verb(music); mel = verb(mel, 0.6)
 # the melody sings only where nobody is speaking (title, outro) and very softly under the hook
 mgate = np.zeros(N, np.float32)
-mgate[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 1.0
+mgate[int(TL.HOOK_DUR * SR):int(TL.BODY_T0 * SR)] = 1.0
 mgate[int(TL.OUTRO_T0 * SR):] = 1.0
 mgate = signal.filtfilt(*signal.butter(1, 1.2 / (SR / 2)), mgate)
 pad = (music + mel * mgate[:, None] * 0.8).astype(np.float32)
@@ -210,7 +195,7 @@ duck = 1 / (1 + (venv / 0.02) ** 1.5)
 lvl = np.full(N, 0.30, np.float32)
 lvl[:int(1.37 * SR)] = 0.0                                                  # hook opens dry: voice + impact
 lvl[int(1.37 * SR):int(TL.HOOK_DUR * SR)] = 0.24
-lvl[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 0.36
+lvl[int(TL.HOOK_DUR * SR):int(TL.BODY_T0 * SR)] = 0.36
 lvl[int(TL.m(37.8) * SR):int(TL.m(47.2) * SR)] = 0.36                        # emotional peak: strings swell, still under the voice
 lvl[int(TL.OUTRO_T0 * SR):] = 0.42
 lvl = signal.filtfilt(*signal.butter(1, 1.5 / (SR / 2)), lvl).astype(np.float32)
