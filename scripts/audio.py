@@ -34,6 +34,8 @@ def place(buf, clip, t, fade=0.015):
     if f and len(clip) > 2 * f:
         clip[:f] *= np.linspace(0, 1, f); clip[-f:] *= np.linspace(1, 0, f)
     i = int(t * SR); j = min(len(buf), i + len(clip))
+    if j <= i:
+        return
     buf[i:j] += clip[:j - i]
 
 
@@ -124,41 +126,93 @@ amb_gain[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 1.0
 amb_gain[int(TL.OUTRO_T0 * SR):] = 1.0
 amb *= signal.filtfilt(*signal.butter(1, 2 / (SR / 2)), amb_gain).astype(np.float32)
 
-# 3. ambient pad (sustained chords, no melody) — D minor colour, slow & reverent
+# 3. sad, emotional score: soft piano arpeggios + slow strings, A minor, 64 bpm
 NOTE = lambda n: 440 * 2 ** ((n - 69) / 12)
-chords = [[50, 57, 62, 64, 65], [46, 53, 57, 62, 64], [41, 53, 57, 60, 67], [48, 55, 60, 62, 67]]  # Dm9 Bbmaj9 Fadd9 Csus2
-seg = 6.0
-pad = np.zeros((N, 2), np.float32)
-t_all = np.arange(int((seg + 3) * SR)) / SR
-for k in range(int(TL.TOTAL // seg) + 1):
-    ch = chords[k % 4]
-    x = np.zeros((len(t_all), 2), np.float32)
-    for n in ch:
-        f = NOTE(n)
-        for c, det in enumerate((-0.12, 0.12)):
-            x[:, c] += (np.sin(2 * np.pi * (f + det) * t_all + rng.random() * 6) + 0.25 * np.sin(4 * np.pi * (f + det) * t_all)) / len(ch)
-    e = np.minimum(1, t_all / 2.5) * np.clip((seg + 3 - t_all) / 3.0, 0, 1)
-    x *= e[:, None]
-    i = int(k * seg * SR); j = min(N, i + len(x))
-    pad[i:j] += x[:j - i]
-b, a = signal.butter(2, 1500 / (SR / 2))
-pad = signal.lfilter(b, a, pad, axis=0)
-ir_n = int(3.5 * SR)
-ir = rng.normal(0, 1, (ir_n, 2)) * np.exp(-np.linspace(0, 7, ir_n))[:, None]
-ir = signal.lfilter(*signal.butter(1, 3000 / (SR / 2)), ir, axis=0)
-wet = np.stack([signal.fftconvolve(pad[:, c], ir[:, c])[:N] for c in range(2)], 1)
-pad = (pad * 0.5 + wet / np.abs(wet).max() * np.abs(pad).max() * 0.9).astype(np.float32)
+BEAT = 60 / 64
+# Am  F  C  G | Am  F  Dm  E   (root, chord tones as MIDI)
+PROG = [(45, [57, 60, 64]), (41, [57, 60, 65]), (48, [55, 60, 64]), (43, [55, 59, 62]),
+        (45, [57, 60, 64]), (41, [57, 60, 65]), (50, [57, 62, 65]), (40, [56, 59, 64])]
+MEL = [[(76, 2), (72, 1), (71, 1)], [(69, 3), (72, 1)], [(67, 2), (76, 2)], [(74, 4)],
+       [(72, 1.5), (71, 0.5), (69, 2)], [(69, 2), (72, 2)], [(74, 2), (77, 2)], [(76, 3), (71, 1)]]
+music = np.zeros((N, 2), np.float32)
+mel = np.zeros((N, 2), np.float32)
+
+
+def piano(f, dur, vel=1.0):
+    n = int(min(dur + 2.5, 6) * SR); t = np.arange(n) / SR
+    x = np.zeros(n, np.float32)
+    for k in range(1, 8):
+        fk = f * k * (1 + 0.0004 * k * k)
+        x += np.sin(2 * np.pi * fk * t) * (1 / k ** 1.6) * np.exp(-t * (0.9 + 0.55 * k) * (1 + f / 900))
+    x *= np.minimum(1, t / 0.004)
+    rel = int(min(n, (dur + 0.25) * SR))
+    x[rel:] *= np.exp(-np.arange(n - rel) / SR * 9)
+    return x * vel
+
+
+def strings(notes, dur):
+    n = int((dur + 2.5) * SR); t = np.arange(n) / SR
+    out = np.zeros((n, 2), np.float32)
+    for nn in notes:
+        f = NOTE(nn)
+        for c, det in enumerate((-0.0025, 0.0025)):
+            ph = 2 * np.pi * np.cumsum(f * (1 + det + 0.003 * np.sin(2 * np.pi * 5.2 * t + c))) / SR
+            out[:, c] += sum(np.sin(k * ph) / k for k in range(1, 7))
+    e = np.minimum(1, t / 1.6) * np.clip((dur + 2.5 - t) / 2.5, 0, 1)
+    out *= e[:, None] / len(notes)
+    return signal.lfilter(*signal.butter(2, 1700 / (SR / 2)), out, axis=0).astype(np.float32)
+
+
+bar = 4 * BEAT
+nbars = int(TL.TOTAL / bar) + 1
+for k in range(nbars):
+    root, ch = PROG[k % 8]
+    t0 = k * bar
+    # arpeggio in eighths: low root, then chord tones rising and falling
+    seq = [root, ch[0], ch[1], ch[2], ch[1] + 12 if ch[1] + 12 < 80 else ch[2], ch[2], ch[1], ch[0]]
+    for i, nn in enumerate(seq):
+        x = piano(NOTE(nn), BEAT / 2 * (3 if i == 0 else 1.5), 0.9 if i == 0 else 0.55)
+        pan = 0.5 + 0.25 * math.sin(i)
+        place(music[:, 0], x * (1 - pan) * 2, t0 + i * BEAT / 2, 0)
+        place(music[:, 1], x * pan * 2, t0 + i * BEAT / 2, 0)
+    st = strings([root + 12, ch[0], ch[2]], bar)
+    i = int(t0 * SR); j = min(N, i + len(st))
+    if j > i:
+        music[i:j] += st[:j - i] * 0.9
+    tm = t0
+    for nn, beats in MEL[k % 8]:
+        x = piano(NOTE(nn), beats * BEAT, 0.8)
+        place(mel[:, 0], x, tm, 0); place(mel[:, 1], x, tm, 0)
+        tm += beats * BEAT
+
+ir_n = int(4.0 * SR)
+ir = rng.normal(0, 1, (ir_n, 2)) * np.exp(-np.linspace(0, 6.5, ir_n))[:, None]
+ir = signal.lfilter(*signal.butter(1, 4000 / (SR / 2)), ir, axis=0)
+
+
+def verb(x, wet=0.55):
+    w = np.stack([signal.fftconvolve(x[:, c], ir[:, c])[:N] for c in range(2)], 1)
+    return x * (1 - wet) + w / (np.abs(w).max() + 1e-9) * np.abs(x).max() * wet
+
+
+music = verb(music); mel = verb(mel, 0.6)
+# the melody sings only where nobody is speaking (title, outro) and very softly under the hook
+mgate = np.zeros(N, np.float32)
+mgate[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 1.0
+mgate[int(TL.OUTRO_T0 * SR):] = 1.0
+mgate = signal.filtfilt(*signal.butter(1, 1.2 / (SR / 2)), mgate)
+pad = (music + mel * mgate[:, None] * 0.8).astype(np.float32)
 pad /= np.abs(pad).max()
 
 # ducking from voice envelope + scene dynamics
 venv = signal.filtfilt(*signal.butter(1, 3 / (SR / 2)), np.abs(voice))
 duck = 1 / (1 + (venv / 0.02) ** 1.5)
-lvl = np.full(N, 0.075, np.float32)
+lvl = np.full(N, 0.30, np.float32)
 lvl[:int(1.37 * SR)] = 0.0                                                  # hook opens dry: voice + impact
-lvl[int(1.37 * SR):int(TL.HOOK_DUR * SR)] = 0.05
-lvl[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 0.16
-lvl[int(TL.m(37.8) * SR):int(TL.m(47.2) * SR)] = 0.05                        # emotional peak: space for the words
-lvl[int(TL.OUTRO_T0 * SR):] = 0.20
+lvl[int(1.37 * SR):int(TL.HOOK_DUR * SR)] = 0.24
+lvl[int(TL.HOOK_DUR * SR):int(TL.MAIN_OFFSET * SR)] = 0.36
+lvl[int(TL.m(37.8) * SR):int(TL.m(47.2) * SR)] = 0.36                        # emotional peak: strings swell, still under the voice
+lvl[int(TL.OUTRO_T0 * SR):] = 0.42
 lvl = signal.filtfilt(*signal.butter(1, 1.5 / (SR / 2)), lvl).astype(np.float32)
 pad *= (lvl * (0.45 + 0.55 * duck))[:, None]
 

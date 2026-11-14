@@ -272,6 +272,8 @@ def keyword_img(text, style):
     """Big kinetic keyword with subtle 3D extrusion + glow. Returns premultiplied RGBA float."""
     if style == "serif":
         f, face, ext, glow = font(FONT_SERIF, 150), GOLD, GOLD_D, (255, 210, 120)
+    elif style == "whitesm":
+        f, face, ext, glow = font(FONT_BLACK, 84), CREAM, (70, 60, 50), (255, 240, 210)
     elif style == "white":
         f, face, ext, glow = font(FONT_BLACK, 120), CREAM, (70, 60, 50), (255, 240, 210)
     elif style == "hook":
@@ -522,6 +524,45 @@ def render_shot(ctx, sh, t):
         dirv = prm.get("pdrift", (0.0, -1.0))
         img += particle_layer(t, 0.9, True, dirv)
         return img
+    if kind == "land":
+        # whole aerial in a wide band (full extent visible) over a moving blurred copy;
+        # gold boundary is traced around the complete empty land, then filled
+        name = prm["img"]; im = photo(name); ih, iw = im.shape[:2]
+        bg = photo_blur(name); bh, bw = bg.shape[:2]
+        img = warp(bg, 1.0, (W - bw) / 2 - 120 * pe, -(bh - H) * (0.3 + 0.4 * pe)).astype(np.float32)
+        (zx0, zx1), (c0, c1) = prm["zoom"], prm["path"]
+        z = zx0 + (zx1 - zx0) * pe
+        cx = c0[0] + (c1[0] - c0[0]) * pe
+        y0 = prm.get("yc", 830)
+        sc = W * z / iw
+        tx = W / 2 - cx * iw * sc; ty = y0 - 0.5 * ih * sc
+        band = warp(im, sc, tx, ty, border=cv2.BORDER_CONSTANT).astype(np.float32)
+        msk = np.zeros((H, 1), np.float32)
+        top, bot = max(0, ty), min(H, ty + ih * sc)
+        yy = np.arange(H, dtype=np.float32)[:, None]
+        msk = np.clip((yy - top) / 40, 0, 1) * np.clip((bot - yy) / 40, 0, 1)
+        img = img * (1 - msk[..., None]) + band * msk[..., None]
+        ds, dd = prm.get("draw", (0.3, 1.8))
+        draw_outline(img, prm["poly"], sc, tx, ty, (t - t0 - ds) / dd, t)
+        img += particle_layer(t, 0.6, True, (1.0, -0.3))
+        return img
+    if kind == "reveal":
+        # before -> after: empty land wipes up into the development illustration
+        A = render_shot(ctx, dict(prm["a"], t0=t0, t1=t1), t)
+        B = render_shot(ctx, dict(prm["b"], t0=t0, t1=t1), t)
+        ws, wd = prm["wipe"]
+        q = ease((t - t0 - ws) / wd)
+        if q <= 0:
+            return A
+        if q >= 1:
+            return B
+        edge = H * (1.08 - 1.16 * q)  # wipe line moves bottom -> top
+        yy = np.arange(H, dtype=np.float32)[:, None, None]
+        m = np.clip((yy - edge) / 90 + 0.5, 0, 1)
+        img = A * (1 - m) + B * m
+        glow = np.exp(-((yy - edge) / 26) ** 2) * 0.85
+        img += glow * np.array([255, 225, 150], np.float32)
+        return img
     if kind == "card":
         name = prm["img"]; im = photo(name)
         bg = photo_blur(name)
@@ -536,7 +577,7 @@ def render_shot(ctx, sh, t):
         c = scaled(card, sc)
         cx = W / 2 + x0 + (x1 - x0) * pe; cy = H * 0.42 + y0 + (y1 - y0) * pe
         over(img, c, int(cx - c.shape[1] / 2), int(cy - c.shape[0] / 2))
-        img += particle_layer(t, 1.0, True, prm.get("pdrift", (-1.0, -0.3)))
+        img += particle_layer(t, prm.get("parts", 1.0), True, prm.get("pdrift", (-1.0, -0.3)))
         return img
     if kind == "split":
         # top: B-roll sliding horizontally, bottom: speaker. thin gold divider
@@ -562,6 +603,40 @@ def render_shot(ctx, sh, t):
         img += particle_layer(t, 1.3, True, (0.0, -1.0))
         return img
     raise ValueError(kind)
+
+
+def draw_outline(img, poly, sc, tx, ty, prog, t):
+    if prog <= 0:
+        return
+    pts = np.array(poly, np.float32) * sc + np.float32([tx, ty])
+    seg = np.r_[pts, pts[:1]]
+    lens = np.linalg.norm(np.diff(seg, axis=0), axis=1)
+    total = lens.sum(); target = min(1.0, prog) * total
+    path = [seg[0]]; acc = 0.0
+    for i, L in enumerate(lens):
+        if acc + L >= target:
+            path.append(seg[i] + (seg[i + 1] - seg[i]) * ((target - acc) / L)); break
+        path.append(seg[i + 1]); acc += L
+    path = np.array(path)
+    lw, lh = W // 2, H // 2
+    line = np.zeros((lh, lw), np.float32)
+    cv2.polylines(line, [(path / 2).astype(np.int32)], False, 1.0, 3, cv2.LINE_AA)
+    fill = np.zeros((lh, lw), np.float32)
+    fa = min(1.0, max(0.0, (prog - 1.0) / 0.5))
+    if fa > 0:
+        cv2.fillPoly(fill, [(pts / 2).astype(np.int32)], 1.0, cv2.LINE_AA)
+        fill *= fa * (0.28 + 0.07 * math.sin(t * 4))
+    glow = cv2.GaussianBlur(line, (0, 0), 7) * 1.6
+    lay = cv2.resize(np.clip(line + glow * 0.6, 0, 1.4), (W, H))[..., None]
+    fl = cv2.resize(fill, (W, H))[..., None]
+    gold = np.array(GOLD, np.float32)
+    img[:] = img * (1 - fl) + gold * fl
+    img[:] = img * (1 - np.clip(lay, 0, 1) * 0.6) + gold * lay * 0.75 + 255 * np.clip(line_full := cv2.resize(line, (W, H)), 0, 1)[..., None] * 0.35
+    # pulsing pin on the leading point
+    hx, hy = path[-1]
+    if prog < 1.0:
+        cv2.circle(img, (int(hx), int(hy)), 14, (255, 240, 200), -1, cv2.LINE_AA)
+        cv2.circle(img, (int(hx), int(hy)), int(24 + 8 * math.sin(t * 12)), GOLD, 3, cv2.LINE_AA)
 
 
 def motion_blur(img, length, horizontal=True):
