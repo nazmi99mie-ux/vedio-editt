@@ -119,29 +119,67 @@ def pad(chord, d, bright=1.0):
     return y / np.abs(y).max()
 
 
+def piano(f, d=4.0, vel=1.0):
+    """Soft felt-piano tone: inharmonic partials, per-partial decay, gentle hammer."""
+    n = int(d * SR); t = np.arange(n) / SR
+    y = np.zeros(n)
+    for h in range(1, 9):
+        fh = f * h * np.sqrt(1 + 0.0004 * h * h)
+        y += np.sin(2 * np.pi * fh * t) / h ** 1.4 * np.exp(-t * (0.9 + 0.55 * h) * (f / 440) ** 0.3)
+    y += rng.standard_normal(n) * np.exp(-t * 90) * 0.02          # hammer felt
+    b, a = signal.butter(2, min(2600 * vel + 600, 8000) / (SR / 2)); y = signal.lfilter(b, a, y)
+    y *= env(n, int(0.006 * SR), int(0.3 * SR))
+    return y / np.abs(y).max() * vel
+
+
+def cello(f, d):
+    n = int(d * SR); t = np.arange(n) / SR
+    vib = 1 + 0.004 * np.sin(2 * np.pi * 5.2 * t) * np.clip(t - 0.5, 0, 1)
+    ph = 2 * np.pi * np.cumsum(f * vib) / SR
+    y = sum(np.sin(h * ph) / h ** 1.2 for h in range(1, 10))
+    b, a = signal.butter(2, 1400 / (SR / 2)); y = signal.lfilter(b, a, y)
+    y *= env(n, int(0.9 * SR), int(1.2 * SR))
+    return y / np.abs(y).max()
+
+
 def score():
+    """Sad, emotional piano + strings in A minor, ~64 BPM."""
     mus = np.zeros((N, 2))
-    # D minor: Dm  Bb  F  C  (i VI III VII), 4.2 s per chord, overlapping
-    prog = [[50, 57, 62, 65], [46, 53, 58, 62], [41, 53, 57, 60], [48, 55, 60, 64]]
+    beat = 60 / 64
+    bar = 4 * beat
+    # Am | F | C | G | Am | F | Dm | E   (harmonic-minor turn at the end of each phrase)
+    prog = [(57, [57, 60, 64]), (53, [53, 57, 60]), (48, [48, 55, 60, 64]), (55, [55, 59, 62]),
+            (57, [57, 60, 64]), (53, [53, 57, 60]), (50, [50, 53, 57]), (52, [52, 56, 59])]
+    # melody: (beat offset in bar, midi, length in beats) per bar - a falling, sighing line
+    mel = [[(0, 76, 2), (2, 74, 1), (3, 72, 1)], [(0, 72, 2), (2, 71, 1), (3, 69, 1)],
+           [(0, 67, 2), (2, 76, 2)], [(0, 74, 4)],
+           [(0, 76, 2), (2, 74, 1), (3, 72, 1)], [(0, 69, 2), (2, 72, 2)],
+           [(0, 74, 1), (1, 77, 1), (2, 76, 2)], [(0, 76, 3), (3, 71, 1)]]
     doa_t = segs[-1]["t0"] - 0.6
     t, k = 0.0, 0
     while t < TOTAL:
-        ch = prog[k % 4]
-        bright = 0.5 if t < doa_t else 0.25
-        x = pad(ch, 5.6, bright)
-        place(mus, x, t, 0.5, pan=-0.2 if k % 2 else 0.2)
-        # sub bass root
-        n = int(5.6 * SR); tt = np.arange(n) / SR
-        place(mus, np.sin(2 * np.pi * note(ch[0] - 12) * tt) * env(n, SR, SR) * 0.35, t)
-        t += 4.2; k += 1
-    # gentle plucked arpeggio (bell-ish) through the body and the doa
-    arp = [74, 77, 81, 77, 72, 76, 79, 76]
-    t, i = 3.0, 0
-    while t < TOTAL - 2:
-        g = 0.05 if t < doa_t else 0.08
-        place(mus, bell(note(arp[i % 8]), 1.6), t, g, pan=np.sin(i) * 0.5)
-        t += 0.7; i += 1
-    return reverb(mus, 3.2, 0.45)
+        root, ch = prog[k % 8]
+        intro = t < plan.COLD
+        # strings pad (quiet, dark) + cello root
+        place(mus, pad([m + 12 for m in ch], bar + 1.6, 0.15), t, 0.30, pan=0.0)
+        place(mus, cello(note(root - 12), bar + 0.8), t, 0.30, pan=-0.3)
+        # left hand: slow broken chord in 8ths (root-5th-octave-10th)
+        lh = [root - 12, root - 5, root, ch[1] if len(ch) > 1 else root + 4]
+        for e in range(8):
+            if intro and e % 2: continue
+            m = lh[[0, 1, 2, 3, 2, 1, 2, 3][e]]
+            place(mus, piano(note(m), 2.6, 0.55 if e else 0.75), t + e * beat / 2 + rng.uniform(0, 0.012),
+                  0.20, pan=-0.25)
+        # right hand melody (sparser while he speaks, fuller in doa/outro, absent in cold open)
+        if not intro:
+            for off, m, ln in mel[k % 8]:
+                tt = t + off * beat + rng.uniform(0, 0.02)
+                g = 0.30 if tt >= doa_t else 0.22
+                place(mus, piano(note(m), ln * beat + 2.0, 0.9), tt, g, pan=0.25)
+                if tt >= doa_t:   # octave doubling for the doa - more heart
+                    place(mus, piano(note(m - 12), ln * beat + 2.0, 0.6), tt + 0.01, 0.10, pan=0.1)
+        t += bar; k += 1
+    return reverb(mus, 4.0, 0.5, damp=3000)
 
 
 def main():
@@ -150,7 +188,7 @@ def main():
     fade = int(0.012 * SR)
     for s in segs:
         a, b = int(s["a0"] * SR), int(s["a1"] * SR)
-        x = sp[a:b].copy() * env(b - a, fade, int(0.04 * SR))
+        x = sp[a:b].copy() * env(b - a, fade, int(0.08 * SR))
         i = int(s["t0"] * SR)
         voice[i:i + len(x)] += x[: N - i]
 
@@ -160,14 +198,14 @@ def main():
         act[int((w["s"] - 0.15) * SR): int((w["e"] + 0.25) * SR)] = 1
     k = int(0.25 * SR)
     act = np.convolve(act, np.ones(k) / k, "same")
-    duck = 10 ** ((-19 * act) / 20)         # -19 dB under speech
+    duck = 10 ** ((-9 * act) / 20)          # -9 dB under speech
 
     mus = score()
     # dynamics: swell in cold open & outro, softer inside body
-    lvl = np.full(N, 0.55)
+    lvl = np.full(N, 2.8)
     tt = np.arange(N) / SR
-    lvl = np.where(tt < plan.COLD, 1.4, lvl)
-    lvl = np.where(tt > segs[-1]["t1"], 1.8, lvl)
+    lvl = np.where(tt < plan.COLD, 3.6, lvl)
+    lvl = np.where(tt > segs[-1]["t1"], 4.2, lvl)
     lvl = np.convolve(lvl, np.ones(SR) / SR, "same")
     mus *= (duck * lvl)[:, None]
     mus *= env(N, int(0.6 * SR), int(2.5 * SR))[:, None]
@@ -195,6 +233,8 @@ def main():
     place(fx, whoosh(0.6), segs[-1]["t1"] + 0.1, 0.18)
 
     mix = np.stack([voice, voice], 1) * 1.0 + mus * 0.42 + fx * 0.5
+    np.stack([voice, voice], 1).astype(np.float32).tofile(f"{plan.S}/stem_voice.f32")
+    (mus * 0.42).astype(np.float32).tofile(f"{plan.S}/stem_music.f32")
     mix /= max(1.0, np.abs(mix).max() / 0.95)
     mix.astype(np.float32).tofile(f"{plan.S}/mix.f32")
     # stems for checking

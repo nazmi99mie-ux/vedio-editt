@@ -19,21 +19,21 @@ OUTRO = 4.2
 # crop: letterbox removal.  z: (zoom start, zoom end).  cx/cy: framing anchor (src px).
 # punch: [(src_time, amount)] eased punch-in zooms on key words.  grade: look.
 SEGS = [
-    dict(id="A", a0=43.12, a1=48.12, vin=43.62, z=(1.00, 1.07), cx=420, cy=560,
+    dict(id="A", a0=43.39, a1=48.36, vin=43.62, z=(1.00, 1.07), cx=420, cy=560,
          punch=[(44.36, 0.10), (46.84, 0.08)], grade="cine"),
-    dict(id="B", a0=9.92, a1=16.56, vin=10.45, z=(1.00, 1.05), cx=320, cy=450,
+    dict(id="B", a0=9.97, a1=16.80, vin=10.45, z=(1.00, 1.05), cx=320, cy=450,
          punch=[(12.42, 0.06)], grade="cine"),
-    dict(id="C", a0=23.26, a1=32.22, vin=23.50, z=(1.06, 1.16), cx=338, cy=420,
+    dict(id="C", a0=23.46, a1=32.53, vin=23.50, z=(1.06, 1.16), cx=338, cy=420,
          punch=[(27.14, 0.08), (29.38, 0.07)], grade="cine"),
-    dict(id="D", a0=33.22, a1=37.96, vin=33.80, z=(1.00, 1.06), cx=320, cy=500,
+    dict(id="D", a0=33.44, a1=38.25, vin=33.80, z=(1.00, 1.06), cx=320, cy=500,
          punch=[(34.60, 0.09)], grade="cine"),
-    dict(id="E", a0=38.60, a1=42.06, vin=38.60, z=(1.00, 1.12), cx=325, cy=515,
+    dict(id="E", a0=38.74, a1=42.37, vin=38.60, z=(1.00, 1.12), cx=325, cy=515,
          punch=[(39.74, 0.06)], grade="warm"),
-    dict(id="F", a0=16.58, a1=22.12, vin=16.95, z=(1.00, 1.06), cx=344, cy=455,
+    dict(id="F", a0=16.72, a1=22.44, vin=16.95, z=(1.00, 1.06), cx=344, cy=455,
          crop=(0, 32, 694, 1216), punch=[(21.00, 0.07)], grade="cine"),
-    dict(id="G", a0=48.16, a1=53.26, vin=48.22, z=(1.00, 1.06), cx=380, cy=550,
+    dict(id="G", a0=48.26, a1=53.54, vin=48.22, z=(1.00, 1.06), cx=380, cy=550,
          punch=[(51.90, 0.09)], grade="cine"),
-    dict(id="H", a0=0.00, a1=9.36, vin=0.00, z=(1.00, 1.09), cx=330, cy=500,
+    dict(id="H", a0=0.38, a1=9.59, vin=0.00, z=(1.00, 1.09), cx=330, cy=500,
          punch=[], grade="doa"),
 ]
 
@@ -80,6 +80,11 @@ def src_to_out(seg, ts):
     return seg["t0"] + (ts - seg["a0"])
 
 
+# which transcript words belong to each segment (Whisper sentence bounds)
+WORD_RANGE = {"A": (43.18, 48.10), "B": (9.96, 16.50), "C": (23.32, 32.18), "D": (33.28, 37.90),
+              "E": (38.66, 42.02), "F": (16.60, 22.08), "G": (48.22, 53.20), "H": (0.00, 9.30)}
+
+
 def words():
     """Word list with output times, cleaned spelling, per segment."""
     tr = json.load(open(f"{S}/tr.json"))
@@ -87,7 +92,8 @@ def words():
     segs, _ = timeline()
     out = []
     for sg in segs:
-        ws = [w for w in allw if w["s"] >= sg["a0"] - 0.05 and w["e"] <= sg["a1"] + 0.05]
+        lo, hi = WORD_RANGE[sg["id"]]       # sentence membership from the transcript
+        ws = [w for w in allw if w["s"] >= lo - 0.01 and w["e"] <= hi + 0.01]
         for w in ws:
             txt = w["w"].strip()
             txt = FIX.get(txt, txt)
@@ -95,7 +101,7 @@ def words():
                 out[-1]["text"] += txt
                 out[-1]["e"] = src_to_out(sg, w["e"])
                 continue
-            out.append(dict(seg=sg["id"], text=txt, s=src_to_out(sg, w["s"]),
+            out.append(dict(seg=sg["id"], text=txt, s=src_to_out(sg, min(max(w["s"], sg["a0"]), w["e"] - 0.08)),
                             e=src_to_out(sg, w["e"])))
     return out
 
